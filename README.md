@@ -1,3 +1,8 @@
+# bola-air-frontend
+This repository contains the code powering the frontend application of bola-air inc.
+all rights reserved
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
