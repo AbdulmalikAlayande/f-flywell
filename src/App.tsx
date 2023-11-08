@@ -1,24 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Read} from "./csv reader/Read"
+import CSVReader from './csv reader/CSVReader';
+import Read2 from './csv reader/Read2';
+import PapaParseCsv from './csv reader/papaParseCsv';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <CSVReader/> */}
+      {/* <Read2/> */}
+      <PapaParseCsv/>
     </div>
   );
 }
