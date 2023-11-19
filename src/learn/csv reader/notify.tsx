@@ -1,5 +1,5 @@
 import React from 'react';
-// import { ReactNotifications, Store } from 'react-notifications-component'
+import { ReactNotifications, Store } from 'react-notifications-component'
 
 interface Params {
     title: string,
@@ -28,7 +28,7 @@ export default function Notify(params: Params){
 
     return (
         <div>
-          {/* <ReactNotifications/>
+          <ReactNotifications/>
           {Store.addNotification({
                   title: params.title,
                   message: params.message,
@@ -41,7 +41,7 @@ export default function Notify(params: Params){
                     duration: params.dismiss?.duration ? params.dismiss.duration : 5000,
                     onScreen: params.dismiss?.onScreen ? params.dismiss.onScreen : true
                   }
-          })} */}
+          })}
         </div>
     );
 }

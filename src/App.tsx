@@ -1,16 +1,12 @@
 import React from 'react';
-import './App.css';
-import {Read} from "./csv reader/Read"
-import CSVReader from './csv reader/CSVReader';
-import Read2 from './csv reader/Read2';
-import PapaParseCsv from './csv reader/papaParseCsv';
+import FetchCities from './learn/aviation_stack_api/fetchCities';
+import Landinpage from './views/landingPage/landinpage';
 
 function App() {
   return (
     <div className="App">
-      {/* <CSVReader/> */}
-      {/* <Read2/> */}
-      <PapaParseCsv/>
+      <Landinpage/>
+      {/* <FetchCities/> */}
     </div>
   );
 }
