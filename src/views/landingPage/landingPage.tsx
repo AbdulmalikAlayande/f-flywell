@@ -1,8 +1,8 @@
 import React from 'react'
 import NavBar from '../components/reusableComponents/navBar'
-import Auth from '../components/auth/auth'
+import Auth from "../components/auth/auth";
 
-const Landinpage = () => {
+const LandingPage = () => {
     
   return (
     <div>
@@ -43,4 +43,4 @@ const Landinpage = () => {
   )
 }
 
-export default Landinpage
+export default LandingPage
