@@ -1,0 +1,47 @@
+.Call-To-Action-Button{
+    --button-background: paleturquoise;
+    --button-color: #ffffff;
+    --button-width: 15vw;
+    --button-height: 10vh;
+
+    background-color: var(--button-background);
+    color: var(--button-color);
+    width: var(--button-width);
+    height: var(--button-height); 
+    font-size: 20px;
+}
+
+.Action-Button{
+    background-color: transparent;
+    --button-color: #000000;
+    border-style: none;
+    font-size: 20px;
+    height: 100%;
+}
+.Action-Button:hover{
+    background-color: paleturquoise;
+    border-top: 3px solid #000;
+    cursor: pointer;
+}
+.Auth-Control_Button{
+    border-style: none;
+    background-color: transparent;
+    color: #000;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    height: 10vh;
+    width: 15vw;
+}
+.Auth-Control_Button:hover{
+    background-color: cornsilk;
+    color: #000;
+    /* border-style: solid; */
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    height: 10vh;
+    width: 15vw;
+}
+.Login-Submit-Button{
+    height: 50px;
+    width: 10vw;   
+}

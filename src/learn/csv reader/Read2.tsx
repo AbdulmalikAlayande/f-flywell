@@ -20,7 +20,6 @@ const Read2 = () => {
             const splitLine = data.split("\n")
             setLines(splitLine)
             rows = lines?.slice(2);
-
             console.log("splitLine is ==> ", splitLine)
             jsonFormat = convertToJson()
         }
