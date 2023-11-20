@@ -1,19 +1,22 @@
 import React from 'react'
 import NavBar from '../components/reusableComponents/navBar'
 import Auth from "../components/auth/auth";
+import "../../styles/components/landingPage/landingPage.css"
+import CallToActionNavBar from '../components/reusableComponents/callToActionNavBar';
 
 const LandingPage = () => {
     
   return (
-    <div>
+    <div className='Main-Frame'>
       <NavBar/>
+      <CallToActionNavBar/>
       <div className="Body">
             <div className="Welcome-Message-And-Value-Proposition-Frame">
-              <h4>Welcome <span>To</span>  <span>Bola Air</span></h4>
-              <p>
+              <h1>Welcome <span>To</span> <span>Bola Air</span></h1>
+              <h3>
                 With The Cheapest Flight<br/>You Can Easily Book Any Ticket You Need<br/>To Travel Safely,
                 thanks to our detailed system of searching<br/>and booking airline tickets.
-              </p>
+              </h3>
             </div>
             <div className="Auth-Frame">
               <Auth/>

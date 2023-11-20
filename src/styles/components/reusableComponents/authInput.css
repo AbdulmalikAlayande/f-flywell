@@ -1,0 +1,13 @@
+.Auth-Input-Main-Frame{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+.Auth-Input-Main-Frame label{
+    font-size: 20px;
+}
+.Auth-Input-Main-Frame input{
+    width: 29vw;
+    height: 5vh;
+    font-size: 20px;
+}

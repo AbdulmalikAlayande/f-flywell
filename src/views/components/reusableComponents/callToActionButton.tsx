@@ -1,14 +1,16 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import "../../../styles/components/reusableComponents/callToActionButton.css"
 
 interface ButtonProps{
     id?: string,
     className?: string,
     classNames?: string | string[],
     buttonLabel?: string,
+    value?: any,
     buttonPlaceHolder: string,
     type?: "button" | "submit" | "reset" | undefined,
-    onClick?: ()=>{}
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>)=>void,
+    style?: {}
 }
 
 const CallToActionButton = (props: ButtonProps) => {
@@ -17,7 +19,9 @@ const CallToActionButton = (props: ButtonProps) => {
         id={props.id}
         type={props.type}
         onClick={props.onClick}
-        className={props.className}
+        className={`Call-To-Action-Button ${props.className}`}
+        style={props.style && props.style}
+        value={props.value}
         >
             {props.buttonPlaceHolder}
     </button>
