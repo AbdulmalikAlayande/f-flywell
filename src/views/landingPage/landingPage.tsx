@@ -3,8 +3,13 @@ import NavBar from '../components/reusableComponents/navBar'
 import Auth from "../components/auth/auth";
 import "../../styles/components/landingPage/landingPage.css"
 import CallToActionNavBar from '../components/reusableComponents/callToActionNavBar';
+import AuthInput from '../components/reusableComponents/authInput';
+// import {useNavigate, useParams } from 'react-router'
+import CallToActionButton from '../components/reusableComponents/callToActionButton';
 
 const LandingPage = () => {
+
+  
     
   return (
     <div className='Main-Frame'>
@@ -12,11 +17,12 @@ const LandingPage = () => {
       <CallToActionNavBar/>
       <div className="Body">
             <div className="Welcome-Message-And-Value-Proposition-Frame">
-              <h1>Welcome <span>To</span> <span>Bola Air</span></h1>
-              <h3>
+              <p className='Welcome-PTag'>Welcome To Bola Air, The Sky is Waiting for You</p>
+              <p className='Value-Proposition-Ptag'>
                 With The Cheapest Flight<br/>You Can Easily Book Any Ticket You Need<br/>To Travel Safely,
                 thanks to our detailed system of searching<br/>and booking airline tickets.
-              </h3>
+              </p>
+              <button className="Go-To-Facebook">Learn More</button>
             </div>
             <div className="Auth-Frame">
               <Auth/>
@@ -24,12 +30,12 @@ const LandingPage = () => {
         </div>
       <div className="Footer-Frame">
         <div className="About-Us-Frame">
-          <p>About Us</p>
-          <p>
+          <p className='About-Us-Ptag-One'>About Us</p>
+          <p className='About-Us-Ptag-Two'>
             Bola Air is the world's first inspirational travel search service<br />
             that focuses on what's really important: your Interests and your Budget!
           </p>
-          <p>
+          <p className='About-Us-Ptag-Three'>
             How practical is an amazing weekend break for skiing,<br />
             if what you really look forward is relaxing on a sandy beach?<br />
             How good a great destination can be, if it's too expensive to get there?<br />
@@ -38,8 +44,12 @@ const LandingPage = () => {
           </p>
         </div>
         <div className="News-Letter-Frame">
-          <p>Enter Your Email To Subscribe To Our Weekly News Letter</p>
-          <input type="email" placeholder='enter your email here'/>
+          <p className="News-Letter">News Letter</p>
+          <p className='News-Letter-Prompt'>Enter Your Email To Subscribe To Our Weekly News Letter</p>
+          <form method="post" action="http://localhost:8080/subscribe-to-news-letter" className='News-Letter-Frame-Form'>
+            <AuthInput inputType="email" inputPlaceHolder='enter your email here' required />
+            <CallToActionButton type="submit" buttonPlaceHolder={'Subscribe'} />
+          </form>
         </div>
       </div>
     </div>
