@@ -1,0 +1,40 @@
+.Dashboard-Main-Frame{
+    display: flex;
+    justify-content: space-between;
+    column-gap: 5px;
+}
+.Dashboard-Part-Two{
+    display: flex;
+    flex-direction: column;
+    row-gap: 3%;
+    width: 83%;
+}
+.Dashboard-Body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 87%;
+    width: 100%;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-style: solid;
+}
+.Available-Flights-Frame{
+    overflow: auto;
+    border-top-left-radius: 30px;
+    height: 30%;
+    border-style: solid;
+    border-width: 1px;
+}
+.Cheap-Flight-Frame{
+    height: 20%;
+    overflow: auto;
+    border-style: solid;
+    border-width: 1px;
+}
+.Random-Flights-Frame{
+    height: 38%;
+    border-bottom-left-radius: 30px;
+    border-style: solid;
+    border-width: 1px;
+}

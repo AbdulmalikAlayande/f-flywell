@@ -59,14 +59,18 @@
   margin: 10px;
 }
 .About-Us-Ptag-One{
-  font-size: 30px;
-  
+  font-style: oblique;
+  font-size: 30px; 
 }
 .About-Us-Ptag-Two{
+  /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+  font-style: oblique;
   font-size: 20px;
   margin: auto;
 }
 .About-Us-Ptag-Three{
+  /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+  font-style: oblique;
   font-size: 20px;
 }
 .News-Letter-Frame{
@@ -92,9 +96,12 @@
 }
 .News-Letter-Frame button{
   width: 10vw;
-  height: 4vh;
+  height: 5vh;
   background-color: transparent;
+  font-size: 25px;
+  border-radius: 1dvh;
   color: black;
+  cursor: pointer;
 }
 .News-Letter-Frame input{
   width: 20vw;

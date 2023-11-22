@@ -4,7 +4,7 @@ import Auth from "../components/auth/auth";
 import "../../styles/components/landingPage/landingPage.css"
 import CallToActionNavBar from '../components/reusableComponents/callToActionNavBar';
 import AuthInput from '../components/reusableComponents/authInput';
-// import {useNavigate, useParams } from 'react-router'
+import {useNavigate, useParams } from 'react-router'
 import CallToActionButton from '../components/reusableComponents/callToActionButton';
 
 const LandingPage = () => {

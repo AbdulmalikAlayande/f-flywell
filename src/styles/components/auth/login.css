@@ -5,6 +5,7 @@
     align-content: center;
     background-color: cornsilk;
     width: 100%;
+    border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
     height: 100%;

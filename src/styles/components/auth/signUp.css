@@ -4,6 +4,7 @@
     flex-direction: column;
     justify-content: center;
     row-gap: 0;
+    border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
     height: 100%;
@@ -35,10 +36,12 @@
 }
 .SignUp-Form label{
     font-size: 20px;
+    color: dodgerblue;
 }
-.SignUp-Form button{background-color: aliceblue;
+.SignUp-Form button{
+    background-color: aliceblue;
     --button-color:var(--button-background) ;
-    height: 50px;
+    height: 40px;
     width: 10vw;   
     border-radius: 20px;
     color: var(--button-color);
