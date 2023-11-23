@@ -41,16 +41,23 @@
 .Cheap-Flight-Frame{
     height: 20%;
     overflow: auto;
+    overflow-x: auto;
     border-style: solid;
     border-width: 1px;
 }
 .Cheap-Flights-List-Structure{
+    display: flex;
+    justify-content: center;
+    
     height: 100%;
     width: 100%;
     overflow: auto;
 }
 .Cheap-Flights-List-Structure li{
-    width: 100%;
+    border-style: solid;
+    border-width: 1px;
+    background-color: purple;
+    width: 30vw;
     height: 90%;
 }
 .Random-Flights-Frame{
