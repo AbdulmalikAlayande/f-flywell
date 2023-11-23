@@ -22,7 +22,7 @@
 .Available-Flights-Frame{
     overflow: auto;
     border-top-left-radius: 30px;
-    height: 30%;
+    height: 35%;
     border-style: solid;
     border-width: 1px;
 }

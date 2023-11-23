@@ -1,14 +1,15 @@
 import React from 'react'
-import CallToActionButton from './callToActionButton'
 import "../../../styles/components/reusableComponents/dashboardSideBar.css"
-import { Icon } from '@iconify/react'
 import ButtonWithIcon from '../../../styles/components/reusableComponents/buttonWithIcon'
+import Logo from "../../../assets/images/jpg/logo-classic.jpg";
 
 const DashBoardSideBar = () => {
+
+
     return (
         <div className='Dashbaord-Side-Bar-Main-Frame'>
-            <div className="Logo-Frame">
-                <img src="../../../assets/images/airplane.jpg" alt="logo" />
+            <div className="Dashboard-Logo-Frame">
+                <img src={Logo} alt="Logo" />
             </div>
             <div className="Middle-Part">
                 <ButtonWithIcon icon={'pixelarticons:dashbaord'} buttonPlaceHolder={'Dashboard'} iconHeight={'25px'} iconWidth={'25px'}/>
@@ -19,7 +20,7 @@ const DashBoardSideBar = () => {
             </div>
             <div className="Foot">
                 <ButtonWithIcon icon={'material-symbols:settings-outline'} buttonPlaceHolder={'Settings'} iconHeight={'25px'} iconWidth={'25px'}/>
-                <ButtonWithIcon icon={'ic:round-logout'} className={'Log-Out-Button'}buttonPlaceHolder={'Log Out'} iconHeight={'25px'} iconWidth={'25px'}/>
+                <ButtonWithIcon icon={'ic:round-logout'} className={'Log-Out-Button'} buttonPlaceHolder={'Log Out'} iconHeight={'25px'} iconWidth={'25px'}/>
             </div>
         </div>
     )
