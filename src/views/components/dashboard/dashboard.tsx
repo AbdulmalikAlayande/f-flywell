@@ -3,7 +3,7 @@ import DashBoardSideBar from '../reusableComponents/dashBoardSideBar'
 import DashboardNavBar from '../reusableComponents/dashboardNavBar'
 import "../../../styles/components/dashboard/dashboard.css"
 import { AvailableFlight, CheapFlights, RandomFlights } from '../../interfaces/interface'
-import {availableFlight, randomFlight, cheapFlight} from "../../../utilities/placeholder"
+import {availableFlight, randomFlight, cheapFlight} from "../../../utilities/placeholder.d"
 
 const Dashboard = () => {
 
