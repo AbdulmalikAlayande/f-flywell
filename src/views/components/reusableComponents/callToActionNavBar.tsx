@@ -1,13 +1,13 @@
-import {Icon} from "@iconify/react";
 import CallToActionButton from "./callToActionButton";
 import React from "react";
-import "../../../styles/components/reusableComponents/callToActionNavBar.css"
+import "../../../styles/components/reusableComponents/callToActionNavBar.css";
+import Logo from "../../../assets/images/jpg/logo-classic.jpg";
+
 
 function CallToActionNavBar() {
     return <div className="Call-To-Action-Navbar">
         <div className="Logo-Frame">
-            <Icon className={"Logo-Icon"} icon={"noto:airplane"} height={"40px"} width={"40px"}/>
-            <label>Bola-Air</label>
+            <img src={Logo} alt="" />
         </div>
         <div className="Call-To-Action-Frame">
             <CallToActionButton buttonPlaceHolder={"Home"} className="Action-Button"/>

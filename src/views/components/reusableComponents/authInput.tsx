@@ -6,7 +6,7 @@ interface InputProps{
     inputType: string,
     className?: string,
     classNames?: string | string[],
-    inputLabel: string,
+    inputLabel?: string,
     inputPlaceHolder: string,
     required?: boolean,
     onChange?: ()=>void
@@ -14,7 +14,7 @@ interface InputProps{
 
 const AuthInput = (props: InputProps) => {
   return (
-    <div className="Auth-Input-Main-Frame">
+    <>
         <label>{props.inputLabel}</label>
         <input 
             id={props.id}
@@ -24,7 +24,7 @@ const AuthInput = (props: InputProps) => {
             required={props.required}
             placeholder={props.inputPlaceHolder}
         />
-    </div>
+    </>
   )
 }
 

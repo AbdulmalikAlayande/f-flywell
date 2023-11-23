@@ -15,19 +15,23 @@ const Login = () => {
 
   return (
     <div className={'Login-Main-Frame'}>
-        <form onSubmit={handleSubmit} className={'Login-Form'}>
+        <form onSubmit={handleSubmit} method={'post'} action={'http://localhost:8080/login'} className={'Login-Form'}>
+           <div className="Login-Form-Inputs-Frame">
             <AuthInput 
-                inputType={''} 
-                inputLabel={'Email'} 
-                inputPlaceHolder={'johndoe@gmail.com'}
-                onChange={handleInputChange}
-            />
-            <AuthInput
-                inputType={''} 
-                inputLabel={'Password'} 
-                inputPlaceHolder={'********'}
-                onChange={handleInputChange}
-            />
+                    inputType={'email'} 
+                    inputLabel={'Email'} 
+                    inputPlaceHolder={'johndoe@gmail.com'}
+                    onChange={handleInputChange}
+                    required
+                />
+                <AuthInput
+                    inputType={'password'} 
+                    inputLabel={'Password'} 
+                    inputPlaceHolder={'********'}
+                    onChange={handleInputChange}
+                    required
+                />
+           </div>
             <div className="Login-Submit-Button-Frame">
                 <CallToActionButton type={'submit'} buttonPlaceHolder={'Login'} className={'Login-Submit-Button'}/>
             </div>

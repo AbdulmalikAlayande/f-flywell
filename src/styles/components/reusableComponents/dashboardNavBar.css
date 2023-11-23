@@ -1,0 +1,25 @@
+.Dashboard-NavBar-Main-Frame{
+    display: flex;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    height: 8%;
+    border-style: solid;
+    justify-content: flex-end;
+}
+.Dashboard-NavBar-Main-Frame button{
+    width: 43px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.Dashboard-NavBar-Icons-Frame{
+    display: flex;
+    justify-content: flex-end;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    column-gap: 20px;
+}
