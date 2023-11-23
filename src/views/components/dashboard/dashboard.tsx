@@ -4,6 +4,7 @@ import DashboardNavBar from '../reusableComponents/dashboardNavBar'
 import "../../../styles/components/dashboard/dashboard.css"
 import { AvailableFlight, CheapFlights, RandomFlights } from '../../interfaces/interface'
 import {availableFlight, randomFlight, cheapFlight} from "../../../utilities/placeholder.d"
+import { Icon } from '@iconify/react'
 
 const Dashboard = () => {
 
@@ -39,7 +40,10 @@ const Dashboard = () => {
                         <ul className='Cheap-Flights-List-Structure'>
                             {cheapFlights.map((cheapFlight, index) =>(
                             <li key={index}>
+                                <img src="" alt="From-Location-Image" />
                                 <p>{cheapFlight.from}</p>
+                                <Icon icon={'tabler:arrow-right-circle'}/>
+                                <img src="" alt="From-Location-Image" />
                                 <p>{cheapFlight.to}</p>
                                 <p>{cheapFlight.duration}</p>
                                 <p>{cheapFlight.seatsRemaining}</p>
