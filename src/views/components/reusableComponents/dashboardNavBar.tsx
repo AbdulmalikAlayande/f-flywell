@@ -1,5 +1,5 @@
 import React from 'react'
-import ButtonWithIcon from '../../../styles/components/reusableComponents/buttonWithIcon'
+import ButtonWithIcon from './buttonWithIcon'
 import "../../../styles/components/reusableComponents/dashboardNavBar.css"
 
 const DashboardNavBar = () => {

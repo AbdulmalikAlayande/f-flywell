@@ -17,6 +17,8 @@ const Dashboard = () => {
         setRandomFlights(randomFlight)
         setCheapFlights(cheapFlight)
     }, [])
+
+
   return (
     <div className='Dashboard-Main-Frame'>
         <DashBoardSideBar/>
@@ -25,13 +27,21 @@ const Dashboard = () => {
             <div className="Dashboard-Body">
                 <div className="Dashboard-Body-Section-1">
                     <div className="Available-Flights-Frame">
-                        <ul>
+                        <ul className='Available-Flights'>
                             {availableFlights.map((availableFlight, index) =>(
-                            <li className='AvailableFlight' key={index}>
-                                <p>{availableFlight.from}</p>
-                                <p>{availableFlight.to}</p>
-                                <p>{availableFlight.duration}</p>
-                                <p>{availableFlight.seatsRemaining}</p>
+                            <li id={`id-${index}`} className='Available-Flight' key={index}>
+                                <div className="">
+                                    <p className='Available-Flight-To-From-P-Tag'>
+                                        {availableFlight.from}
+                                        <div className="Available-Flight-To-From-P-Tag-Div">
+                                            <Icon icon={'tabler:arrow-right-circle'} height={'25px'} width={'25px'}/>
+                                            <p>{availableFlight.duration}</p>
+                                        </div>
+                                        {availableFlight.to}
+                                    </p>
+                                    <p>{availableFlight.seatsRemaining}</p>
+                                </div>
+                                {}
                             </li>
                             ))}
                         </ul>
