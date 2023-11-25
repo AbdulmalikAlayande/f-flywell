@@ -4,6 +4,7 @@ export interface AvailableFlight{
     to: string;
     date: Date;
     duration: string;
+    time: string;
 }
 export interface CheapFlights extends AvailableFlight{   
 }

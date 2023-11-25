@@ -17,27 +17,88 @@
     width: 100%;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
-    /* border-style: solid;
-    border-width: 1px; */
 }
 /*                                 Dashboard Body Section 1                  */
+
+/*                                 Dashboard Body Section 1 First                           */
 .Dashboard-Body-Section-1{
     width: 55%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-style: solid;
-    border-width: 1px;
+    /* border-style: solid;
+    border-width: 1px; */
     border-radius: 30px;
 }
 .Available-Flights-Frame{
-    overflow: auto;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
+    overflow:auto;
+    display: flex;
+    justify-content: center;
     height: 35%;
     border-style: solid;
     border-width: 1px;
 }
+.Available-Flights{
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+    width: 100%;
+    justify-content: space-evenly;
+    border-style: solid;
+    border-width: 1px;
+    height: auto;
+}
+.Available-Flights li{
+    width: 100%;
+    display: flex;
+    height: 60px;
+    background-color: aliceblue;
+    border-style: solid;
+    border-width: 1px;
+}
+#Id-0{
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+.Available-Flight-To-From-P-Tag{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 20vw;
+    font-size: 10px;
+}
+.Available-Flight-To-From-P-Tag-Div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 0;
+}
+.Available-Flights-Frame::-webkit-scrollbar {
+    height: 2px;
+    width: 10px;
+}
+.Available-Flights-Frame::-webkit-scrollbar-track {
+    height: 2px;
+    width: 10px;
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+.Available-Flights-Frame::-webkit-scrollbar-thumb {
+    height: 2px;
+    width: 10px;
+    background: #4CAF50;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+.Available-Flights-Frame::-webkit-scrollbar-thumb:hover {
+    background: #2E8B57;
+}
+  
+  
+/*                              Dashboard Body Section 1 Middle                          */
 .Cheap-Flight-Frame{
     height: 20%;
     overflow: auto;
@@ -56,7 +117,7 @@
 .Cheap-Flights-List-Structure li{
     border-style: solid;
     border-width: 1px;
-    background-color: purple;
+    background-color: aliceblue;
     width: 30vw;
     height: 90%;
 }

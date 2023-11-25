@@ -1,6 +1,6 @@
 import React from 'react'
 import "../../../styles/components/reusableComponents/dashboardSideBar.css"
-import ButtonWithIcon from '../../../styles/components/reusableComponents/buttonWithIcon'
+import ButtonWithIcon from './buttonWithIcon'
 import Logo from "../../../assets/images/jpg/logo-classic.jpg";
 
 const DashBoardSideBar = () => {
