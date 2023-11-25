@@ -1,5 +1,5 @@
 import React, { FormEvent, useState } from 'react'
-import UploadWidget from '../../../utilities/uploadWidget'
+import UploadWidget from '../../../../utilities/uploadWidget'
 import UseCamera from './useCamera'
 import UseVideo from './useVideo'
 
