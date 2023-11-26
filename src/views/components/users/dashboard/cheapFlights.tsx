@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {CheapFlight} from "../../../interfaces/interface";
 import {Icon} from "@iconify/react";
-import "../../../../styles/components/dashboard/dashboard/cheapFlights.css"
+import "../../../../styles/components/users/dashboard/cheapFlights.css"
 
 type Props = {
     cheapFlights: CheapFlight[]

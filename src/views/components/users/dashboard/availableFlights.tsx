@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {AvailableFlight} from "../../../interfaces/interface";
 import {Icon} from "@iconify/react";
-import "../../../../styles/components/dashboard/dashboard/availableFlights.css"
+import "../../../../styles/components/users/dashboard/availableFlights.css"
 
 type Props = {
     availableFlights: AvailableFlight[]

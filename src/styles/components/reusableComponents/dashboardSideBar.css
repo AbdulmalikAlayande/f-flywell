@@ -1,4 +1,5 @@
 .Dashbaord-Side-Bar-Main-Frame{
+    background-color: whitesmoke;
     display: flex;
     flex-direction: column;
     border-top-right-radius: 30px;

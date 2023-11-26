@@ -9,8 +9,6 @@ import CallToActionButton from '../components/reusableComponents/callToActionBut
 
 const LandingPage = () => {
 
-  
-    
   return (
     <div className='Main-Frame'>
       <NavBar/>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import DashBoardSideBar from '../../reusableComponents/dashBoardSideBar'
 import DashboardNavBar from '../../reusableComponents/dashboardNavBar'
-import "../../../../styles/components/dashboard/dashboard/dashboard.css"
+import "../../../../styles/components/users/dashboard/dashboard.css"
+import { availableFlight, randomFlight, cheapFlight } from '../../../../utilities/placeholder.d'
 import { AvailableFlight, CheapFlight, RandomFlight } from '../../../interfaces/interface'
 import {AvailableFlights} from "./availableFlights";
 import {CheapFlights} from "./cheapFlights";
-import {availableFlight, cheapFlight, randomFlight} from "../../../../utilities/placeholder";
 
 const Dashboard = () => {
 
@@ -44,7 +44,7 @@ const Dashboard = () => {
                 </div>
                 <div className="Dashboard-Body-Section-2">
                     <div className="Statistics-Frame">
-
+                        
                     </div>
                     <div className="Flight-Schedule-Frame">
 
