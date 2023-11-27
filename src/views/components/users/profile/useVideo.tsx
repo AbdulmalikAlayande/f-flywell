@@ -37,7 +37,7 @@ const UseVideo = () => {
   }, []);
 
   return (
-    <div>
+    <div className={'Use-Video-Main-Frame'}>
       {video === '' ? (
         <Webcam
           audio={false}

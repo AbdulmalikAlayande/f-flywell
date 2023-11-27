@@ -25,32 +25,32 @@ const UseCamera = () => {
 
 
     function postToCloudinary() {
-
+        console.log("hi")
     }
 
     return (
         <div className='Use-Camera-Main-Frame'>
             {image!==''?(
-                <>
+                <div className={'Webcam-Image-After-Snap'}>
                     <img src={image} alt={'Pic'}></img>
                     <button onClick={()=>setImage('')}>Recapture</button>
-                </>):(
+                </div>):(
                 <div className='Webcam-Image-Before-Snap'>
                     <Webcam
                         screenshotFormat="image/jpeg"
                         videoConstraints={videoConstraints}
                         audio={false}
-                        height={200}
-                        width={200}
+                        height={250}
+                        width={250}
                         ref={imageRef}
                     />
                     <ButtonWithIcon
                         onClick={(event)=>{event.preventDefault(); captureImage()}}
-                        icon={'ph:camera-fill'} buttonPlaceHolder={'capture'} iconHeight={'40px'} iconWidth={'8vw'}
+                        icon={'ph:camera-fill'} buttonPlaceHolder={'Capture'} iconHeight={'35px'} iconWidth={'8vw'}
                     />
                 </div>
             )}
-            <button id={'Camera-Image-Upload-Button'} onClick={postToCloudinary}>Upload Image</button>
+            <button id={'Camera-Image-Upload-Button'} onClick={postToCloudinary} disabled={image===''}>Upload Image</button>
         </div>
     )
 }
