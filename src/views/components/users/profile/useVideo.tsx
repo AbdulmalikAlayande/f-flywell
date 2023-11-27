@@ -1,5 +1,6 @@
 import React, { useRef, useState, useCallback } from 'react';
 import Webcam from 'react-webcam';
+import "../../../../styles/components/users/profile/useVideo.css"
 
 const videoConstraints = {
   width: 400,
@@ -36,7 +37,7 @@ const UseVideo = () => {
   }, []);
 
   return (
-    <div>
+    <div className={'Use-Video-Main-Frame'}>
       {video === '' ? (
         <Webcam
           audio={false}

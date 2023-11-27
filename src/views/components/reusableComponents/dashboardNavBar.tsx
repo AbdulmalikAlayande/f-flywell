@@ -1,17 +1,40 @@
-import React from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import ButtonWithIcon from './buttonWithIcon'
 import "../../../styles/components/reusableComponents/dashboardNavBar.css"
 
+
 const DashboardNavBar = () => {
-  return (
-    <div className='Dashboard-NavBar-Main-Frame'>
-      <div className="Dashboard-NavBar-Icons-Frame">
-        <ButtonWithIcon icon={'iconamoon:notification'} iconHeight={'40px'} iconWidth={'40px'} buttonPlaceHolder={''} iconColor='black'/>
-        <ButtonWithIcon icon={'iconamoon:email'} iconHeight={'40px'} iconWidth={'40px'} buttonPlaceHolder={''} iconColor='black'/>
-        <ButtonWithIcon icon={'gg:profile'} iconHeight={'40px'} iconWidth={'40px'} buttonPlaceHolder={''} iconColor='black'/>
-      </div>
-    </div>
-  )
+
+
+    const [currentDate, setCurrentDate] = useState('');
+    const [currentTime, setCurrentTime] = useState('');
+
+    const fetchTime = useCallback(() => {
+            const intervalId = setInterval(()=>{
+                const time = new Date().toLocaleTimeString();
+                const date = new Date().toDateString();
+                setCurrentTime((time))
+                setCurrentDate(date);
+            }, 1000)
+            return ()=>clearInterval(intervalId)
+        },[]
+    );
+
+    useEffect(fetchTime, [fetchTime]);
+
+    return (
+        <div className='Dashboard-NavBar-Main-Frame'>
+            <div className={'Time-And-Date-Frame'}>
+                <p>{currentTime}, </p>
+                <p>{currentDate}</p>
+            </div>
+            <div className="Dashboard-NavBar-Icons-Frame">
+                <ButtonWithIcon icon={'iconamoon:notification'} iconHeight={'40px'} iconWidth={'40px'} buttonPlaceHolder={''} iconColor='black'/>
+                <ButtonWithIcon icon={'iconamoon:email'} iconHeight={'40px'} iconWidth={'40px'} buttonPlaceHolder={''} iconColor='black'/>
+                <ButtonWithIcon icon={'gg:profile'} iconHeight={'40px'} iconWidth={'40px'} buttonPlaceHolder={''} iconColor='black'/>
+            </div>
+        </div>
+    )
 }
 
 export default DashboardNavBar

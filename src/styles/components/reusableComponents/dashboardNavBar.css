@@ -1,10 +1,26 @@
 .Dashboard-NavBar-Main-Frame{
+    background-color: whitesmoke;
     display: flex;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     height: 8%;
     border-style: solid;
+    border-width: 1px;
     justify-content: flex-end;
+    align-items: center;
+    column-gap: 50px;
+}
+.Time-And-Date-Frame{
+    height: 80%;
+    width: 25%;
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 20px;
+    border-radius: 15px;
 }
 .Dashboard-NavBar-Main-Frame button{
     width: 50px;

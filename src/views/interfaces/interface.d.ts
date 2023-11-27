@@ -6,9 +6,9 @@ export interface AvailableFlight{
     duration: string;
     time: string;
 }
-export interface CheapFlights extends AvailableFlight{   
+export interface CheapFlight extends AvailableFlight{
 }
 
-export interface RandomFlights extends AvailableFlight{
+export interface RandomFlight extends AvailableFlight{
 
 }

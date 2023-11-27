@@ -15,6 +15,7 @@ interface ButtonWithIconProps{
     type?: "button" | "submit" | "reset" | undefined,
     onClick?: (event: React.MouseEvent<HTMLButtonElement>)=>void,
     style?: {}
+    backgroundColor?: string
 }
 
 const ButtonWithIcon = (props: ButtonWithIconProps) => {
@@ -26,6 +27,7 @@ const ButtonWithIcon = (props: ButtonWithIconProps) => {
         className={props.className}
         style={props.style && props.style}
         value={props.value}
+
     >
             <Icon 
                 icon={props.icon} color={props.iconColor}

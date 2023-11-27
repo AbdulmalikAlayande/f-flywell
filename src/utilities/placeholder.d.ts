@@ -1,4 +1,4 @@
-import { AvailableFlight, CheapFlights, RandomFlights } from "../views/interfaces/interface";
+import { AvailableFlight, CheapFlight, RandomFlight } from "../views/interfaces/interface";
 
 export const availableFlight: AvailableFlight[] = [
     {
@@ -34,26 +34,11 @@ export const availableFlight: AvailableFlight[] = [
         duration: "6hrs",   
         time: "4:30pm",
     },
-    {
-        seatsRemaining: 34,
-        from: "Abu Dhabi",
-        to: "Cuba",
-        date: new Date("11-23-2023").toDateString,
-        duration: "6hrs",   
-        time: "4:30pm",
-    },
-    {
-        seatsRemaining: 34,
-        from: "Abu Dhabi",
-        to: "Cuba",
-        date: new Date("11-23-2023").toDateString,
-        duration: "6hrs",   
-        time: "4:30pm",
-    },
+    
     
 ]
 
-export const randomFlight: RandomFlights[] = [
+export const randomFlight: RandomFlight[] = [
     {
         seatsRemaining: 34,
         from: "Abu Dhabi",
@@ -104,50 +89,16 @@ export const randomFlight: RandomFlights[] = [
     }
 ]
 
-export const cheapFlight: CheapFlights[] = [
+export const cheapFlight: CheapFlight[] = [
+    // {
+    //     seatsRemaining: 34,
+    //     from: "Abu Dhabi",
+    //     to: "Cuba",
+    //     date: new Date("11-23-2023").toDateString,
+    //     duration: "6hrs",   
+    //     time: "4:30pm",
+    // },
     {
-        seatsRemaining: 34,
-        from: "Abu Dhabi",
-        to: "Cuba",
-        date: new Date("11-23-2023").toDateString,
-        duration: "6hrs",   
-        time: "4:30pm",
-    },    {
-        seatsRemaining: 34,
-        from: "Abu Dhabi",
-        to: "Cuba",
-        date: new Date("11-23-2023").toDateString,
-        duration: "6hrs",   
-        time: "4:30pm",
-    },    {
-        seatsRemaining: 34,
-        from: "Abu Dhabi",
-        to: "Cuba",
-        date: new Date("11-23-2023").toDateString,
-        duration: "6hrs",   
-        time: "4:30pm",
-    },    {
-        seatsRemaining: 34,
-        from: "Abu Dhabi",
-        to: "Cuba",
-        date: new Date("11-23-2023").toDateString,
-        duration: "6hrs",   
-        time: "4:30pm",
-    },    {
-        seatsRemaining: 34,
-        from: "Abu Dhabi",
-        to: "Cuba",
-        date: new Date("11-23-2023").toDateString,
-        duration: "6hrs",   
-        time: "4:30pm",
-    },    {
-        seatsRemaining: 34,
-        from: "Abu Dhabi",
-        to: "Cuba",
-        date: new Date("11-23-2023").toDateString,
-        duration: "6hrs",   
-        time: "4:30pm",
-    },    {
         seatsRemaining: 34,
         from: "Abu Dhabi",
         to: "Cuba",
