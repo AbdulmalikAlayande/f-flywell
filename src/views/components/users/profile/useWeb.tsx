@@ -1,7 +1,7 @@
 import * as React from 'react';
 import "../../../../styles/components/users/profile/useWeb.css"
 import {useState} from "react";
-
+import uploadFile from "../../../../utilities/cloudinaryConfig";
 
 export function UseWeb() {
 
@@ -18,8 +18,8 @@ export function UseWeb() {
         setImage(imageUrl)
     }
 
-    function postToCloudinary() {
-
+    async function postToCloudinary() {
+        await uploadFile(imageUrl)
     }
 
     return (
