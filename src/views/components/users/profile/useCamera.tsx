@@ -1,4 +1,4 @@
-import React, {useState, useRef, useCallback} from 'react'
+import React, {useState, useRef, useCallback, SyntheticEvent} from 'react'
 import Webcam from 'react-webcam'
 import "../../../../styles/components/users/profile/useCamera.css"
 import {Icon} from "@iconify/react";
@@ -10,11 +10,12 @@ const videoConstraints = {
   height: 400,
   facingMode: 'user',
 }
+type Props = {userEmail?:string}
 
-
-const UseCamera = () => {
+const UseCamera = ({userEmail}: Props) => {
     const imageRef = useRef<Webcam>(null)
     const [image, setImage] = useState<string>('')
+    const [file, setFile] = useState<Blob>()
 
     const captureImage = useCallback(()=>{
         if(imageRef.current){
@@ -23,16 +24,32 @@ const UseCamera = () => {
         }
     }, [imageRef])
 
+    function handleImageLoad(event: SyntheticEvent<HTMLImageElement>){
+        const eventTarget = event.target as HTMLImageElement;
+        fetch(eventTarget.src)
+            .then(response => response.blob())
+            .then(blob => {
+                console.log(blob); 
+                setFile(blob)
+                return new File([blob], 'email-Profile-Image');
+            })
+            .catch(error => {
+                console.log(error.message); 
+                return error.message
+            })
+    }
 
-    function postToCloudinary() {
-        console.log("hi")
+    function postToCloudinary(event: React.FormEvent<HTMLFormElement>) {
+        const eventTarget = event.target as HTMLFormElement;
+        const file = eventTarget;
     }
 
     return (
         <div className='Use-Camera-Main-Frame'>
-            {image!==''?(
+            <form onSubmit={postToCloudinary} action="Use-Camera-Main-Form">
+                {image!==''?(
                 <div className={'Webcam-Image-After-Snap'}>
-                    <img src={image} alt={'Pic'}></img>
+                    <img onLoad={handleImageLoad} src={image} alt={'Pic'}></img>
                     <button onClick={()=>setImage('')}>Recapture</button>
                 </div>):(
                 <div className='Webcam-Image-Before-Snap'>
@@ -50,7 +67,8 @@ const UseCamera = () => {
                     />
                 </div>
             )}
-            <button id={'Camera-Image-Upload-Button'} onClick={postToCloudinary} disabled={image===''}>Upload Image</button>
+                <button id={'Camera-Image-Upload-Button'} disabled={image===''}>Upload Image</button>
+            </form>
         </div>
     )
 }

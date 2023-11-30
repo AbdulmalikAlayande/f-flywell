@@ -1,5 +1,6 @@
 import { Icon, IconifyIcon } from '@iconify/react'
 import React from 'react'
+import '../../../styles/components/reusableComponents/buttonWithIcon.css'
 
 interface ButtonWithIconProps{
     icon: string;

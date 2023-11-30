@@ -2,3 +2,39 @@
     display: flex;
     flex-direction: column;
 }
+.Input-PTag{
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    color: #eee;
+}
+.Input-PTag::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: -1;
+    background-color: hsla(101, 76%, 42%, 0.825);
+    transform: translateX(-110%);
+    transition: transform 260ms ease-out;
+}
+.Input-PTag:focus-within{
+    color: #fff;
+    background-color: rgb(20, 74, 120);
+    text-shadow: 1px 1px 1px #000;
+}
+.Input-PTag:focus-within::before{
+    transform: translateX(0);
+}
+.Invalid{
+    border-color: #ff000f;
+}
+.Input-PTag input:focus:invalid{
+    border-color: #8a2be8;   
+    border-style: solid;
+    border-color: #ff000f;
+    border-radius: 15px;
+    border-width: 1px;
+}

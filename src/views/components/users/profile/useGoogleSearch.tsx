@@ -1,12 +1,16 @@
 // @flow
 import * as React from 'react';
 import {useEffect} from "react";
+import '../../../../styles/components/users/profile/useGoogleSearch.css'
 
 type Props = {
 
 };
 
 export function UseGoogleSearch(props: Props) {
+
+    const [image, setImage] = React.useState('');
+    const [imageUrl, setImageUrl] = React.useState('');
 
     useEffect(() => {
         const script = document.createElement('script');
@@ -23,9 +27,32 @@ export function UseGoogleSearch(props: Props) {
     }, []);
 
 
-    return (
-        <div>
+    function handleInputChange(event: React.ChangeEvent<HTMLInputElement>): void {
 
+    }
+
+    function handleFormSubmission(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+
+    }
+
+    function postToCloudinary(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+
+    }
+
+    return (
+        <div className={'Use-Google-Search-Main-Frame'}>
+            {image === ''? (<form className={'Google-Search-Form'}>
+                <input onChange={handleInputChange} type={'text'} placeholder={'Search Image'} required={true}/>
+                <button type={"submit"} onClick={handleFormSubmission}>Search</button>
+            </form>) : (
+                <div className={'Web-Image-Frame'}>
+                <img src={image} alt={'Profile Pic'}/>
+                    <button onClick={()=> {
+                        setImage('');
+                        setImageUrl('')
+                    }}>Change Image</button>
+            </div>)}
+            <button onClick={postToCloudinary}>Upload</button>
         </div>
     );
 };
