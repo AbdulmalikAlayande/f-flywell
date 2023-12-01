@@ -5,23 +5,40 @@ import { Icon } from '@iconify/react'
 import "../../../styles/components/auth/login.css"
 
 const Login = () => {
-    function handleInputChange(): void{
-        
-    }
+    
+    let emailPattern: string = '/^[a-z0-9._%±]+@(gmail|yahoo|outlook|hotmail|aol|icloud|mail|msn|live|yandex)\.com$/i';
+    let emailPattern2 = '^[a-zA-Z0-9._%+-]+@gmail\.com$/i'
 
     function handleSubmit(event: FormEvent<HTMLFormElement>): void {
-        
+        event.preventDefault();
+        let eventTarget = event.target as HTMLInputElement
+        let childNodes = eventTarget.childNodes;
+        let children= eventTarget.children;        
+    }
+
+    function handleInputChange(event: React.ChangeEvent<HTMLInputElement>): void {
+        event.preventDefault();
+        let eventTarget = event.target as HTMLInputElement
+        if(eventTarget.type === 'email'){
+            let parentElementChildNodes = eventTarget.parentElement?.childNodes;
+            if(parentElementChildNodes){
+                const span = parentElementChildNodes[2]
+                span.textContent = "Please provide a gmail, thanks"
+            }
+        }
     }
 
   return (
     <div className={'Login-Main-Frame'}>
-        <form onSubmit={handleSubmit} method={'post'} action={'http://localhost:8080/login'} className={'Login-Form'}>
+        {/* */}
+        <form onSubmit={handleSubmit} className={'Login-Form'}>
            <div className="Login-Form-Inputs-Frame">
             <AuthInput 
                     inputType={'email'} 
                     inputLabel={'Email'} 
                     inputPlaceHolder={'johndoe@gmail.com'}
                     onChange={handleInputChange}
+                    regexPattern={emailPattern2}
                     required
                 />
                 <AuthInput
@@ -29,6 +46,8 @@ const Login = () => {
                     inputLabel={'Password'} 
                     inputPlaceHolder={'********'}
                     onChange={handleInputChange}
+                    minimumLength={8}
+                    maximumLength={12}
                     required
                 />
            </div>

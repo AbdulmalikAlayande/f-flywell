@@ -9,22 +9,30 @@ interface InputProps{
     inputLabel?: string,
     inputPlaceHolder: string,
     required?: boolean,
-    onChange?: ()=>void
+    minimumLength?: number,
+    maximumLength?: number,
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>)=>void,
+    regexPattern?:string
 }
 
 const AuthInput = (props: InputProps) => {
   return (
-    <>
+    <p className='Input-PTag'>
         <label>{props.inputLabel}</label>
-        <input 
+        <input
+
             id={props.id}
             type={props.inputType}
             className={props.className}
             onChange={props.onChange}
             required={props.required}
             placeholder={props.inputPlaceHolder}
+            pattern={props.regexPattern}
+            minLength={props.minimumLength}
+            maxLength={props.maximumLength}
         />
-    </>
+        <span className={'Input-Instructions'}><span className={'Error-Message'}></span></span>
+    </p>
   )
 }
 

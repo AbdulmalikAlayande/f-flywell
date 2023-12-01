@@ -6,5 +6,21 @@
     border-style: dashed;
     border-color: darkgray;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+}
+.Use-Video-Start-And-Stop-Buttons-Frame{
+    display: flex;
+    justify-content: space-evenly;
+    /* border-style: solid;
+    border-width: 1px; */
+    width: 70%
+}
+.Use-Video-Start-And-Stop-Buttons-Frame button{
+    width: 12vw;
+    height: 8vh;
+    background-color: cadetblue;
+    border: none;
+    font-size: 20px;
+    color: #f1f1f1;
+    border-radius: 20px;
 }

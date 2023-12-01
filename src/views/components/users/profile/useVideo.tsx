@@ -41,16 +41,16 @@ const UseVideo = () => {
       {video === '' ? (
         <Webcam
           audio={false}
-          height={400}
+          height={300}
           ref={webcamRef}
-          width={400}
+          width={600}
           screenshotFormat={undefined}
           videoConstraints={videoConstraints}
         />
       ) : (
-        <video src={video} controls></video>
+        <video height={300} width={600} src={video} controls></video>
       )}
-      <div className=''>
+      <div className='Use-Video-Start-And-Stop-Buttons-Frame'>
         <button onClick={(event) => {event.preventDefault(); startRecording()}}>Start Recording</button>
         <button onClick={(event) => {event.preventDefault(); stopRecording()}}>Stop Recording</button>
       </div>
