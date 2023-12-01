@@ -12,24 +12,19 @@ export function AvailableFlights({availableFlights}: Props) {
 
     return (
         <div className="Available-Flights-Frame">
-            <ul className='Available-Flights'>
-                {availableFlights.map((availableFlight, index) =>(
-                    <li id={`id-${index}`} className='Available-Flight' key={index}>
-                        <div className="">
-                            <p className='Available-Flight-To-From-P-Tag'>
-                                {availableFlight.from}
-                                <div className="Available-Flight-To-From-P-Tag-Div">
-                                    <Icon icon={'tabler:arrow-right-circle'} height={'25px'} width={'25px'}/>
-                                    <p>{availableFlight.duration}</p>
-                                </div>
-                                {availableFlight.to}
-                            </p>
-                            <p>{availableFlight.seatsRemaining}</p>
+            {availableFlights.map((availableFlight, index) =>(
+                <div key={index} id={index === availableFlights.length-1 ? 'Last-Available-Flight':`Id-${index}`} className="Available-Flight">
+                    <p className='Available-Flight-To-From-P-Tag'>
+                        {availableFlight.from}
+                        <div className="Available-Flight-To-From-P-Tag-Div">
+                            <Icon icon={'tabler:arrow-right-circle'} height={'25px'} width={'25px'}/>
+                            <p>{availableFlight.duration}</p>
                         </div>
-                        {}
-                    </li>
-                ))}
-            </ul>
+                        {availableFlight.to}
+                    </p>
+                    <p>{availableFlight.seatsRemaining}</p>
+                </div>
+            ))}
         </div>
     );
 }
