@@ -15,8 +15,12 @@
     border-width: 1px;   
 }
 #Id-0{
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+#Last-Available-Flight{
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 .Available-Flight-To-From-P-Tag{
     display: flex;

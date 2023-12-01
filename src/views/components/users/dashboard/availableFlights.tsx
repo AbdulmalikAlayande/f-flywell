@@ -13,7 +13,7 @@ export function AvailableFlights({availableFlights}: Props) {
     return (
         <div className="Available-Flights-Frame">
             {availableFlights.map((availableFlight, index) =>(
-                <div key={index} id={`Id-${index}`} className="Available-Flight">
+                <div key={index} id={index === availableFlights.length-1 ? 'Last-Available-Flight':`Id-${index}`} className="Available-Flight">
                     <p className='Available-Flight-To-From-P-Tag'>
                         {availableFlight.from}
                         <div className="Available-Flight-To-From-P-Tag-Div">
