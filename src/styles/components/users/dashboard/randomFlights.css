@@ -1,0 +1,40 @@
+.Random-Flights-Frame{
+    height: 38%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 30px;
+    border-style: solid;
+    border-width: 1px;
+}
+.Random-Flight{
+    background-color: powderblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 25%;
+    height: 85%;
+    border-radius: 15%;
+    border-style: solid;
+    border-width: 1px;
+}
+.Random-Flights-Frame::-webkit-scrollbar {
+    height: 2px;
+    width: 10px;
+}
+.Random-Flights-Frame::-webkit-scrollbar-track {
+    height: 2px;
+    width: 10px;
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+.Random-Flights-Frame::-webkit-scrollbar-thumb {
+    height: 2px;
+    width: 10px;
+    background: powderblue;
+    border-radius: 5px;
+}
+.Random-Flights-Frame::-webkit-scrollbar-thumb:hover {
+    background: skyblue;
+}
+

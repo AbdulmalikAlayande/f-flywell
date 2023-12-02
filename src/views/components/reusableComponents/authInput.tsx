@@ -2,6 +2,7 @@ import React from 'react'
 import '../../../styles/components/reusableComponents/authInput.css'
 
 interface InputProps{
+    name?: string | undefined
     id?: string,
     inputType: string,
     className?: string,
@@ -20,7 +21,7 @@ const AuthInput = (props: InputProps) => {
     <p className='Input-PTag'>
         <label>{props.inputLabel}</label>
         <input
-
+            name={props.name}
             id={props.id}
             type={props.inputType}
             className={props.className}

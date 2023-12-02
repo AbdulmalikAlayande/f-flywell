@@ -1,3 +1,4 @@
+
 export function getRandomInt(min: number, max: number): number {
     const byteArray = new Uint32Array(1);
     let unitArray = window.crypto.getRandomValues(byteArray);
@@ -10,3 +11,10 @@ export function getRandomInt(min: number, max: number): number {
     }
     return min + (byteArray[0] % range);
 }
+
+export const loginUrl: URL = new URL('http://localhost:8080/login')
+export const signUpUrl: URL = new URL('http://localhost:8080/login')
+export const emailPattern: string = '/^[a-z0-9._%±]+@(gmail|yahoo|outlook|hotmail|aol|icloud|mail|msn|live|yandex)\.com$/i';
+export const emailPattern2 = '^[a-zA-Z0-9._%+-]+@gmail\.com$/i'
+
+

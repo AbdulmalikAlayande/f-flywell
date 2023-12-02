@@ -17,7 +17,7 @@ export function AvailableFlights({availableFlights}: Props) {
                     <p className='Available-Flight-To-From-P-Tag'>
                         {availableFlight.from}
                         <div className="Available-Flight-To-From-P-Tag-Div">
-                            <Icon icon={'tabler:arrow-right-circle'} height={'25px'} width={'25px'}/>
+                            <Icon icon={'cil:arrow-right'} height={'25px'} width={'70px'}/>
                             <p>{availableFlight.duration}</p>
                         </div>
                         {availableFlight.to}
