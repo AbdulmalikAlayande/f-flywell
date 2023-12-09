@@ -11,9 +11,9 @@ export function getRandomInt(min: number, max: number): number {
     }
     return min + (byteArray[0] % range);
 }
-
-export const loginUrl: URL = new URL('http://localhost:8080/login')
-export const signUpUrl: URL = new URL('http://localhost:8080/login')
+const BASE_URL = 'http://localhost:8081/bola-air/api/v3/';
+export const loginUrl: URL = new URL( BASE_URL+'login-customer')
+export const signUpUrl: URL = new URL(BASE_URL+'register-customer/')
 export const emailPattern: string = '/^[a-z0-9._%±]+@(gmail|yahoo|outlook|hotmail|aol|icloud|mail|msn|live|yandex)\.com$/i';
 export const emailPattern2 = '^[a-zA-Z0-9._%+-]+@gmail\.com$/i'
 

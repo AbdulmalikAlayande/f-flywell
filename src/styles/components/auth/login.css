@@ -48,6 +48,11 @@
     border-radius: 20px;
     color: var(--button-color);
 }
+.Login-Form button:hover{
+    height: 52px;
+    width: 10.5vw; 
+    background-color: powderblue;
+}
 .Login-Submit-Button-Frame{
     display: flex;
     justify-content: center;
