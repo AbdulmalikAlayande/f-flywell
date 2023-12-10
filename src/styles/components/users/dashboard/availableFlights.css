@@ -1,7 +1,7 @@
 .Available-Flights-Frame{
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+justify-content: space-evenly;
     align-items: center;
     row-gap: 5px;
     overflow:auto;

@@ -22,7 +22,7 @@ const DashBoardSideBar = () => {
                 <ButtonWithIcon value={'profile'} onClick={(event)=>navigateToDashBoard(event)} icon={'gg:profile'} buttonPlaceHolder={'Profile'} iconHeight={'25px'} iconWidth={'25px'}/>
                 <ButtonWithIcon value={'my-trips'} onClick={(event)=>navigateToDashBoard(event)} icon={'icon-park-outline:round-trip'} buttonPlaceHolder={'My Trips'} iconHeight={'25px'} iconWidth={'25px'}/>
                 <ButtonWithIcon value={'flight'} onClick={(event)=>navigateToDashBoard(event)} icon={'mdi:flight'} buttonPlaceHolder={'Flight'} iconHeight={'25px'} iconWidth={'25px'}/>
-                <ButtonWithIcon value={'create-itinerary'} onClick={(event)=>navigateToDashBoard(event)} icon={'game-icons:wavy-itinerary'} buttonPlaceHolder={'Create Itinerary'} iconHeight={'25px'} iconWidth={'25px'}/>
+                <ButtonWithIcon value={'create-itinerary'} onClick={(event)=>navigateToDashBoard(event)} icon={'carbon:flight-roster'} buttonPlaceHolder={'Create Itinerary'} iconHeight={'25px'} iconWidth={'25px'}/>
             </div>
             <div className="Foot">
                 <ButtonWithIcon icon={'material-symbols:settings-outline'} buttonPlaceHolder={'Settings'} iconHeight={'25px'} iconWidth={'25px'}/>
