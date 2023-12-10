@@ -1,5 +1,7 @@
 .Dashboard-Main-Frame{
     display: flex;
+    border-style: solid;
+    border-width: 1px;
     justify-content: space-between;
     column-gap: 5px;
 }

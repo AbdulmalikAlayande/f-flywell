@@ -11,6 +11,23 @@ export const availableFlight: AvailableFlight[] = [
         time: "4:30pm",
     },
     
+    {
+        seatsRemaining: 34,
+        from: "Abu Dhabi",
+        to: "Cuba",
+        date: new Date("11-23-2023").toDateString,
+        duration: "6hrs",   
+        time: "4:30pm",
+    },
+    
+    {
+        seatsRemaining: 34,
+        from: "Abu Dhabi",
+        to: "Cuba",
+        date: new Date("11-23-2023").toDateString,
+        duration: "6hrs",   
+        time: "4:30pm",
+    },
     
 ]
 
