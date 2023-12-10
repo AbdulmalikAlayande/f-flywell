@@ -1,38 +1,63 @@
 .Dashboard-NavBar-Main-Frame{
-    background-color: whitesmoke;
     display: flex;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     height: 8%;
+    justify-content: space-between;
+    align-items: center;
+    /* column-gap: 50px; */
+}
+.Search-Anything{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     border-style: solid;
     border-width: 1px;
-    justify-content: flex-end;
-    align-items: center;
-    column-gap: 50px;
+    height: 80%;
+    width: 35%;
+    border-radius: 15px;
 }
+.Search-Anything input{
+    border: none;
+    width: 90%;
+    padding-left: 1%;
+    height: 95%;
+}
+
+.Search-Anything button{
+    width: 20%;
+    height: 100%;
+    cursor: pointer;
+    background: powderblue;
+    border-radius: 15px;
+    border: none;
+}
+
 .Time-And-Date-Frame{
     height: 80%;
     width: 25%;
-    background-color: whitesmoke;
+    background-color: powderblue;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    border-style: solid;
-    border-width: 1px;
+    /* border-style: solid;
+    border-width: 1px;*/
     font-size: 20px;
     border-radius: 15px;
 }
-.Dashboard-NavBar-Main-Frame button{
+.Dashboard-NavBar-Icons-Frame button{
     width: 50px;
     height: 100%;
     display: flex;
     justify-content: center;
+    background-color: powderblue;
     align-items: center;
-    background-color: transparent;
     border-radius: 50%;
+    border: none;
     cursor: pointer;
 }
 .Dashboard-NavBar-Icons-Frame{
+    height: 100%;
     display: flex;
     justify-content: flex-end;
     border-top-left-radius: 20px;

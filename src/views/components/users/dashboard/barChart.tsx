@@ -19,7 +19,7 @@ const data: ChartData<"bar", (number | [number, number] | null)[], unknown> = {
     {
       label: "occurence",
       data: [3, 4, 2, 1, 6, 12, 15, 9],
-      backgroundColor: "powderblue",
+      backgroundColor: "#afa",
       borderWidth: 1,
     },
     {
@@ -31,7 +31,7 @@ const data: ChartData<"bar", (number | [number, number] | null)[], unknown> = {
     {
       label: "places",
       data: [15, 13, 16, 7, 3, 5, 4, 2],
-      backgroundColor: "marine",
+      backgroundColor: "aqua",
       borderWidth: 1,
     },
   ],

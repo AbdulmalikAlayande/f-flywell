@@ -85,8 +85,8 @@ const PieChart = () => {
   const options: ChartOptions = {};
   return (
     <div className="Flight-Schedule-Frame">
-      {/*style={{ height: "100%", width: "80%" }}*/}
-      <Pie data={data}></Pie>
+      {/**/}
+      <Pie style={{ height: "50vh", width: "50vw" }} data={data}></Pie>
     </div>
   );
 };
