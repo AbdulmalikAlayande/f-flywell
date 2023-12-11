@@ -8,7 +8,11 @@ const videoConstraints = {
   facingMode: 'user',
 };
 
-const UseVideo = () => {
+type UseVideoProps = {
+  userEmail?:string
+  postImage: ()=>any
+}
+const UseVideo = ({postImage}: UseVideoProps) => {
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const chunksRef = useRef<any[]>([]);
   const [video, setVideo] = useState<string>('');
