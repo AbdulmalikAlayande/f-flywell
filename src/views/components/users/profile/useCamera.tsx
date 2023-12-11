@@ -12,13 +12,13 @@ const videoConstraints = {
 }
 type UseCameraProps = {
     userEmail?:string
-    postImage: ()=>any
+    postImage: (file: string | File | Blob)=>any
 }
 
-const UseCamera = ({userEmail, postImage: method}: UseCameraProps) => {
+const UseCamera = ({userEmail, postImage}: UseCameraProps) => {
     const imageRef = useRef<Webcam>(null)
     const [image, setImage] = useState<string>('')
-    const [file, setFile] = useState<Blob>()
+    const [file, setFile] = useState<Blob | null>(null)
 
     const captureImage = useCallback(()=>{
         if(imageRef.current){
@@ -43,8 +43,11 @@ const UseCamera = ({userEmail, postImage: method}: UseCameraProps) => {
     }
 
     function postToCloudinary(event: React.FormEvent<HTMLFormElement>) {
-        const eventTarget = event.target as HTMLFormElement;
-        const file = eventTarget;
+        event.preventDefault();
+        if(file){
+            postImage(file)
+        }
+        else console.log("file was ==> ", file);
     }
 
     return (
