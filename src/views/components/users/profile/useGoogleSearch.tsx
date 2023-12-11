@@ -3,11 +3,12 @@ import * as React from 'react';
 import {useEffect} from "react";
 import '../../../../styles/components/users/profile/useGoogleSearch.css'
 
-type Props = {
+type UseGoogleSearchProps = {
+    userEmail?:string
+    postImage: ()=>any
+}
 
-};
-
-export function UseGoogleSearch(props: Props) {
+export function UseGoogleSearch({postImage}: UseGoogleSearchProps) {
 
     const [image, setImage] = React.useState('');
     const [imageUrl, setImageUrl] = React.useState('');

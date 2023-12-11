@@ -10,9 +10,12 @@ const videoConstraints = {
   height: 400,
   facingMode: 'user',
 }
-type Props = {userEmail?:string}
+type UseCameraProps = {
+    userEmail?:string
+    postImage: ()=>any
+}
 
-const UseCamera = ({userEmail}: Props) => {
+const UseCamera = ({userEmail, postImage: method}: UseCameraProps) => {
     const imageRef = useRef<Webcam>(null)
     const [image, setImage] = useState<string>('')
     const [file, setFile] = useState<Blob>()

@@ -1,22 +1,21 @@
 .Random-Flights-Frame{
-    height: 38%;
+    height: 35%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     border-radius: 30px;
-    border-style: solid;
-    border-width: 1px;
+    /* background-color: powderblue; */
 }
 .Random-Flight{
-    background-color: powderblue;
+    background-image: url("../../../../assets/images/jpg/abu-dhabi-1.jpg");
+    /* background-color: powderblue; */
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    width: 25%;
-    height: 85%;
+    width: 48%;
+    height: 100%;
     border-radius: 15%;
-    border-style: solid;
-    border-width: 1px;
 }
 .Random-Flights-Frame::-webkit-scrollbar {
     height: 2px;
@@ -36,5 +35,29 @@
 }
 .Random-Flights-Frame::-webkit-scrollbar-thumb:hover {
     background: skyblue;
+}
+.Random-Flight-Frame-1{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 65%;
+    width: 85%;
+}
+.Random-Flight-Frame-2{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 30%;
+    width: 100%;
+}
+.Airline, .Times, .Visibility{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 90%;
+    width: 25%;
+    border-radius: 15px;
+    background-color: rgba(230, 225, 225, 0.7);
 }
 

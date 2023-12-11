@@ -45,6 +45,7 @@
     height: 5vh;
     width: 20vw;
     cursor: pointer;
+    font-size: 15px;
 }
 .Icon-Input-Frame button{
     width: 12vw;

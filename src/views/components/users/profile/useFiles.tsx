@@ -3,14 +3,26 @@ import "../../../../styles/components/users/profile/useFiles.css"
 import {Icon} from "@iconify/react";
 import {useState} from "react";
 
-export function UseFiles() {
+type UseFilesProps = {
+    userEmail?:string
+    postImage: (file: string | File)=>any
+}
+export function UseFiles({postImage}: UseFilesProps) {
 
     const [imageUrl, setImageUrl] = useState('')
 
     function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+        console.log("api name ==> ", process.env.REACT_APP_CLOUDINARY_API_NAME)
+        console.log("upload preset ==> ", process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET)
+        console.log("api secret ==> ", process.env.REACT_APP_CLOUDINARY_API_SECRET)
+        console.log("api key ==> ", process.env.REACT_APP_CLOUDINARY_API_KEY)
+        console.log("avaiation stack access key ==> ", process.env.REACT_APP_AVIATION_STACK_ACCESS_KEY)
+        console.log("pexels api key ==> ", process.env.REACT_APP_PEXELS_API)
+
         if (event.target.files) {
             const fileUrl = URL.createObjectURL(event.target.files[0])
             setImageUrl(fileUrl)
+            postImage(fileUrl)
         }
 
     }

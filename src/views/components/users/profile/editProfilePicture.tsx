@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState} from "react";
+import {FormEvent, useState} from "react";
 import ButtonWithIcon from "../../reusableComponents/buttonWithIcon";
 import UseCamera from "./useCamera";
 import UseVideo from "./useVideo";
@@ -17,7 +17,10 @@ const choiceField= {
     GOOGLE_IMAGE_SEARCH: "image search"
 }
 
-function EditProfilePicture() {
+type EditProfilePictureProp = {
+    method: ()=>any
+}
+function EditProfilePicture({method}: EditProfilePictureProp) {
     const [choice, setChoice] = useState<string>(choiceField.FILES)
 
     function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
@@ -36,11 +39,11 @@ function EditProfilePicture() {
                 <ButtonWithIcon className={choice === 'image search'?'Current-Button':'Image-Search-Button'} onClick={handleClick} value={'image search'} icon={'flat-color-icons:google'} buttonPlaceHolder={'Image Search'} iconHeight={'50px'} iconWidth={'50px'}/>
             </div>
             <div className={'Edit-Choices-Frame'}>
-                {choice === choiceField.CAMERA && <UseCamera/>}
-                {choice === choiceField.VIDEO && <UseVideo/>}
-                {choice === choiceField.WEB_ADDRESS && <UseWeb/>}
-                {choice === choiceField.FILES && <UseFiles/>}
-                {choice === choiceField.GOOGLE_IMAGE_SEARCH && <UseGoogleSearch/>}
+                {choice === choiceField.CAMERA && <UseCamera postImage={method}/>}
+                {choice === choiceField.VIDEO && <UseVideo postImage={method}/>}
+                {choice === choiceField.WEB_ADDRESS && <UseWeb postImage={method}/>}
+                {choice === choiceField.FILES && <UseFiles postImage={method}/>}
+                {choice === choiceField.GOOGLE_IMAGE_SEARCH && <UseGoogleSearch postImage={method}/>}
             </div>
         </div>
     );

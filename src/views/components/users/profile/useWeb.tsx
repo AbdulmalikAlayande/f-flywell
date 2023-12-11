@@ -3,7 +3,13 @@ import "../../../../styles/components/users/profile/useWeb.css"
 import {useState} from "react";
 import uploadFile from "../../../../utilities/cloudinaryConfig";
 
-export function UseWeb() {
+
+type UseWebProps = {
+    userEmail?:string
+    postImage: ()=>any
+}
+
+export function UseWeb({postImage}: UseWebProps) {
 
     const [image, setImage] = useState('');
     const [imageUrl, setImageUrl] = useState('');
