@@ -24,8 +24,9 @@ export function UseFiles({postImage}: UseFilesProps) {
     function postToCloud(event: React.FormEvent<HTMLFormElement>): void {
         event.preventDefault();
         if(file){
-            postImage(file)
-            console.log(file, " was posted");
+            let valueReturned = postImage(file)
+            console.log('valueReturned ==> ',valueReturned);
+            
         }
         else console.log("file was ==> ", file)
     }

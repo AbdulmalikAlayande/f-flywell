@@ -1,7 +1,7 @@
 .User-Profile-Main-Frame{
     display: flex;
-    border-style: solid;
-    border-width: 1px;
+    /* border-style: solid;
+    border-width: 1px; */
     justify-content: space-between;
     column-gap: 5px;
     margin: 5px;
@@ -29,29 +29,52 @@
 .User-Profile-Main-Body-1{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    border-style: solid;
-    border-width: 1px;
+    align-items: flex-start;
+    justify-content: space-between;
+    /* border-style: solid;
+    border-width: 1px; */
     width: 48%;
     height: 100%;
+}
+#Passport-Id-Ptag, #Frequent-Flyer-Number-Ptag{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-style: solid; 
+     border-width: 1px;
+    width: 80%;
+}
+.View-And-Copy-Frame{
+    display: flex;
+    width: 20%;
+    border-width: 1px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#Passport-Id-Ptag button, #Frequent-Flyer-Number-Ptag button{
+    background-color: transparent;
+    border: none;
+}
+#Passport-Id-Ptag button:hover, #Frequent-Flyer-Number-Ptag button:hover{
+    background-color: rgb(8, 151, 170);
 }
 .User-Profile-Main-Body-2{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    border-style: solid;
-    border-width: 1px;
+    /* border-style: solid;
+    border-width: 1px; */
     width: 48%;
     height: 100%;
 }
 .Profile-Image-Frame{
-    height: 100%;
-    width: 100%;
+    height: 34%;
+    width: 40%;
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    justify-content: space-around;
+    align-items: center; 
+    border-radius: 50%;
     border-width: 1px;
     border-style: solid;
 
@@ -67,25 +90,29 @@
 .BioData-Frame-One{
     height: 100%;
     width: 100%;
-    border-style: solid;
-    border-width: 1px;
+    /* border-style: solid;
+    border-width: 1px; */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-evenly;
     font-size: 20px;
 }
-
+.BioData-Frame-Two label{
+    color: rgb(107, 209, 223);
+    font-weight: 500;
+}
 .BioData-Frame-Two{
     border-radius: 30px;
     width: 100%;
-    height: 100%;
-    padding-left: 20px;
+    height: 60%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-evenly;
     font-size: 20px;
+    /* border-style: solid;
+    border-width: 1px; */
 }
 .BioData-Frame-One p .BioData-Frame-Two p{
     margin: 5px;
@@ -96,7 +123,7 @@
 .Passport-Snapshot-Frame{
     width: 100%;
     height: 100%;
-    border-style: solid;
-    border-width: 1px;
+    /* border-style: solid;
+    border-width: 1px; */
     border-radius: 30px;
 }

@@ -12,7 +12,7 @@ interface ButtonWithIconProps {
   classNames?: string | string[];
   buttonLabel?: string;
   value?: any;
-  buttonPlaceHolder: string;
+  buttonPlaceHolder?: string;
   type?: "button" | "submit" | "reset" | undefined;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   style?: {};
