@@ -17,18 +17,18 @@ const ActivateUserAccount = () => {
     let eventTarget = event.target as HTMLInputElement;
     if(eventTarget.value.length > 1){
       let elementPosition = eventTarget.tabIndex;
-      let allInputElements = document.querySelectorAll('#OTPInput');
+      let allInputElements = document.querySelectorAll<HTMLInputElement>('#OTPInput');
       for (let inputTabIndex = elementPosition, eventValueIndex = 0; inputTabIndex < allInputElements.length, eventValueIndex < allInputElements.length; inputTabIndex++) {
+        console.log("all input elements value ==> ", allInputElements)
         const element = allInputElements[inputTabIndex];
         let currentElementValue = eventTarget.value.charAt(eventValueIndex)
-        console.log("current element value ==> ", currentElementValue)
-        element.textContent = currentElementValue;
+        element.value = currentElementValue;
         eventValueIndex++;
       }
       console.log("pos", elementPosition)
     }
   };
-
+ // 
   function fillEmptyFields(value: String) {
   }
 
