@@ -15,11 +15,10 @@ const ActivateUserAccount = () => {
   const handleChangeEvent = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     let eventTarget = event.target as HTMLInputElement;
-    if(eventTarget.value.length > 1){
+    if(eventTarget.value.length > 0){
       let elementPosition = eventTarget.tabIndex;
       let allInputElements = document.querySelectorAll<HTMLInputElement>('#OTPInput');
-      for (let inputTabIndex = elementPosition, eventValueIndex = 0; inputTabIndex < allInputElements.length, eventValueIndex < allInputElements.length; inputTabIndex++) {
-        console.log("all input elements value ==> ", allInputElements)
+      for (let inputTabIndex = elementPosition, eventValueIndex = 0; inputTabIndex < allInputElements.length; inputTabIndex++) {
         const element = allInputElements[inputTabIndex];
         let currentElementValue = eventTarget.value.charAt(eventValueIndex)
         element.value = currentElementValue;
@@ -28,7 +27,7 @@ const ActivateUserAccount = () => {
       console.log("pos", elementPosition)
     }
   };
- // 
+
   function fillEmptyFields(value: String) {
   }
 
