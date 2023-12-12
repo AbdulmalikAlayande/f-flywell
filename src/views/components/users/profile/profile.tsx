@@ -88,6 +88,7 @@ const Profile = () => {
   function openData(event: React.MouseEvent<HTMLButtonElement>): void {
     event.preventDefault();
     let eventTarget = event.target as HTMLButtonElement;
+    console.log("event target id ==> ", eventTarget.id);
     if(eventTarget.id === "Passport-Id"){
       setpassportIdIsOpened(true)
       console.log("passportIdIsOpened is ", passportIdIsOpened)
