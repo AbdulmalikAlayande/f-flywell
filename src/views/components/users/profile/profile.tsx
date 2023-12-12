@@ -85,7 +85,7 @@ const Profile = () => {
     },
   };
 
-  function openData(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+  function openData(event: React.MouseEvent<HTMLButtonElement>): void {
     event.preventDefault();
     let eventTarget = event.target as HTMLButtonElement;
     if(eventTarget.id === "Passport-Id"){
@@ -121,7 +121,7 @@ const Profile = () => {
                 <p> <label>Email: </label>{"alaabdulmalik03@gmail.com"} </p>
                 <p> <label>Name: </label>{"Abdulmalik Alayande"}</p>
                 <p> <label>Username: </label>{"bol@B@ll@r"} </p>
-                <p id="Passport-Id-Ptag"> 
+                <div id="Passport-Id-Ptag"> 
                   <p className="">
                     <label>Passport Id: </label>{passportIdIsOpened?"3480865":"********"}
                   </p>
@@ -129,10 +129,10 @@ const Profile = () => {
                     <ButtonWithIcon id={"Passport-Id"} onClick={openData} iconHeight={'30px'} iconWidth={'30px'} iconColor="powderblue" icon={!passportIdIsOpened ?"el:eye-open":"mdi:hide"}/>
                     <ButtonWithIcon iconHeight={'30px'} iconWidth={'30px'} iconColor="powderblue" icon={"solar:copy-bold"}/>
                   </p>
-                </p>
+                </div>
                 <p> <label>Date Of Birth: </label>{"Dec, 30 2002"} </p>
                 <p> <label>Account Status: </label>{"-"} </p>
-                <p id="Frequent-Flyer-Number-Ptag">
+                <div id="Frequent-Flyer-Number-Ptag">
                   <p>
                     <label>Frequent Flyer Number: </label>{flyerNumberIsOpened?"2347809P":"*********"}
                   </p>
@@ -140,7 +140,7 @@ const Profile = () => {
                     <ButtonWithIcon id={"Flyer-Number"} onClick={openData} iconHeight={'30px'} iconWidth={'30px'} iconColor="powderblue" icon={!flyerNumberIsOpened? "el:eye-open":"mdi:hide"}/>
                     <ButtonWithIcon iconHeight={'30px'} iconWidth={'30px'} iconColor="powderblue" icon={"solar:copy-bold"}/>
                   </p>
-                </p>
+                </div>
               </div>
               </div>
               <div className="User-Profile-Main-Body-2">
