@@ -6,7 +6,7 @@ import ButtonWithIcon from "../reusableComponents/buttonWithIcon";
 const ActivateUserAccount = () => {
   let [OTP, setOTP] = useState<string>("");
   const [accountActivationSuccessful, setAccountActivationSuccessful] =
-    useState<boolean>(true);
+    useState<boolean>(false);
 
   useEffect(() => {
     localStorage.setItem("email", "alaabdulmalik03@gmail.com");
@@ -15,18 +15,21 @@ const ActivateUserAccount = () => {
   const handleChangeEvent = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     let eventTarget = event.target as HTMLInputElement;
-
-    for (let index = 0; index < eventTarget.value.length; index++) {}
+    if(eventTarget.value.length > 1){
+      let elementPosition = eventTarget.tabIndex;
+      let allInputElements = document.querySelectorAll('#OTPInput');
+      for (let inputTabIndex = elementPosition, eventValueIndex = 0; inputTabIndex < allInputElements.length, eventValueIndex < allInputElements.length; inputTabIndex++) {
+        const element = allInputElements[inputTabIndex];
+        let currentElementValue = eventTarget.value.charAt(eventValueIndex)
+        console.log("current element value ==> ", currentElementValue)
+        element.textContent = currentElementValue;
+        eventValueIndex++;
+      }
+      console.log("pos", elementPosition)
+    }
   };
 
   function fillEmptyFields(value: String) {
-    const inputFieldsFrame = document.querySelector(".Input-Fields-Frame");
-    let children = inputFieldsFrame?.children;
-    for (let index = 0; index < value.length; index++) {
-      if (children && !children[index].textContent) {
-        children[index].textContent = value[index];
-      }
-    }
   }
 
   function dontProcessOTP() {}
@@ -50,28 +53,32 @@ const ActivateUserAccount = () => {
             <div className="Input-Fields-Frame">
               <form className="Input-Fields-Form">
                 <input
-                  key={0}
+                  id={"OTPInput"}
+                  tabIndex={0}
                   placeholder={"0"}
                   onChange={handleChangeEvent}
                   type="text"
                   required
                 />
                 <input
-                  key={1}
+                  id={"OTPInput"}
+                  tabIndex={1}
                   placeholder={"0"}
                   onChange={handleChangeEvent}
                   type="text"
                   required
                 />
                 <input
-                  key={2}
+                  id={"OTPInput"}
+                  tabIndex={2}
                   placeholder={"0"}
                   onChange={handleChangeEvent}
                   type="text"
                   required
                 />
                 <input
-                  key={3}
+                  id={"OTPInput"}
+                  tabIndex={3}
                   placeholder={"0"}
                   onChange={handleChangeEvent}
                   type="text"

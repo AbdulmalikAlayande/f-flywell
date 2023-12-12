@@ -7,14 +7,45 @@ import DashboardNavBar from "../../reusableComponents/dashboardNavBar";
 import ReactModal from "react-modal";
 import UseCamera from "./useCamera";
 import EditProfilePicture from "./editProfilePicture";
+import axios from "axios";
+import { Cloudinary } from "@cloudinary/url-gen";
 
 const Profile = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [profileImage, setProfileImage] = useState<string>('')
 
-  function postToCloudinary(file?: File): any {
-      
-  }
+
+  async function postToCloudinary(file?: File): Promise<any> {
+    const cloudName =  process.env.REACT_APP_CLOUD_NAME;
+    const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
+    const apiSecret = process.env.REACT_APP_CLOUDINARY_API_SECRET;
+    const apiKey = process.env.REACT_APP_CLOUDINARY_API_KEY;
+
+    const formData = new FormData()
+    if(apiKey && apiSecret && uploadPreset){
+      console.log("at profile file is ===> ", file)
+        formData.append("public_id", "cloudinary_images/bola_air/user_media/image")
+        formData.append("api_key", apiKey)
+        formData.append("resource_type", "auto")
+        formData.append("api_secret", apiSecret)
+        formData.append("upload_preset", uploadPreset)
+        formData.append("file", file as Blob)
+        const url = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
+        console.log(url);
+        
+        try {
+          const response = await axios.post(url, formData, {headers: {
+            "Content-Type": "multipart/form-data",},
+          });
+          console.log(response.data);
+          setProfileImage(response.data.secure_url)
+          return response.data.secure_url
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    }
+  
 
   function openPopUp(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();

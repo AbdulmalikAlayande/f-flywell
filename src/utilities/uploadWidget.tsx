@@ -3,7 +3,7 @@ import {useEffect, useRef} from "react";
 
 declare global {
     interface Window {
-      cloudinary: any; // Replace 'any' with the appropriate type if known
+      cloudinary: any;
     }
   }
   

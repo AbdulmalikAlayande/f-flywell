@@ -10,26 +10,29 @@ type UseFilesProps = {
 export function UseFiles({postImage}: UseFilesProps) {
 
     const [imageUrl, setImageUrl] = useState('')
+    const [file, setFile] = useState<File | null>(null)
 
     function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
-        console.log("api name ==> ", process.env.REACT_APP_CLOUDINARY_API_NAME)
-        console.log("upload preset ==> ", process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET)
-        console.log("api secret ==> ", process.env.REACT_APP_CLOUDINARY_API_SECRET)
-        console.log("api key ==> ", process.env.REACT_APP_CLOUDINARY_API_KEY)
-        console.log("avaiation stack access key ==> ", process.env.REACT_APP_AVIATION_STACK_ACCESS_KEY)
-        console.log("pexels api key ==> ", process.env.REACT_APP_PEXELS_API)
-
+        event.preventDefault();
         if (event.target.files) {
             const fileUrl = URL.createObjectURL(event.target.files[0])
             setImageUrl(fileUrl)
-            postImage(fileUrl)
+            setFile(event.target.files[0])
         }
+    }
 
+    function postToCloud(event: React.FormEvent<HTMLFormElement>): void {
+        event.preventDefault();
+        if(file){
+            postImage(file)
+            console.log(file, " was posted");
+        }
+        else console.log("file was ==> ", file)
     }
 
     return (
         <div className={'UseFiles-Main-Frame'}>
-            <form className={'Profile-Form-Element'}>
+            <form onSubmit={postToCloud} className={'Profile-Form-Element'}>
                 {imageUrl === '' ? (<>
                     <div className={'Draggable-Frame'}>
                         <Icon icon={'ep:upload-filled'} height={'35vh'} width={'35vw'} color={'gray'}/>
