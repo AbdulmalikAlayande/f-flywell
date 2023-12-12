@@ -8,11 +8,12 @@ import ReactModal from "react-modal";
 import UseCamera from "./useCamera";
 import EditProfilePicture from "./editProfilePicture";
 import axios from "axios";
-import { Cloudinary } from "@cloudinary/url-gen";
 
 const Profile = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [profileImage, setProfileImage] = useState<string>('')
+  const [passportIdIsOpened, setpassportIdIsOpened] = useState<boolean>(false)
+  const [flyerNumberIsOpened, setFlyerNumberIsOpened] = useState<boolean>(false)
 
 
   async function postToCloudinary(file?: File): Promise<any> {
@@ -37,7 +38,8 @@ const Profile = () => {
           const response = await axios.post(url, formData, {headers: {
             "Content-Type": "multipart/form-data",},
           });
-          console.log(response.data);
+          console.log('data', response.data);
+          console.log('image url', response.data.secure_url);
           setProfileImage(response.data.secure_url)
           return response.data.secure_url
         } catch (error) {
@@ -83,6 +85,20 @@ const Profile = () => {
     },
   };
 
+  function openData(event: React.MouseEvent<HTMLButtonElement>): void {
+    event.preventDefault();
+    let eventTarget = event.target as HTMLButtonElement;
+    console.log("event target id ==> ", eventTarget.id);
+    if(eventTarget.id === "Passport-Id"){
+      setpassportIdIsOpened(true)
+      console.log("passportIdIsOpened is ", passportIdIsOpened)
+    }
+    else if(eventTarget.id === "Flyer-Number"){
+      setFlyerNumberIsOpened(true)
+      console.log("flyerNumberIsOpened is ", flyerNumberIsOpened)
+    }
+  }
+
   return (
     <div className={"User-Profile-Main-Frame"}>
       <DashBoardSideBar />
@@ -96,25 +112,40 @@ const Profile = () => {
               </ReactModal>
               <div className={"Profile-Image-Frame"}>
                 {profileImage === ""? <Icon className={"profile-icon"} icon={"gg:profile"} 
-                  height={"48vh"} width={"60vh"}
+                  height={"30vh"} width={"40vh"}
                 />:<img src={profileImage} alt="profile image"/>}
                 <ButtonWithIcon onClick={openPopUp} icon={"iconamoon:edit-thin"} iconHeight={"30px"}
                   iconWidth={"30px"} buttonPlaceHolder={""} iconColor="white"
                 />
               </div>
               <div className={"BioData-Frame-Two"}>
-                <p> <label>Frequent Flyer Number: </label>{"2347809P"} </p>
-                <p> <label>Passport Id: </label>{"3480865"} </p>
-                <p><label>Date Of Birth: </label>{"Dec, 30 2002"} </p>
-                <p><label>Account Status: </label>{"-"} </p>
+                <p> <label>Email: </label>{"alaabdulmalik03@gmail.com"} </p>
+                <p> <label>Name: </label>{"Abdulmalik Alayande"}</p>
+                <p> <label>Username: </label>{"bol@B@ll@r"} </p>
+                <div id="Passport-Id-Ptag"> 
+                  <p className="">
+                    <label>Passport Id: </label>{passportIdIsOpened?"3480865":"********"}
+                  </p>
+                  <p className={"View-And-Copy-Frame"}>
+                    <ButtonWithIcon id={"Passport-Id"} onClick={openData} iconHeight={'30px'} iconWidth={'30px'} iconColor="powderblue" icon={!passportIdIsOpened ?"el:eye-open":"mdi:hide"}/>
+                    <ButtonWithIcon iconHeight={'30px'} iconWidth={'30px'} iconColor="powderblue" icon={"solar:copy-bold"}/>
+                  </p>
+                </div>
+                <p> <label>Date Of Birth: </label>{"Dec, 30 2002"} </p>
+                <p> <label>Account Status: </label>{"-"} </p>
+                <div id="Frequent-Flyer-Number-Ptag">
+                  <p>
+                    <label>Frequent Flyer Number: </label>{flyerNumberIsOpened?"2347809P":"*********"}
+                  </p>
+                  <p className={"View-And-Copy-Frame"}>
+                    <ButtonWithIcon id={"Flyer-Number"} onClick={openData} iconHeight={'30px'} iconWidth={'30px'} iconColor="powderblue" icon={!flyerNumberIsOpened? "el:eye-open":"mdi:hide"}/>
+                    <ButtonWithIcon iconHeight={'30px'} iconWidth={'30px'} iconColor="powderblue" icon={"solar:copy-bold"}/>
+                  </p>
+                </div>
               </div>
               </div>
               <div className="User-Profile-Main-Body-2">
                   <div className={"BioData-Frame-One"}>
-                      <p> <label>First Name: </label>{"Abdulmalik"} </p>
-                      <p> <label>Last Name: </label>{"Alayande"} </p>
-                      <p> <label>User Name: </label>{"bol@B@ll@r"} </p>
-                      <p> <label>Email: </label>{"alaabdulmalik03@gmail.com"} </p>
                   </div>
                   <div className={"Passport-Snapshot-Frame"}>
                     <img src={""} alt={"Passport-Snapshot"}></img>

@@ -15,14 +15,13 @@ const ActivateUserAccount = () => {
   const handleChangeEvent = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     let eventTarget = event.target as HTMLInputElement;
-    if(eventTarget.value.length > 1){
+    if(eventTarget.value.length > 0){
       let elementPosition = eventTarget.tabIndex;
-      let allInputElements = document.querySelectorAll('#OTPInput');
-      for (let inputTabIndex = elementPosition, eventValueIndex = 0; inputTabIndex < allInputElements.length, eventValueIndex < allInputElements.length; inputTabIndex++) {
+      let allInputElements = document.querySelectorAll<HTMLInputElement>('#OTPInput');
+      for (let inputTabIndex = elementPosition, eventValueIndex = 0; inputTabIndex < allInputElements.length; inputTabIndex++) {
         const element = allInputElements[inputTabIndex];
         let currentElementValue = eventTarget.value.charAt(eventValueIndex)
-        console.log("current element value ==> ", currentElementValue)
-        element.textContent = currentElementValue;
+        element.value = currentElementValue;
         eventValueIndex++;
       }
       console.log("pos", elementPosition)
