@@ -7,11 +7,12 @@ import DashboardNavBar from "../../reusableComponents/dashboardNavBar";
 import ReactModal from "react-modal";
 import EditProfilePicture from "./editProfilePicture";
 import axios from "axios";
-import { cloudinaryUploadUrl, modalStyle } from "../../../../utilities/utility.functions";
+import { cloudinaryUploadUrl, modalStyle } from "../../../../utilities/utility.functions.d";
 
 const Profile = () => {
+  const imageUrl = localStorage.getItem("profileImageUrl");
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [profileImage, setProfileImage] = useState<string>('')
+  const [profileImage, setProfileImage] = useState<string>(imageUrl?imageUrl:'')
   const [passportIdIsOpened, setpassportIdIsOpened] = useState<boolean>(false)
   const [flyerNumberIsOpened, setFlyerNumberIsOpened] = useState<boolean>(false)
 
@@ -32,11 +33,9 @@ const Profile = () => {
         try {
           const response = await axios.post(cloudinaryUploadUrl, formData, {headers: {
             "Content-Type": "multipart/form-data",},
-          });
-          console.log('data', response.data);
-          console.log('image url', response.data.secure_url);
+          })
           setProfileImage(response.data.secure_url)
-          return response.data.secure_url
+          localStorage.setItem("profileImageUrl", response.data.secure_url)
         } catch (error) {
           console.error(error);
         }
@@ -68,7 +67,7 @@ const Profile = () => {
               </ReactModal>
               <div className={"Profile-Image-Frame"}>
                 {profileImage === ""? <Icon className={"profile-icon"} icon={"gg:profile"} 
-                  height={"30vh"} width={"40vh"}
+                  height={"40vh"} width={"40vh"}
                 />:<img src={profileImage} alt="profile image"/>}
                 <ButtonWithIcon onClick={openPopUp} icon={"iconamoon:edit-thin"} iconHeight={"30px"}
                   iconWidth={"30px"} buttonPlaceHolder={""} iconColor="white"

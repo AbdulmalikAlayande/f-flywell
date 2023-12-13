@@ -11,7 +11,7 @@ export function getRandomInt(min: number, max: number): number {
     }
     return min + (byteArray[0] % range);
 }
-const modalStyle: ReactModal.Styles = {
+export const modalStyle: ReactModal.Styles = {
   overlay: {
     position: "fixed",
     top: 0,
