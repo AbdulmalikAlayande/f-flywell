@@ -79,6 +79,11 @@
     border-style: solid;
 
 }
+.Profile-Image-Frame img{
+    height: 100%;
+    width: 80%;
+    border-radius: inherit;
+}
 .Profile-Image-Frame button{
     height: 20%;
     border: none;
