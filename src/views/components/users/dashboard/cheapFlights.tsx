@@ -18,7 +18,7 @@ export function CheapFlights({ cheapFlights }: Props) {
                   <img src="" alt="From-Location-Ipc" />
                   <div className="From-Loc-Inner-Frame">
                     <p>From</p>
-                    <p>{cheapFlight.from}</p>
+                    <text>{cheapFlight.from}</text>
                   </div>
                 </div>
                 <div className="Sect-1-Middle-Part">
@@ -32,7 +32,7 @@ export function CheapFlights({ cheapFlights }: Props) {
                 <div className="To-Loc-Frame">
                   <div className="To-Loc-Inner-Frame">
                     <p>To</p>
-                    <p>{cheapFlight.to}</p>
+                    <text>{cheapFlight.to}</text>
                   </div>
                   <img src="" alt="To-Location-pic" />
                 </div>
