@@ -66,6 +66,9 @@
     font-size: 15px;
     height: 100%;
 }
+.From-Loc-Inner-Frame text, .To-Loc-Inner-Frame text{
+    font-weight: 650;
+}
 .Sect-1-Middle-Part{
     display: flex;
     flex-direction: column;
