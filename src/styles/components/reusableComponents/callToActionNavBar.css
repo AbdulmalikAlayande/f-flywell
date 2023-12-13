@@ -1,5 +1,5 @@
 .Call-To-Action-Navbar{
-    background-color: cornsilk;
+    background-color: rgb(255, 255, 255);
     height: 80px;
     display: flex;
     justify-content: space-between;
@@ -8,8 +8,10 @@
     border-width: 1px;
     position: sticky;
 }
-.Logo-Frame{
+.Call-To-Action-Navbar-Logo-Frame{
     display: flex;
+    column-gap: 20px;
+    padding-left: 15px;
     align-items: center;
     width: 50%;
 }
@@ -29,6 +31,7 @@
 }
 .Call-To-Action-Frame button:hover{
     border-top: 3px solid #000;
+    background-color: paleturquoise;
     cursor: pointer;
 }
 .Call-To-Action-Frame button:focus{
@@ -36,10 +39,10 @@
     border-top: 3px solid #000;
     cursor: pointer;
 }
-.Logo-Frame img{
+.Call-To-Action-Navbar-Logo-Frame img{
     font-size: 40px;
-    height: 100%;
-    width: 100px;
+    height: 95%;
+    width: 120px;
 }
 .Current-Button{
     background-color: paleturquoise;

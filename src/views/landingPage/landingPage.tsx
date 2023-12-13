@@ -8,6 +8,10 @@ import { useNavigate, useParams } from "react-router";
 import CallToActionButton from "../components/reusableComponents/callToActionButton";
 
 const LandingPage = () => {
+  function signInToNewsLetter(event: React.FormEvent<HTMLFormElement>): void {
+
+  }
+
   return (
     <div className="Main-Frame">
       <NavBar />
@@ -60,8 +64,7 @@ const LandingPage = () => {
             Enter Your Email To Subscribe To Our Weekly News Letter
           </p>
           <form
-            method="post"
-            action="http://localhost:8080/subscribe-to-news-letter"
+            onSubmit={signInToNewsLetter}
             className="News-Letter-Frame-Form"
           >
             <AuthInput

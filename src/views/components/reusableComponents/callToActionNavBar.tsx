@@ -1,7 +1,7 @@
 import CallToActionButton from "./callToActionButton";
 import React from "react";
 import "../../../styles/components/reusableComponents/callToActionNavBar.css";
-import Logo from "../../../assets/images/jpg/logo-classic.jpg";
+import Logo from "../../../assets/images/svg/logo-no-background.svg";
 
 function CallToActionNavBar() {
   function handleClick(
@@ -14,7 +14,7 @@ function CallToActionNavBar() {
 
   return (
     <div className="Call-To-Action-Navbar">
-      <div className="Logo-Frame">
+      <div className="Call-To-Action-Navbar-Logo-Frame">
         <img src={Logo} alt="" />
       </div>
       <div className="Call-To-Action-Frame">

@@ -5,7 +5,6 @@ import "../../../../styles/components/users/profile/profile.css";
 import DashBoardSideBar from "../../reusableComponents/dashBoardSideBar";
 import DashboardNavBar from "../../reusableComponents/dashboardNavBar";
 import ReactModal from "react-modal";
-import UseCamera from "./useCamera";
 import EditProfilePicture from "./editProfilePicture";
 import axios from "axios";
 
@@ -88,10 +87,10 @@ const Profile = () => {
   function openData(event: React.MouseEvent<HTMLButtonElement>): void {
     event.preventDefault();
     let eventTarget = event.target as HTMLButtonElement;
+    console.log("passportIdIsOpened is ", eventTarget.value)
     console.log("event target id ==> ", eventTarget.id);
     if(eventTarget.id === "Passport-Id"){
       setpassportIdIsOpened(true)
-      console.log("passportIdIsOpened is ", passportIdIsOpened)
     }
     else if(eventTarget.id === "Flyer-Number"){
       setFlyerNumberIsOpened(true)
@@ -127,7 +126,13 @@ const Profile = () => {
                     <label>Passport Id: </label>{passportIdIsOpened?"3480865":"********"}
                   </p>
                   <p className={"View-And-Copy-Frame"}>
-                    <ButtonWithIcon id={"Passport-Id"} onClick={openData} iconHeight={'30px'} iconWidth={'30px'} iconColor="powderblue" icon={!passportIdIsOpened ?"el:eye-open":"mdi:hide"}/>
+                    <ButtonWithIcon 
+                      id={"Passport-Id"} onClick={(event)=>{
+                        event.preventDefault();
+                        if(passportIdIsOpened === false)
+                          setpassportIdIsOpened(true)
+                        setpassportIdIsOpened(false)
+                      }}  iconHeight={'30px'} iconWidth={'30px'} iconColor="powderblue" icon={!passportIdIsOpened ?"el:eye-open":"mdi:hide"}/>
                     <ButtonWithIcon iconHeight={'30px'} iconWidth={'30px'} iconColor="powderblue" icon={"solar:copy-bold"}/>
                   </p>
                 </div>
@@ -138,14 +143,21 @@ const Profile = () => {
                     <label>Frequent Flyer Number: </label>{flyerNumberIsOpened?"2347809P":"*********"}
                   </p>
                   <p className={"View-And-Copy-Frame"}>
-                    <ButtonWithIcon id={"Flyer-Number"} onClick={openData} iconHeight={'30px'} iconWidth={'30px'} iconColor="powderblue" icon={!flyerNumberIsOpened? "el:eye-open":"mdi:hide"}/>
+                    <ButtonWithIcon 
+                      id={"Flyer-Number"} onClick={(event)=>{
+                        event.preventDefault();
+                        if(flyerNumberIsOpened === false)
+                          setFlyerNumberIsOpened(true)
+                        else setFlyerNumberIsOpened(false)
+                      }} iconHeight={'30px'} iconWidth={'30px'} iconColor="powderblue" icon={!flyerNumberIsOpened? "el:eye-open":"mdi:hide"}/>
                     <ButtonWithIcon iconHeight={'30px'} iconWidth={'30px'} iconColor="powderblue" icon={"solar:copy-bold"}/>
                   </p>
                 </div>
               </div>
               </div>
               <div className="User-Profile-Main-Body-2">
-                  <div className={"BioData-Frame-One"}>
+                  <div className={"Delete-Button-Frame"}>
+                    <ButtonWithIcon iconWidth={'30px'} iconHeight={'30px'} iconColor="powderblue" buttonPlaceHolder={"Delete Profile"} icon={"material-symbols-light:delete"}/>
                   </div>
                   <div className={"Passport-Snapshot-Frame"}>
                     <img src={""} alt={"Passport-Snapshot"}></img>
