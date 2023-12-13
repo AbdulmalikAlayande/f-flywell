@@ -10,6 +10,7 @@ function App() {
       <Routes>
         <Route path={"/username/dashboard"} element={<Dashboard />} />
         <Route path={"/home"} element={<LandingPage />} />
+        <Route path={"/"} element={<LandingPage />} />
         <Route path={"/username/profile"} element={<Profile />} />
         <Route
           path={"/signup/activate-account"}
