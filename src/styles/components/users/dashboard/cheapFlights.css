@@ -37,3 +37,74 @@
 .Cheap-Flights-Frame::-webkit-scrollbar-thumb:hover {
     background: skyblue;
 }
+.Sect-1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-style: solid;
+    border-width: 1px;
+    height: 95%;
+    width: 75%;
+}
+.From-Loc-Frame, .To-Loc-Frame{
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    width: 41%;
+    height: 100%;
+    border-style: solid;
+    border-width: 1px;
+}
+.From-Loc-Frame img, .To-Loc-Frame img{
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 1px;
+    height: 80%;
+    width: 50%;
+}
+.From-Loc-Inner-Frame, .To-Loc-Inner-Frame{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: 15px;
+    height: 100%;
+}
+.Sect-1-Middle-Part{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    height: 100%;
+    width: 15%;
+    border-style: solid;
+    border-width: 1px;
+}
+.Sect-1-Divider-Frame{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-style: solid;
+    border-width: 1px;
+    width: 100%;
+}
+.Sect-1-Divider-Circle-1, .Sect-1-Divider-Circle-2{
+    border-radius: 50%;
+    border-style: solid;
+    background-color: rgb(29, 101, 110);
+    border-width: 1px;
+    border-color: rgb(29, 101, 110);
+    height: 7px;
+    width: 7px;
+}
+.Sect-1-Divider-Line{
+    border-style: solid;
+    border-width: 1px;
+    width: 90%;
+    border-color: rgb(29, 101, 110);
+    height: 0;
+}
+.Sect-2{
+
+}
