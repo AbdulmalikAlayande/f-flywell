@@ -32,7 +32,7 @@ export function CheapFlights({ cheapFlights }: Props) {
                 <div className="To-Loc-Frame">
                   <div className="To-Loc-Inner-Frame">
                     <p>To</p>
-                    <p>{cheapFlight.to} </p>
+                    <p>{cheapFlight.to}</p>
                   </div>
                   <img src="" alt="To-Location-pic" />
                 </div>
