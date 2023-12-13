@@ -40,7 +40,10 @@ export function CheapFlights({ cheapFlights }: Props) {
             <div className="Sect-2">
               <p>Seats Remaining: {cheapFlight.seatsRemaining}</p>
               <p>Airline: {"Bola-Air"}</p>
-              <ButtonWithIcon icon={"icon-park-outline:preview-open"}/>
+              <div className="Sect-2-View-Flight-Frame">
+                <p>Date: {"14/12/23"}</p>
+                <ButtonWithIcon iconWidth={'25px'} iconHeight={'25px'} icon={"icon-park-outline:preview-open"}/>
+              </div>
             </div>
           
         </div>
