@@ -9,11 +9,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path={"/username/dashboard"} element={<Dashboard />} />
+        <Route path={"/:username/dashboard"} element={<Dashboard />} />
         <Route path={"/home"} element={<LandingPage />} />
         <Route path={"/"} element={<LandingPage />} />
-        <Route path={"/username/profile"} element={<Profile />} />
-        <Route path={"/username/my-trips"} element={<Trips />} />
+        <Route path={"/:username/profile"} element={<Profile />} />
+        <Route path={"/:username/my-trips"} element={<Trips />} />
 
         <Route
           path={"/signup/activate-account"}

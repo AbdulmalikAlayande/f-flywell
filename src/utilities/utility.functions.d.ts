@@ -44,7 +44,7 @@ export const modalStyle: ReactModal.Styles = {
 const cloudName =  process.env.REACT_APP_CLOUD_NAME;
 export const cloudinaryUploadUrl =  `https://api.cloudinary.com/v1_1/${cloudName}/image/upload/`;
 
-const BASE_URL = 'http://localhost:8081/bola-air/api/v3/';
+export const BASE_URL = 'http://localhost:8081/bola-air/api/v3/';
 export const loginUrl: URL = new URL( BASE_URL+'login-customer')
 export const signUpUrl: URL = new URL(BASE_URL+'register-customer/')
 export const userTripUrl: URL = new URL(BASE_URL+`${localStorage.getItem("email")}/trips`)

@@ -46,6 +46,12 @@
     border-radius: 20px;
     color: var(--button-color);
 }
+.SignUp-Form button:hover{
+    background-color: dodgerblue;
+}
+.SignUp-Form button:focus{
+    background-color: aquamarine;
+}
 .Other-SignUp-Options{
     margin: 5%;
     display: flex;
