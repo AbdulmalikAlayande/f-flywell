@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const ActivateUserAccount = () => {
   let [TOTP, setTOTP] = useState<string>("");
   const navigate = useNavigate()
-  const [accountActivationSuccessful, setAccountActivationSuccessful] = useState<boolean>(false);
+  const [accountActivationSuccessful, setAccountActivationSuccessful] = useState<boolean>(true);
   const [accountActivationFailed, setAccountActivationFailed] = useState<boolean>(false)
 
   const handleChangeEvent = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +25,7 @@ const ActivateUserAccount = () => {
 
   function sendOTPToBackend(){
     console.log("at send otp");
-    let userEmail: string = ""
+    let userEmail: string = "";
     axios.post(BASE_URL+`activate-account/${TOTP}`)
           .then((response)=>{
             console.log("response data at send otp ==> ", response.data);
@@ -45,6 +45,11 @@ const ActivateUserAccount = () => {
 
   }
 
+  function navigateToDashboard(event: React.MouseEvent<HTMLButtonElement>){
+    event.preventDefault();
+    let username = 'username';
+    navigate(`/${username}/dashboard`);
+  }
   
   function resendOTP(event: React.MouseEvent<HTMLButtonElement>): void {}
 
@@ -135,6 +140,7 @@ const ActivateUserAccount = () => {
           <div className="Next-Steps">
             <ButtonWithIcon icon={"uil:home"} buttonPlaceHolder={"Home"} />
             <ButtonWithIcon
+              onClick={navigateToDashboard}
               icon={"pixelarticons:dashbaord"}
               buttonPlaceHolder={"Dashboard"}
             />
