@@ -1,49 +1,52 @@
 import * as React from "react";
-import { CheapFlight } from "../../../interfaces/interface";
-import { Icon } from "@iconify/react";
+import { CheapFlight } from '../../../interfaces/interface';
 import "../../../../styles/components/users/dashboard/cheapFlights.css";
 import ButtonWithIcon from "../../reusableComponents/buttonWithIcon";
-import axios from "axios";
-import { R } from "@tanstack/react-query-devtools/build/legacy/devtools-c71c5f06";
+import fetchCartoonImageOfLocation from './fetchCartoonImageOfLocation'
+import {useState} from "react";
+import useFlights from "./useFlights";
+import {cheapFlightsUrl} from "../../../../utilities/utility.functions";
+import {toast} from "react-toastify";
 
 type Props = {
   cheapFlights: CheapFlight[];
 };
 
+const requestProps = {
+  url: cheapFlightsUrl as string,
+  queryKey: "cheapFlights"
+}
+
 export function CheapFlights({ cheapFlights }: Props) {
 
-  React.useEffect(()=>{
-    try{
-      axios.get("https://api.freepik.com/v1/resources?locale=en-US&page=1&limit=2&order=latest&term=car", {
-        headers: {
-          "Accept-Language": "en-US",
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-          "X-Freepik-API-Key": process.env.REACT_APP_FREEPIK_API_KEY
-        }})
-        .then((response)=>{
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.error(error);
-        })
-  }catch(error){
-    console.error(error)
+  const [fromLocUrl, setFromLocUrl] = useState<string>("")
+  const [toLocUrl, setToLocUrl] = useState<string>("")
+
+  const {data, error, isLoading} = useFlights<CheapFlight[]>(requestProps)
+
+  if (data){
+    setFromLocUrl(fetchCartoonImageOfLocation(data[0].fromLocImageTermName))
+    setToLocUrl(fetchCartoonImageOfLocation(data[0].toLocImageTermName))
   }
-  }, [])
-
-  
-
+  else if (error) {
+    toast.error("", {
+      pauseOnHover: true, autoClose: 5000, position: "top-center", style: {
+        width: '40vw',
+        height: '15vh'
+      }
+    })
+  }
   return (
+      isLoading?
     <div className="Cheap-Flights-Frame">
-      {cheapFlights.map((cheapFlight, index) => (
+      {data?.map((cheapFlight, index) => (
         <div className={"Cheap-Flight"} key={index}>
             <div className="Sect-1">
                 <div className="From-Loc-Frame">
-                  <img src="" alt="From-Location-Ipc" />
+                  <img src={fromLocUrl} alt="From-Location-Ipc"/>
                   <div className="From-Loc-Inner-Frame">
                     <p>From</p>
-                    <text>{cheapFlight.from}</text>
+                    <p>{cheapFlight.from}</p>
                   </div>
                 </div>
                 <div className="Sect-1-Middle-Part">
@@ -57,9 +60,9 @@ export function CheapFlights({ cheapFlights }: Props) {
                 <div className="To-Loc-Frame">
                   <div className="To-Loc-Inner-Frame">
                     <p>To</p>
-                    <text>{cheapFlight.to}</text>
+                    <p>{cheapFlight.to}</p>
                   </div>
-                  <img src="" alt="To-Location-pic" />
+                  <img src={toLocUrl} alt="To-Location-pic" />
                 </div>
             </div>
             <div className="Sect-2">
@@ -73,6 +76,8 @@ export function CheapFlights({ cheapFlights }: Props) {
           
         </div>
       ))}
-    </div>
+    </div>: <div className={'Loading-Frame'}>
+                <p>Loading</p>
+          </div>
   );
 }

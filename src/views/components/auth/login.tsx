@@ -5,7 +5,7 @@ import { Icon } from "@iconify/react";
 import "../../../styles/components/auth/login.css";
 import { LoginData, SignUpData } from "../../../styles/components/types";
 import axios, { AxiosRequestConfig } from "axios";
-import { loginUrl } from "../../../utilities/utility.functions.d";
+import { loginUrl } from "../../../utilities/utility.functions";
 import { useNavigate } from "react-router-dom";
 
 const initialData: LoginData = {

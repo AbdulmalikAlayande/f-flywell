@@ -20,7 +20,7 @@ export function AvailableFlights({ availableFlights }: Props) {
           }
           className="Available-Flight"
         >
-          <p className="Available-Flight-To-From-P-Tag">
+          <div className="Available-Flight-To-From-P-Tag">
             {availableFlight.from}
             <div className="Available-Flight-To-From-P-Tag-Div">
               <Icon icon={"cil:arrow-right"} height={"25px"} width={"70px"} />
@@ -28,7 +28,7 @@ export function AvailableFlights({ availableFlights }: Props) {
             </div>
 
             {availableFlight.to}
-          </p>
+          </div>
           <p>{availableFlight.seatsRemaining}</p>
         </div>
       ))}

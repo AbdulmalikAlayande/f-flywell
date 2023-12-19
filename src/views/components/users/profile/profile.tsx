@@ -7,7 +7,7 @@ import DashboardNavBar from "../../reusableComponents/dashboardNavBar";
 import ReactModal from "react-modal";
 import EditProfilePicture from "./editProfilePicture";
 import axios from "axios";
-import { cloudinaryUploadUrl, modalStyle } from "../../../../utilities/utility.functions.d";
+import { cloudinaryUploadUrl, modalStyle } from "../../../../utilities/utility.functions";
 
 const Profile = () => {
   const imageUrl = localStorage.getItem("profileImageUrl");

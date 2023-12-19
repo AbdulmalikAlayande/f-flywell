@@ -4,8 +4,8 @@ import DashBoardSideBar from '../../reusableComponents/dashBoardSideBar'
 import DashboardNavBar from '../../reusableComponents/dashboardNavBar'
 import { UndefinedInitialDataOptions, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import { userTripUrl } from '../../../../utilities/utility.functions.d'
-import {availableFlight} from "../../../../utilities/placeholder.d"
+import { userTripUrl } from '../../../../utilities/utility.functions'
+import {availableFlight} from "../../../../utilities/placeholder"
 import ButtonWithIcon from '../../reusableComponents/buttonWithIcon'
 
 interface Trip{

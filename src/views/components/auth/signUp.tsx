@@ -6,7 +6,7 @@ import "../../../styles/components/auth/signUp.css";
 import axios, { AxiosRequestConfig } from "axios";
 import { useNavigate } from "react-router-dom";
 import { SignUpData, LoginData } from "../../../styles/components/types";
-import { signUpUrl } from "../../../utilities/utility.functions.d";
+import { signUpUrl } from "../../../utilities/utility.functions";
 
 const initialData: SignUpData = {
   email: "",

@@ -1,3 +1,4 @@
+import ReactModal from "react-modal";
 
 export function getRandomInt(min: number, max: number): number {
     const byteArray = new Uint32Array(1);
@@ -48,5 +49,6 @@ export const BASE_URL = 'http://localhost:8081/bola-air/api/v3/';
 export const loginUrl: URL = new URL( BASE_URL+'login-customer')
 export const signUpUrl: URL = new URL(BASE_URL+'register-customer/')
 export const userTripUrl: URL = new URL(BASE_URL+`${localStorage.getItem("email")}/trips`)
-export const emailPattern: string = '/^[a-z0-9._%±]+@(gmail|yahoo|outlook|hotmail|aol|icloud|mail|msn|live|yandex)\.com$/i';
-export const emailPattern2 = '^[a-zA-Z0-9._%+-]+@gmail\.com$/i'
+export const cheapFlightsUrl: URL | string = new URL(BASE_URL+"/flights/cheapFlights")
+export const emailPattern = /^[a-z0-9._%±]+@(gmail|yahoo|outlook|hotmail|aol|icloud|mail|msn|live|yandex).com$/i;
+export const emailPattern2 = /^[a-zA-Z0-9._%+-]+@gmail\.com$/i

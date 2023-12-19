@@ -3,7 +3,7 @@ import "../../../styles/components/auth/activateUserAccount.css";
 import BolaAirLogo from "../../../assets/images/jpg/logo-classic.jpg";
 import ButtonWithIcon from "../reusableComponents/buttonWithIcon";
 import axios from "axios";
-import { BASE_URL } from "../../../utilities/utility.functions.d";
+import { BASE_URL } from "../../../utilities/utility.functions";
 import { useNavigate } from "react-router-dom";
 
 const ActivateUserAccount = () => {

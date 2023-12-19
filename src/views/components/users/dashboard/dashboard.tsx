@@ -7,7 +7,7 @@ import {
   availableFlight,
   randomFlight,
   cheapFlight,
-} from "../../../../utilities/placeholder.d";
+} from "../../../../utilities/placeholder";
 import {
   AvailableFlight,
   CheapFlight,
