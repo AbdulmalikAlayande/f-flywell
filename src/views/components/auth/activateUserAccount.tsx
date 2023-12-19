@@ -2,37 +2,55 @@ import React, { useEffect, useState } from "react";
 import "../../../styles/components/auth/activateUserAccount.css";
 import BolaAirLogo from "../../../assets/images/jpg/logo-classic.jpg";
 import ButtonWithIcon from "../reusableComponents/buttonWithIcon";
+import axios from "axios";
+import { BASE_URL } from "../../../utilities/utility.functions.d";
+import { useNavigate } from "react-router-dom";
 
 const ActivateUserAccount = () => {
-  let [OTP, setOTP] = useState<string>("");
-  const [accountActivationSuccessful, setAccountActivationSuccessful] =
-    useState<boolean>(false);
-
-  useEffect(() => {
-    localStorage.setItem("email", "alaabdulmalik03@gmail.com");
-  }, []);
+  let [TOTP, setTOTP] = useState<string>("");
+  const navigate = useNavigate()
+  const [accountActivationSuccessful, setAccountActivationSuccessful] = useState<boolean>(true);
+  const [accountActivationFailed, setAccountActivationFailed] = useState<boolean>(false)
 
   const handleChangeEvent = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     let eventTarget = event.target as HTMLInputElement;
-    if(eventTarget.value.length > 0){
-      let elementPosition = eventTarget.tabIndex;
-      let allInputElements = document.querySelectorAll<HTMLInputElement>('#OTPInput');
-      for (let inputTabIndex = elementPosition, eventValueIndex = 0; inputTabIndex < allInputElements.length; inputTabIndex++) {
-        const element = allInputElements[inputTabIndex];
-        let currentElementValue = eventTarget.value.charAt(eventValueIndex)
-        element.value = currentElementValue;
-        eventValueIndex++;
-      }
-      console.log("pos", elementPosition)
+    setTOTP(TOTP+=eventTarget.value)
+    if(TOTP.length === 6){
+      console.log("Totp lenght ==> "+TOTP.length);
+      sendOTPToBackend()
     }
+    else return;
   };
 
-  function fillEmptyFields(value: String) {
+  function sendOTPToBackend(){
+    console.log("at send otp");
+    let userEmail: string = "";
+    axios.post(BASE_URL+`activate-account/${TOTP}`)
+          .then((response)=>{
+            console.log("response data at send otp ==> ", response.data);
+            if(response.data.status === 201){
+              setAccountActivationSuccessful(true)
+              navigate(`${userEmail}/dashboard`)
+              console.log(response.data);
+              userEmail = response.data.data.userEmail;
+              console.log("user email ==> ", userEmail);
+            }
+          })
+          .catch((error)=>{
+            setAccountActivationFailed(true)
+          })
+          .finally(()=>{
+          })
+
   }
 
-  function dontProcessOTP() {}
-
+  function navigateToDashboard(event: React.MouseEvent<HTMLButtonElement>){
+    event.preventDefault();
+    let username = 'username';
+    navigate(`/${username}/dashboard`);
+  }
+  
   function resendOTP(event: React.MouseEvent<HTMLButtonElement>): void {}
 
   return (
@@ -83,6 +101,22 @@ const ActivateUserAccount = () => {
                   type="text"
                   required
                 />
+                  <input
+                  id={"OTPInput"}
+                  tabIndex={2}
+                  placeholder={"0"}
+                  onChange={handleChangeEvent}
+                  type="text"
+                  required
+                />
+                  <input
+                  id={"OTPInput"}
+                  tabIndex={2}
+                  placeholder={"0"}
+                  onChange={handleChangeEvent}
+                  type="text"
+                  required
+                />
               </form>
             </div>
             <div className="Didnt-Receive-OTP">
@@ -106,6 +140,7 @@ const ActivateUserAccount = () => {
           <div className="Next-Steps">
             <ButtonWithIcon icon={"uil:home"} buttonPlaceHolder={"Home"} />
             <ButtonWithIcon
+              onClick={navigateToDashboard}
               icon={"pixelarticons:dashbaord"}
               buttonPlaceHolder={"Dashboard"}
             />

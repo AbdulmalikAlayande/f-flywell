@@ -35,17 +35,23 @@ const SignUp = () => {
     postDataToBackend(userData, signUpUrl);
   }
 
-  function postDataToBackend(
-    data: LoginData | SignUpData,
-    postUrl?: string | URL,
-    params?: AxiosRequestConfig
-  ): any {
+  function changeButtonColor(event: React.MouseEvent<HTMLButtonElement>){
+    let eventTarget = event.target as HTMLButtonElement;
+    eventTarget.style.backgroundColor = "red";
+  }
+  async function postDataToBackend(
+    data: LoginData | SignUpData, postUrl?: string | URL, params?: AxiosRequestConfig
+  ): Promise<any> {
     let url = postUrl as string;
-    axios
+    await axios
       .post(url, data)
       .then((response) => {
+        if(response.data.statusCode === 201){
+          setSignUpSuccessFul(true)
+          navigateTo("/signup/activate-account");
+        }
         setSignUpSuccessFul(true);
-        console.log("response data ==> ", response.data);
+        console.log("response data at sign up ==> ", response.data);
         return response.data;
       })
       .catch((error) => {
@@ -55,7 +61,6 @@ const SignUp = () => {
       })
       .finally(() => {
         if (signUpIsSuccessful) {
-          navigateTo("/signup/activate-account");
         }
       });
   }
@@ -110,6 +115,7 @@ const SignUp = () => {
             type={"submit"}
             buttonPlaceHolder={"SignUp"}
             className={"SignUp-Submit-Button"}
+            onClick={changeButtonColor}
           />
         </div>
       </form>

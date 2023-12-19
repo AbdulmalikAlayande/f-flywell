@@ -64,8 +64,8 @@
     width: 100%;
 }
 input{
-    height: 10vh;
-    width: 5vw;
+    height: 8vh;
+    width: 3vw;
     display: flex;
     justify-content: center;
     align-items: center;
