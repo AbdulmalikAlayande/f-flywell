@@ -19,7 +19,7 @@ export function CheapFlights({ cheapFlights }: Props) {
           "Accept-Language": "en-US",
           "Accept": "application/json",
           "Content-Type": "application/json",
-          "X-Freepik-API-Key": "7RLzKAVmHLgf54OtDtt2CVupyX5kATk9I6wzaqHRtlm1w9aV"
+          "X-Freepik-API-Key": process.env.REACT_APP_FREEPIK_API_KEY
         }})
         .then((response)=>{
           console.log(response.data);
