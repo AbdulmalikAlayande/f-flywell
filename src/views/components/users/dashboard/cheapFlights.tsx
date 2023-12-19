@@ -3,12 +3,37 @@ import { CheapFlight } from "../../../interfaces/interface";
 import { Icon } from "@iconify/react";
 import "../../../../styles/components/users/dashboard/cheapFlights.css";
 import ButtonWithIcon from "../../reusableComponents/buttonWithIcon";
+import axios from "axios";
+import { R } from "@tanstack/react-query-devtools/build/legacy/devtools-c71c5f06";
 
 type Props = {
   cheapFlights: CheapFlight[];
 };
 
 export function CheapFlights({ cheapFlights }: Props) {
+
+  React.useEffect(()=>{
+    try{
+      axios.get("https://api.freepik.com/v1/resources?locale=en-US&page=1&limit=2&order=latest&term=car", {
+        headers: {
+          "Accept-Language": "en-US",
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "X-Freepik-API-Key": "7RLzKAVmHLgf54OtDtt2CVupyX5kATk9I6wzaqHRtlm1w9aV"
+        }})
+        .then((response)=>{
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        })
+  }catch(error){
+    console.error(error)
+  }
+  }, [])
+
+  
+
   return (
     <div className="Cheap-Flights-Frame">
       {cheapFlights.map((cheapFlight, index) => (
