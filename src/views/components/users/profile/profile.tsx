@@ -1,4 +1,4 @@
-import React, { FormEvent, useRef, useState } from "react";
+import React, { useState } from "react";
 import ButtonWithIcon from "../../reusableComponents/buttonWithIcon";
 import { Icon } from "@iconify/react";
 import "../../../../styles/components/users/profile/profile.css";
@@ -13,7 +13,7 @@ const Profile = () => {
   const imageUrl = localStorage.getItem("profileImageUrl");
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [profileImage, setProfileImage] = useState<string>(imageUrl?imageUrl:'')
-  const [passportIdIsOpened, setpassportIdIsOpened] = useState<boolean>(false)
+  const [passportIdIsOpened, setPassportIdIsOpened] = useState<boolean>(false)
   const [flyerNumberIsOpened, setFlyerNumberIsOpened] = useState<boolean>(false)
 
   async function postToCloudinary(file?: File): Promise<any> {
@@ -50,7 +50,9 @@ const Profile = () => {
 
   function copyData(event: React.MouseEvent<HTMLButtonElement>, value?: string): void {
     event.preventDefault();
-    navigator.clipboard.writeText(value?value:'')
+    navigator.clipboard
+             .writeText(value ? value : '')
+             .then( response => console.log(response))
   }
 
   return (
@@ -68,7 +70,7 @@ const Profile = () => {
               <div className={"Profile-Image-Frame"}>
                 {profileImage === ""? <Icon className={"profile-icon"} icon={"gg:profile"} 
                   height={"40vh"} width={"40vh"}
-                />:<img src={profileImage} alt="profile image"/>}
+                />:<img src={profileImage} alt="profile pic"/>}
                 <ButtonWithIcon onClick={openPopUp} icon={"iconamoon:edit-thin"} iconHeight={"30px"}
                   iconWidth={"30px"} buttonPlaceHolder={""} iconColor="white"
                 />
@@ -85,9 +87,9 @@ const Profile = () => {
                     <ButtonWithIcon 
                       id={"Passport-Id"} onClick={(event)=>{
                         event.preventDefault();
-                        if(passportIdIsOpened === false)
-                          setpassportIdIsOpened(true)
-                        else setpassportIdIsOpened(false)
+                        if(!passportIdIsOpened)
+                          setPassportIdIsOpened(true)
+                        else setPassportIdIsOpened(false)
                       }}  iconHeight={'30px'} iconWidth={'30px'} iconColor="powderblue" icon={!passportIdIsOpened ?"el:eye-open":"mdi:hide"}/>
                     <ButtonWithIcon 
                       icon={"solar:copy-bold"} onClick={(event)=>copyData(event, "0987654")}
@@ -105,7 +107,7 @@ const Profile = () => {
                     <ButtonWithIcon 
                       id={"Flyer-Number"} onClick={(event)=>{
                         event.preventDefault();
-                        if(flyerNumberIsOpened === false)
+                        if(!flyerNumberIsOpened)
                           setFlyerNumberIsOpened(true)
                         else setFlyerNumberIsOpened(false)
                       }} iconHeight={'30px'} iconWidth={'30px'} iconColor="powderblue" icon={!flyerNumberIsOpened? "el:eye-open":"mdi:hide"}/>

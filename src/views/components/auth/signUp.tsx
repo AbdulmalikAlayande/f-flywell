@@ -32,7 +32,9 @@ const SignUp = () => {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();
-    postDataToBackend(userData, signUpUrl);
+    postDataToBackend(userData, signUpUrl).then((response)=>{
+        return response.data
+    });
   }
 
   function changeButtonColor(event: React.MouseEvent<HTMLButtonElement>){

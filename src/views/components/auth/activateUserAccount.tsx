@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../../../styles/components/auth/activateUserAccount.css";
 import BolaAirLogo from "../../../assets/images/jpg/logo-classic.jpg";
 import ButtonWithIcon from "../reusableComponents/buttonWithIcon";
@@ -17,7 +17,7 @@ const ActivateUserAccount = () => {
     let eventTarget = event.target as HTMLInputElement;
     setTOTP(TOTP+=eventTarget.value)
     if(TOTP.length === 6){
-      console.log("Totp lenght ==> "+TOTP.length);
+      console.log("Totp length ==> "+TOTP.length);
       sendOTPToBackend()
     }
     else return;
@@ -38,6 +38,7 @@ const ActivateUserAccount = () => {
             }
           })
           .catch((error)=>{
+            console.log(error)
             setAccountActivationFailed(true)
           })
           .finally(()=>{
@@ -51,7 +52,9 @@ const ActivateUserAccount = () => {
     navigate(`/${username}/dashboard`);
   }
   
-  function resendOTP(event: React.MouseEvent<HTMLButtonElement>): void {}
+  function resendOTP(event: React.MouseEvent<HTMLButtonElement>): void {
+    event.preventDefault();
+  }
 
   return (
     <div className="Activate-User-Account-Main-Frame">
@@ -121,7 +124,7 @@ const ActivateUserAccount = () => {
             </div>
             <div className="Didnt-Receive-OTP">
               <p>
-                Didn't Recieve An OTP,{" "}
+                Didn't Receive An OTP,{" "}
                 <button onClick={resendOTP}>Resend OTP</button>
               </p>
             </div>
@@ -131,7 +134,7 @@ const ActivateUserAccount = () => {
         <div className="Account-Activation-Successful-Div">
           <div className="Activation-Successful-Mark"></div>
           <p>
-            Congratulations, Your Account Has Been Activated Succcessfully,
+            Congratulations, Your Account Has Been Activated Successfully,
             <br />
             Click The Buttons Below To Either Go To Your Dashboard
             <br />

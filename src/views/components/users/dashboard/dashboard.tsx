@@ -16,7 +16,6 @@ import {
 import { AvailableFlights } from "./availableFlights";
 import { CheapFlights } from "./cheapFlights";
 import RandomFlights from "./randomFlights";
-import { createClient } from "pexels";
 import PieChart from "./pieChart";
 import BarChart from "./barChart";
 
@@ -33,7 +32,7 @@ const Dashboard = () => {
     setCheapFlights(cheapFlight);
   }, [setAvailableFlights, setCheapFlights, setRandomFlights]);
 
-  useEffect(fetchAndGet, []);
+  useEffect(fetchAndGet, [fetchAndGet]);
 
   return (
     <div className="Dashboard-Main-Frame">

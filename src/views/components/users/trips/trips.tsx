@@ -2,36 +2,11 @@ import React from 'react'
 import '../../../../styles/components/users/trips/trips.css'
 import DashBoardSideBar from '../../reusableComponents/dashBoardSideBar'
 import DashboardNavBar from '../../reusableComponents/dashboardNavBar'
-import { UndefinedInitialDataOptions, useQuery } from '@tanstack/react-query'
-import axios from 'axios'
-import { userTripUrl } from '../../../../utilities/utility.functions'
 import {availableFlight} from "../../../../utilities/placeholder"
 import ButtonWithIcon from '../../reusableComponents/buttonWithIcon'
 
-interface Trip{
-       destinationCity: string
-}
 
 const Trips = () => {
-
-       // async function queryFunction()/*: Trip[]*/ {
-       //        const data={
-
-       //        } 
-       //        await axios.get(userTripUrl as any as string)
-       //               .then((response) => {
-       //                      return response.data
-                            
-       //               })
-       //               .catch((error) => {
-
-       //               })
-       // }
-       // const userTrips = useQuery<Trip[], Error>({
-       //        queryKey: ['user', localStorage.getItem("user-email")], 
-       //        // queryFn: queryFunction
-       // })     
-              
 
   return (
        <div className={"User-Trips-Main-Frame"}>
@@ -43,7 +18,7 @@ const Trips = () => {
                             <div className="Trip">
                             <div className="Trip-Info-Section">
                             <div className="Trip-From-Frame">
-                                   <img src="" alt="From-Image" />
+                                   <img src="" alt="From-Pic" />
                                    <div className="Trip-From-Inner-Frame">
                                    <h1>{trip.from}</h1>
                                    <h2>{trip.duration}</h2>
@@ -63,7 +38,7 @@ const Trips = () => {
                                    <h1>{trip.to}</h1>
                                    <h2>{trip.duration}</h2>
                                    </div>
-                                   <img src="" alt="To-Image" />
+                                   <img src="" alt="To-Pic" />
                             </div>
                             </div>
                                    <div className="Section-2">
