@@ -1,5 +1,5 @@
 import {useQuery, UseQueryResult} from "@tanstack/react-query";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 type Props = {
     url: string,
@@ -7,11 +7,19 @@ type Props = {
 };
 
 function useFlights<Flight>(props: Props): UseQueryResult<Flight, Error> {
-
+    console.log("On mount i am here")
     async function queryFunction(): Promise<Flight> {
-        const response = await axios.get<Flight>(props.url);
-        console.log("flight data => ", response.data)
-        return response.data;
+        const result = await axios.get<Flight>(props.url)
+            .then((axiosResponse: AxiosResponse<Flight>)=>{
+                console.log("flight data => ", axiosResponse.data)
+                return axiosResponse.data
+            }).catch((error)=>{
+                console.log(error.message)
+                return error
+            })
+        if (result)
+            return result;
+        throw new Error(result.message);
     }
 
     return useQuery<Flight>({
