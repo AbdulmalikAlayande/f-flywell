@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const ActivateUserAccount = () => {
   let [TOTP, setTOTP] = useState<string>("");
   const navigate = useNavigate()
-  const [accountActivationSuccessful, setAccountActivationSuccessful] = useState<boolean>(true);
+  const [accountActivationSuccessful, setAccountActivationSuccessful] = useState<boolean>(false);
   const [accountActivationFailed, setAccountActivationFailed] = useState<boolean>(false)
 
   const handleChangeEvent = (event: React.ChangeEvent<HTMLInputElement>) => {
