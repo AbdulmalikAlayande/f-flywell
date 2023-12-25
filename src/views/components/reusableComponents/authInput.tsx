@@ -3,6 +3,7 @@ import '../../../styles/components/reusableComponents/authInput.css'
 
 interface InputProps{
     name?: string | undefined
+    errorMessage?: string
     id?: string,
     inputType: string,
     className?: string,
@@ -13,6 +14,7 @@ interface InputProps{
     minimumLength?: number,
     maximumLength?: number,
     onChange?: (event: React.ChangeEvent<HTMLInputElement>)=>void,
+    onInvalid?: (event: React.FormEvent<HTMLInputElement>)=>void,
     regexPattern?:string
 }
 
@@ -21,6 +23,7 @@ const AuthInput = (props: InputProps) => {
     <p className='Input-PTag'>
         <label>{props.inputLabel}</label>
         <input
+            onInvalid={props.onInvalid}
             name={props.name}
             id={props.id}
             type={props.inputType}

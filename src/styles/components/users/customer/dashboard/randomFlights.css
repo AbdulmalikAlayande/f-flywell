@@ -7,7 +7,7 @@
     /* background-color: powderblue; */
 }
 .Random-Flight{
-    background-image: url("../../../../assets/images/jpg/abu-dhabi-1.jpg");
+    background-image: url("../../../../../assets/images/jpg/abu-dhabi-1.jpg");
     /* background-color: powderblue; */
     display: flex;
     flex-direction: column;

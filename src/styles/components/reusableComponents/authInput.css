@@ -21,10 +21,9 @@
     transition: transform 260ms ease-out;
 }
 .Input-PTag:focus-within{
-    color: #eba9a9;
-    background-color: rgb(160, 209, 252);
+    color: rgb(160, 209, 252);
     text-shadow: 1px 1px 1px #000;
-    border-radius: 20px;
+    text-align: justify;
 }
 .Input-PTag:focus-within::before{
     transform: translateX(0);

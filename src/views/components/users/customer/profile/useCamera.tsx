@@ -1,8 +1,8 @@
 import React, {useState, useRef, useCallback, SyntheticEvent} from 'react'
 import Webcam from 'react-webcam'
-import "../../../../styles/components/users/profile/useCamera.css"
+import "../../../../../styles/components/users/customer/profile/useCamera.css"
 import {Icon} from "@iconify/react";
-import ButtonWithIcon from "../../reusableComponents/buttonWithIcon";
+import ButtonWithIcon from "../../../reusableComponents/buttonWithIcon";
 
 
 const videoConstraints = {

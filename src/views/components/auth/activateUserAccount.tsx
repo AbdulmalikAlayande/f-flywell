@@ -3,8 +3,9 @@ import "../../../styles/components/auth/activateUserAccount.css";
 import BolaAirLogo from "../../../assets/images/jpg/logo-classic.jpg";
 import ButtonWithIcon from "../reusableComponents/buttonWithIcon";
 import axios from "axios";
-import { BASE_URL } from "../../../utilities/utility.functions";
+import { SIGN_IN_BASE_URL } from "../../../utilities/utility.functions";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ActivateUserAccount = () => {
   let [TOTP, setTOTP] = useState<string>("");
@@ -25,19 +26,21 @@ const ActivateUserAccount = () => {
 
   function sendOTPToBackend(){
     console.log("at send otp");
-    let userEmail: string = "";
-    axios.post(BASE_URL+`activate-account/${TOTP}`)
+    axios.post(SIGN_IN_BASE_URL+`activate-account/${TOTP}`)
           .then((response)=>{
             console.log("response data at send otp ==> ", response.data);
-            if(response.data.status === 201){
+            if(response.data.statusCode === 201){
+              console.log("hello");
               setAccountActivationSuccessful(true)
-              navigate(`${userEmail}/dashboard`)
+              navigate(`/${response.data.responseData.email}/dashboard`)
               console.log(response.data);
-              userEmail = response.data.data.userEmail;
-              console.log("user email ==> ", userEmail);
+              console.log("user email ==> ", response.data.responseData.email);
             }
           })
           .catch((error)=>{
+            toast.error(error.response.data.message, 
+              {position: toast.POSITION.TOP_CENTER
+            })
             console.log(error)
             setAccountActivationFailed(true)
           })

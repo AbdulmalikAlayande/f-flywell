@@ -13,42 +13,45 @@ export function getRandomInt(min: number, max: number): number {
     return min + (byteArray[0] % range);
 }
 export const modalStyle: ReactModal.Styles = {
-  overlay: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  content: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: "50vw",
-    height: "85vh",
-    backgroundColor: "powderblue",
-    border: "none",
-    borderRadius: "5px",
-    borderStyle: "solid",
-    borderColor: "white",
-  },
+    
+    overlay: {
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    content: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        width: "50vw",
+        height: "85vh",
+        backgroundColor: "powderblue",
+        border: "none",
+        borderRadius: "5px",
+        borderStyle: "solid",
+        borderColor: "white",
+    },
 };
 const cloudName =  process.env.REACT_APP_CLOUD_NAME;
 export const cloudinaryUploadUrl =  `https://api.cloudinary.com/v1_1/${cloudName}/image/upload/`;
 
-export const BASE_URL = 'http://localhost:8081/bola-air/api/v3/';
-export const loginUrl: URL = new URL( BASE_URL+'login-customer')
-export const signUpUrl: URL = new URL(BASE_URL+'register-customer/')
-export const userTripUrl: URL = new URL(BASE_URL+`${localStorage.getItem("email")}/trips`)
-export const cheapFlightsUrl: URL | string = new URL(BASE_URL+"/flights/cheapFlights")
+export const SIGN_IN_BASE_URL = 'http://localhost:8081/bola-air/api/v3/';
+export const FLIGHT_BASE_URL = 'http://localhost:8081/bola-air/flights/';
+export const ADMIN_BASE_URL = 'http://localhost:8081/bola-air/admin/';
+export const loginUrl: URL = new URL( SIGN_IN_BASE_URL+'login-customer')
+export const signUpUrl: URL = new URL(SIGN_IN_BASE_URL+'register-customer/')
+export const userTripUrl: URL = new URL(SIGN_IN_BASE_URL+`${localStorage.getItem("email")}/trips`)
+export const cheapFlightsUrl: URL | string = new URL(SIGN_IN_BASE_URL+"/flights/cheapFlights")
 export const emailPattern = /^[a-z0-9._%±]+@(gmail|yahoo|outlook|hotmail|aol|icloud|mail|msn|live|yandex).com$/i;
 export const emailPattern2 = /^[a-zA-Z0-9._%+-]+@gmail\.com$/i

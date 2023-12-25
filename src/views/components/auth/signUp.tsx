@@ -46,32 +46,19 @@ const SignUp = () => {
         let url = postUrl as string;
         await axios.post(url, signUpData)
                   .then((response) => {
-                    try{
                       if(response.data.statusCode === 201){
                         toast.success("Success")
                         setSignUpSuccessFul(true)
                         navigateTo("/signup/activate-account");
                       }
                       console.log("response data at sign up ==> ", response.data);
-                    }
-                    catch(error: any){
-                      console.error(error);
-                      console.error(error.response.data);
-                    }
-                  })
-                  .catch((error) => {
-                    console.error(error.response.data);
-                    toast.error(error.response.data, {
+                    })
+                  .catch((error) => {              
+                      console.log(error.response.data.message);
+                      toast.error(error.response.data.message, {
                       position: toast.POSITION.TOP_CENTER
                     })
-                    alert(error.response.data)
-                    return error.message;
                   })
-                  .finally(() => {
-                    if (signUpIsSuccessful) {
-                    }
-                  });
-  
   }
 
   return (

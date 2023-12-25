@@ -7,7 +7,6 @@ type Props = {
 };
 
 function useFlights<Flight>(props: Props): UseQueryResult<Flight, Error> {
-    console.log("On mount i am here")
     async function queryFunction(): Promise<Flight> {
         const result = await axios.get<Flight>(props.url)
             .then((axiosResponse: AxiosResponse<Flight>)=>{

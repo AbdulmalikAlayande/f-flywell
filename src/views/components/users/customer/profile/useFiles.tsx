@@ -1,5 +1,5 @@
 import * as React from 'react';
-import "../../../../styles/components/users/profile/useFiles.css"
+import "../../../../../styles/components/users/customer/profile/useFiles.css"
 import {Icon} from "@iconify/react";
 import {useState} from "react";
 

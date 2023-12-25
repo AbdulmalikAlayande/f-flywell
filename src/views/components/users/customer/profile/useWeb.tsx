@@ -1,5 +1,5 @@
 import * as React from 'react';
-import "../../../../styles/components/users/profile/useWeb.css"
+import "../../../../../styles/components/users/customer/profile/useWeb.css"
 import {useState} from "react";
 
 

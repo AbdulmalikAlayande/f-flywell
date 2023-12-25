@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {FormEvent, useState} from "react";
-import ButtonWithIcon from "../../reusableComponents/buttonWithIcon";
+import ButtonWithIcon from "../../../reusableComponents/buttonWithIcon";
 import UseCamera from "./useCamera";
 import UseVideo from "./useVideo";
 import {UseFiles} from "./useFiles";
 import {UseWeb} from "./useWeb";
-import "../../../../styles/components/users/profile/editProfile.css"
+import "../../../../../styles/components/users/customer/profile/editProfile.css"
 import { UseGoogleSearch } from './useGoogleSearch';
 
 

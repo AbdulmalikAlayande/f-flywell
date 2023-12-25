@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import {useEffect} from "react";
-import '../../../../styles/components/users/profile/useGoogleSearch.css'
+import '../../../../../styles/components/users/customer/profile/useGoogleSearch.css'
 
 type UseGoogleSearchProps = {
     userEmail?:string

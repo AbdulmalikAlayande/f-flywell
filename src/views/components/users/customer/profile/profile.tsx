@@ -1,20 +1,21 @@
 import React, { useState } from "react";
-import ButtonWithIcon from "../../reusableComponents/buttonWithIcon";
+import ButtonWithIcon from "../../../reusableComponents/buttonWithIcon";
 import { Icon } from "@iconify/react";
-import "../../../../styles/components/users/profile/profile.css";
-import DashBoardSideBar from "../../reusableComponents/dashBoardSideBar";
-import DashboardNavBar from "../../reusableComponents/dashboardNavBar";
+import "../../../../../styles/components/users/customer/profile/profile.css";
+import DashBoardSideBar from "../../../reusableComponents/dashBoardSideBar";
+import DashboardNavBar from "../../../reusableComponents/dashboardNavBar";
 import ReactModal from "react-modal";
 import EditProfilePicture from "./editProfilePicture";
 import axios from "axios";
-import { cloudinaryUploadUrl, modalStyle } from "../../../../utilities/utility.functions";
+import { cloudinaryUploadUrl, modalStyle } from "../../../../../utilities/utility.functions";
 
 const Profile = () => {
-  const imageUrl = localStorage.getItem("profileImageUrl");
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [profileImage, setProfileImage] = useState<string>(imageUrl?imageUrl:'')
-  const [passportIdIsOpened, setPassportIdIsOpened] = useState<boolean>(false)
-  const [flyerNumberIsOpened, setFlyerNumberIsOpened] = useState<boolean>(false)
+    const imageUrl = localStorage.getItem("profileImageUrl");
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [profileImage, setProfileImage] = useState<string>(imageUrl?imageUrl:'')
+    const [passportIdIsOpened, setPassportIdIsOpened] = useState<boolean>(false)
+    const [flyerNumberIsOpened, setFlyerNumberIsOpened] = useState<boolean>(false)
+
 
   async function postToCloudinary(file?: File): Promise<any> {
     const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
@@ -57,7 +58,7 @@ const Profile = () => {
 
   return (
     <div className={"User-Profile-Main-Frame"}>
-      <DashBoardSideBar />
+      <DashBoardSideBar  userId={""}/>
       <div className="Profile-Part-Two">
         <DashboardNavBar />
         <div className={"User-Profile-Main-Body"}>

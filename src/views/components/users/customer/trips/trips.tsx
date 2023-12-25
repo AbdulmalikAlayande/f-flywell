@@ -1,16 +1,17 @@
 import React from 'react'
-import '../../../../styles/components/users/trips/trips.css'
-import DashBoardSideBar from '../../reusableComponents/dashBoardSideBar'
-import DashboardNavBar from '../../reusableComponents/dashboardNavBar'
-import {availableFlight} from "../../../../utilities/placeholder"
-import ButtonWithIcon from '../../reusableComponents/buttonWithIcon'
+import '../../../../../styles/components/users/customer/trips/trips.css'
+import DashBoardSideBar from '../../../reusableComponents/dashBoardSideBar'
+import DashboardNavBar from '../../../reusableComponents/dashboardNavBar'
+import {availableFlight} from "../../../../../utilities/placeholder"
+import ButtonWithIcon from '../../../reusableComponents/buttonWithIcon'
 
 
 const Trips = () => {
 
+    let userId = "Hello"
   return (
        <div className={"User-Trips-Main-Frame"}>
-           <DashBoardSideBar />
+           <DashBoardSideBar userId={userId}/>
               <div className="User-Trips-Part-Two">
                      <DashboardNavBar />
                      <div className={"User-Trips-Main-Body"}>

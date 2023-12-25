@@ -1,11 +1,11 @@
 import * as React from "react";
-import { CheapFlight } from '../../../interfaces/interface';
-import "../../../../styles/components/users/dashboard/cheapFlights.css";
-import ButtonWithIcon from "../../reusableComponents/buttonWithIcon";
+import { CheapFlight } from '../../../../interfaces/interface';
+import "../../../../../styles/components/users/customer/dashboard/cheapFlights.css";
+import ButtonWithIcon from "../../../reusableComponents/buttonWithIcon";
 import fetchCartoonImageOfLocation from './fetchCartoonImageOfLocation'
 import {useCallback, useState} from "react";
 import useFlights from "./useFlights";
-import {cheapFlightsUrl} from "../../../../utilities/utility.functions";
+import {cheapFlightsUrl} from "../../../../../utilities/utility.functions";
 import {toast} from "react-toastify";
 
 type Props = {

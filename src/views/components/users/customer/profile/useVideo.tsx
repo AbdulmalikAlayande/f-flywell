@@ -1,6 +1,6 @@
 import React, { useRef, useState, useCallback } from 'react';
 import Webcam from 'react-webcam';
-import "../../../../styles/components/users/profile/useVideo.css"
+import "../../../../../styles/components/users/customer/profile/useVideo.css"
 
 const videoConstraints = {
   width: 400,
