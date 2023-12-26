@@ -7,7 +7,7 @@ import DashboardNavBar from "../../../reusableComponents/dashboardNavBar";
 import ReactModal from "react-modal";
 import EditProfilePicture from "./editProfilePicture";
 import axios from "axios";
-import { cloudinaryUploadUrl, modalStyle } from "../../../../../utilities/utility.functions";
+import { cloudinaryUploadUrl, profileEditModalStyle } from "../../../../../utilities/utility.functions";
 
 const Profile = () => {
     const imageUrl = localStorage.getItem("profileImageUrl");
@@ -65,7 +65,7 @@ const Profile = () => {
 
           <div className="User-Profile-Main-Body-1">
               <ReactModal isOpen={isOpen} contentLabel={"Example Modal"} onRequestClose={() => setIsOpen(false)}
-                ariaHideApp={false} style={modalStyle}>
+                ariaHideApp={false} style={profileEditModalStyle}>
                 <EditProfilePicture method={postToCloudinary}/>
               </ReactModal>
               <div className={"Profile-Image-Frame"}>

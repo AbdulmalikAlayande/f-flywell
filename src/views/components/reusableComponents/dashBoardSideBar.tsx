@@ -36,6 +36,7 @@ const  DashBoardSideBar = ({userId, buttonData}: Props) => {
             {buttonData ? (<div className={"Middle-Part"}>
                 {buttonData.map((button, index)=>(
                     <ButtonWithIcon
+                        key={index}
                         value={button.btnLabel}
                         onClick={(event) => navigateToDashBoard(event)}
                         icon={button.btnIcon}

@@ -31,12 +31,12 @@
     font-size: 20px;
 }
 .Edit-Choices-Button-Frame button:hover{
-    background-color: white;
-    border-bottom: 6px solid cadetblue;
+    background-color: ivory;
+    border-bottom: 10px solid cadetblue;
 }
 .Edit-Choices-Button-Frame button:focus{
-    background-color: white;
-    border-bottom: 6px solid cadetblue;
+    background-color: ivory;
+    border-bottom: 10px solid cadetblue;
 }
 .Edit-Choices-Frame{
     height: 79%;

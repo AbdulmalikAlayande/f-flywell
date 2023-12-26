@@ -12,7 +12,7 @@ export function getRandomInt(min: number, max: number): number {
     }
     return min + (byteArray[0] % range);
 }
-export const modalStyle: ReactModal.Styles = {
+export const profileEditModalStyle: ReactModal.Styles = {
     
     overlay: {
         position: "fixed",
@@ -36,13 +36,45 @@ export const modalStyle: ReactModal.Styles = {
         transform: "translate(-50%, -50%)",
         width: "50vw",
         height: "85vh",
-        backgroundColor: "powderblue",
+        backgroundColor: "azure",
         border: "none",
         borderRadius: "5px",
         borderStyle: "solid",
-        borderColor: "white",
+        borderWidth: '5px',
+        borderColor: "powderblue",
     },
 };
+export const inviteAdminModalStyle: ReactModal.Styles = {
+    overlay: {
+        position: "absolute",
+        zIndex: '3',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    content: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        position: "absolute",
+        borderColor: 'powderblue',
+        borderRadius: '30px',
+        borderStyle: 'solid',
+        borderWidth: '3px',
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        width: "40vw",
+        height: "30vh",
+    }
+}
+
 const cloudName =  process.env.REACT_APP_CLOUD_NAME;
 export const cloudinaryUploadUrl =  `https://api.cloudinary.com/v1_1/${cloudName}/image/upload/`;
 

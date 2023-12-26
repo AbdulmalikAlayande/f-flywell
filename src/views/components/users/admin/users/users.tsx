@@ -3,6 +3,8 @@ import DashBoardSideBar from "../../../reusableComponents/dashBoardSideBar";
 import DashboardNavBar from "../../../reusableComponents/dashboardNavBar";
 import "../../../../../styles/components/users/admin/dashboard/users.css";
 import {useState} from "react";
+import Customers from "./customers";
+import Admins from "./admins";
 
 
 enum UserType{
@@ -82,8 +84,8 @@ export default function Users() {
                         </div>
                     </div>
                     <div className={"All-Users-Frame"}>
-                        {userType===UserType.CUSTOMERS && <div></div>}
-                        {userType===UserType.ADMINS && <div></div>}
+                        {userType===UserType.CUSTOMERS && <Customers/>}
+                        {userType===UserType.ADMINS && <Admins/>}
                         {userType===UserType.CREW_MEMBERS && <div></div>}
                         {userType===UserType.FRONT_DESK_OFFICERS && <div></div>}
                     </div>
