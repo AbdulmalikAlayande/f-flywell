@@ -24,10 +24,14 @@ export default function Admins() {
         console.log("Hello")
     }
     
+    function openOrCloseModal(value: boolean): void {
+        setModalIsOpen(value)
+    }
+    
     return (
         <div className={'Admin-Main-Frame'}>
             <ReactModal style={inviteAdminModalStyle} isOpen={modalIsOpen} onRequestClose={(event) => setModalIsOpen(false)}>
-                <InviteAdmin/>
+                <InviteAdmin modalIsOpen={openOrCloseModal}/>
             </ReactModal>
             {dataIsEmpty ? <EmptyUsersFrame customerTypeLabel={'Admin'}/>
             : <div className={'Table'}>

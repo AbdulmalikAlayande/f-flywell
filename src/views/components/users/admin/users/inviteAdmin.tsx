@@ -11,31 +11,39 @@ const initialInvitationData = {
     phoneNumber: "",
     notificationPreference: ""
 }
-export default function InviteAdmin() {
+
+type Props ={
+    modalIsOpen: (value: boolean)=>void
+}
+export default function InviteAdmin({modalIsOpen}: Props) {
     
     const [invitationData, setInvitationData] = useState(initialInvitationData);
     const [invitationSuccessful, setInvitationSuccessful] = useState<boolean>(false);
     
     async function sendInvitationDetails(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        await axios.post(ADMIN_BASE_URL+"invite-admin/", invitationData)
-            .then((response) => {
-                let responseData = response.data;
-                console.log("Hi Hi response ===> "+response)
-                if(responseData.status === 201){
-                    setInvitationSuccessful(true)
-                    toast.success(response.data.responseData)
-                }
-                else if (responseData.status === 400){
-                    setInvitationSuccessful(false)
-                    toast.error(response.data.responseData)
-                }
-            })
-            .catch((error) => {
-                console.log(error.message)
-                toast.error(error.response.data.message)
-                console.log(error.respose.data.message)
-            })
+        try {
+            await axios.post(ADMIN_BASE_URL+"invite-admin/", invitationData)
+                .then((response) => {
+                    console.log("Hi Hi response ===> "+response.data.responseData.message);
+                    if(response.data.statusCode === 201){
+                        setInvitationSuccessful(true)
+                        toast.success(response.data.responseData.message)
+                        modalIsOpen(false)
+                    }
+                    else if (response.data.statusCode === 400){
+                        setInvitationSuccessful(false)
+                        toast.error(response.data.responseData.message)
+                    }
+                })
+                .catch((error) => {
+                    console.log(error.message)
+                    toast.error(error.response.data.message)
+                    console.log(error.respose.data.message)
+                })
+        }catch (error) {
+        
+        }
     }
     
     

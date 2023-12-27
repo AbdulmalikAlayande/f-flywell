@@ -34,18 +34,23 @@ function AdminSignUp() {
     
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        await axios.post(ADMIN_BASE_URL+"create-admin-account/", signUpData)
-            .then((response)=>{
-                console.log(response)
-                toast.success(response.data.responseData.message, {position: "top-center"})
-            }).catch((error) => {
-                if (error.response.data.message){
-                    toast.error(error.response.data.message, {position: "top-center"})
-                    console.log(error.response)
-                    console.log(error)
-                }
-                else toast.error(error.message)
-            })
+        try {
+            await axios.post(ADMIN_BASE_URL+"create-admin-account/", signUpData)
+                .then((response)=>{
+                    console.log(response)
+                    toast.success(response.data.responseData.message, {position: "top-center"})
+                }).catch((error) => {
+                    if (error.response.data.message){
+                        toast.error(error.response.data.message, {position: "top-center"})
+                        console.log(error.response)
+                        console.log(error)
+                    }
+                    else toast.error(error.message)
+                })
+            
+        }catch (error) {
+            console.log(error)
+        }
     }
     
     function handleInputChangeEvent(event: React.ChangeEvent<HTMLInputElement>) {
