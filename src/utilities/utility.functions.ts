@@ -87,3 +87,49 @@ export const userTripUrl: URL = new URL(SIGN_IN_BASE_URL+`${localStorage.getItem
 export const cheapFlightsUrl: URL | string = new URL(SIGN_IN_BASE_URL+"/flights/cheapFlights")
 export const emailPattern = /^[a-z0-9._%±]+@(gmail|yahoo|outlook|hotmail|aol|icloud|mail|msn|live|yandex).com$/i;
 export const emailPattern2 = /^[a-zA-Z0-9._%+-]+@gmail\.com$/i
+export const adminSideBarButtonData = () => {
+    return [
+        {
+        btnLabel: "Dashbaord",
+        btnIcon: "pixelarticons:dashbaord",
+        btnUrl: "/bola-air/admin/dashboard",
+        value: "dashboard"
+        },
+        {
+            btnLabel: "Profile",
+            btnIcon: "gg:profile",
+            btnUrl: "/bola-air/admin/profile",
+            value: "profile"
+        },
+        {
+            btnLabel: "Users",
+            btnIcon: "uil:users-alt",
+            btnUrl: "/bola-air/users",
+            value: "users"
+        },
+        {
+            btnLabel: "Flights",
+            btnIcon: "mdi:flight",
+            btnUrl: "/bola-air/all-flights",
+            value: "flights"
+        },
+        {
+            btnLabel: "Instances",
+            btnIcon: "icon-park-outline:round-trip",
+            btnUrl: "/bola-air/all-instances",
+            value: "flight-instance"
+        },
+        {
+            btnLabel: "Air Crafts",
+            btnIcon: "material-symbols:flightsmode",
+            btnUrl: "/bola-air/all-aircrafts",
+            value: "air-crafts"
+        },
+        {
+            btnLabel: "Trips",
+            btnIcon: "icon-park-outline:round-trip",
+            btnUrl: "/bola-air/all-trips",
+            value: "trips"
+        },
+    ]
+}
