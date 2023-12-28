@@ -38,7 +38,7 @@ const  DashBoardSideBar = ({userId, buttonData}: Props) => {
                     <ButtonWithIcon
                         key={index}
                         value={button.btnUrl}
-                        onClick={(event) => navigateToDashBoard(event)}
+                        onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => navigateToDashBoard(event)}
                         icon={button.btnIcon}
                         buttonPlaceHolder={button.btnLabel}
                     />
