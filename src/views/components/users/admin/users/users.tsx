@@ -41,6 +41,18 @@ export default function Users() {
             value: "flights"
         },
         {
+            btnLabel: "Instances",
+            btnIcon: "icon-park-outline:round-trip",
+            btnUrl: "bola-air/all-trips",
+            value: "flight-instance"
+        },
+        {
+            btnLabel: "Air Crafts",
+            btnIcon: "material-symbols:flightsmode",
+            btnUrl: "bola-air/all-trips",
+            value: "air-crafts"
+        },
+        {
             btnLabel: "Trips",
             btnIcon: "icon-park-outline:round-trip",
             btnUrl: "bola-air/all-trips",

@@ -46,6 +46,8 @@ function AdminSignUp() {
                         console.log(error)
                     }
                     else toast.error(error.message)
+                }).finally(()=>{
+                    navigate("bola-air/admin-dashboard")
                 })
             
         }catch (error) {

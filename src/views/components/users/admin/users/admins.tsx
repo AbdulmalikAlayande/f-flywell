@@ -8,7 +8,28 @@ import {EmptyUsersFrame} from "./emptyUsersFrame";
 import ReactModal from "react-modal";
 import {inviteAdminModalStyle} from "../../../../../utilities/utility.functions";
 import InviteAdmin from "./inviteAdmin";
+import {useFetchUsers} from "./useFetchUsers";
 
+type Admin = {
+    role: "ADMIN",
+    email: string,
+    bioData: {
+        firstName: string,
+        lastName: string,
+        password: string,
+        userName: string,
+        email: string,
+        phoneNumber: string,
+        fullName: string,
+        gender: "MALE",
+        
+    }
+}
+
+const fetchProp = {
+    url: "",
+    queryKey: ""
+}
 export default function Admins() {
     
     const [dataIsEmpty, setDataIsEmpty] = useState<boolean>(true);
@@ -27,6 +48,8 @@ export default function Admins() {
     function openOrCloseModal(value: boolean): void {
         setModalIsOpen(value)
     }
+    
+    useFetchUsers<Admin>(fetchProp)
     
     return (
         <div className={'Admin-Main-Frame'}>

@@ -33,62 +33,17 @@ const  DashBoardSideBar = ({userId, buttonData}: Props) => {
             <div className="Dashboard-Logo-Frame">
               <img src={Logo}  alt={"Logo"}/>
             </div>
-            {buttonData ? (<div className={"Middle-Part"}>
-                {buttonData.map((button, index)=>(
+            <div className={"Middle-Part"}>
+                {buttonData?.map((button, index)=>(
                     <ButtonWithIcon
                         key={index}
                         value={button.btnLabel}
                         onClick={(event) => navigateToDashBoard(event)}
                         icon={button.btnIcon}
                         buttonPlaceHolder={button.btnLabel}
-                        iconHeight={"25px"}
-                        iconWidth={"25px"}
                     />
                 ))}
-            </div>): (
-                <div className="Middle-Part">
-                    <ButtonWithIcon
-                        value={"dashboard"}
-                        onClick={(event) => navigateToDashBoard(event)}
-                        icon={"pixelarticons:dashbaord"}
-                        buttonPlaceHolder={"Dashboard"}
-                        iconHeight={"25px"}
-                        iconWidth={"25px"}
-                    />
-                    <ButtonWithIcon
-                        value={"profile"}
-                        onClick={(event) => navigateToDashBoard(event)}
-                        icon={"gg:profile"}
-                        buttonPlaceHolder={"Profile"}
-                        iconHeight={"25px"}
-                        iconWidth={"25px"}
-                    />
-                    <ButtonWithIcon
-                        value={"my-trips"}
-                        onClick={(event) => navigateToDashBoard(event)}
-                        icon={"icon-park-outline:round-trip"}
-                        buttonPlaceHolder={"My Trips"}
-                        iconHeight={"25px"}
-                        iconWidth={"25px"}
-                    />
-                    <ButtonWithIcon
-                        value={"flight"}
-                        onClick={(event) => navigateToDashBoard(event)}
-                        icon={"mdi:flight"}
-                        buttonPlaceHolder={"Flight"}
-                        iconHeight={"25px"}
-                        iconWidth={"25px"}
-                    />
-                    <ButtonWithIcon
-                        value={"create-itinerary"}
-                        onClick={(event) => navigateToDashBoard(event)}
-                        icon={"carbon:flight-roster"}
-                        buttonPlaceHolder={"Itinerary"}
-                        iconHeight={"25px"}
-                        iconWidth={"25px"}
-                    />
-                </div>
-            )}
+            </div>
             <div className="Foot">
                 <ButtonWithIcon
                     icon={"material-symbols:settings-outline"}
@@ -100,11 +55,53 @@ const  DashBoardSideBar = ({userId, buttonData}: Props) => {
                     icon={"ic:round-logout"}
                     className={"Log-Out-Button"}
                     buttonPlaceHolder={"Log Out"}
-                    iconHeight={"25px"}
-                    iconWidth={"25px"}
                 />
             </div>
         </div>
     );
 };
 export default DashBoardSideBar;
+{/* : (
+                 <div className="Middle-Part">
+                     <ButtonWithIcon
+                         value={"dashboard"}
+                         onClick={(event) => navigateToDashBoard(event)}
+                         icon={"pixelarticons:dashbaord"}
+                         buttonPlaceHolder={"Dashboard"}
+                         iconHeight={"25px"}
+                         iconWidth={"25px"}
+                     />
+                     <ButtonWithIcon
+                         value={"profile"}
+                         onClick={(event) => navigateToDashBoard(event)}
+                         icon={"gg:profile"}
+                         buttonPlaceHolder={"Profile"}
+                         iconHeight={"25px"}
+                         iconWidth={"25px"}
+                     />
+                     <ButtonWithIcon
+                         value={"my-trips"}
+                         onClick={(event) => navigateToDashBoard(event)}
+                         icon={"icon-park-outline:round-trip"}
+                         buttonPlaceHolder={"My Trips"}
+                         iconHeight={"25px"}
+                         iconWidth={"25px"}
+                    />
+                     <ButtonWithIcon
+                         value={"flight"}
+                         onClick={(event) => navigateToDashBoard(event)}
+                         icon={"mdi:flight"}
+                         buttonPlaceHolder={"Flight"}
+                         iconHeight={"25px"}
+                         iconWidth={"25px"}
+                    />
+                     <ButtonWithIcon
+                         value={"create-itinerary"}
+                         onClick={(event) => navigateToDashBoard(event)}
+                         icon={"carbon:flight-roster"}
+                         buttonPlaceHolder={"Itinerary"}
+                         iconHeight={"25px"}
+                         iconWidth={"25px"}
+                     />
+                 </div>
+            )} */}
