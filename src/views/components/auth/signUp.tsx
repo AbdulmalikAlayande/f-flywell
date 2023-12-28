@@ -3,10 +3,11 @@ import AuthInput from "../reusableComponents/authInput";
 import CallToActionButton from "../reusableComponents/callToActionButton";
 import { Icon } from "@iconify/react";
 import "../../../styles/components/auth/signUp.css";
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { useNavigate } from "react-router-dom";
 import { SignUpData, LoginData } from "../../../styles/components/types";
-import { signUpUrl } from "../../../utilities/utility.functions.d";
+import { signUpUrl } from "../../../utilities/utility.functions";
+import { toast } from "react-toastify";
 
 const initialData: SignUpData = {
   email: "",
@@ -40,29 +41,24 @@ const SignUp = () => {
     eventTarget.style.backgroundColor = "red";
   }
   async function postDataToBackend(
-    data: LoginData | SignUpData, postUrl?: string | URL, params?: AxiosRequestConfig
+    signUpData: LoginData | SignUpData, postUrl?: string | URL, params?: AxiosRequestConfig
   ): Promise<any> {
-    let url = postUrl as string;
-    await axios
-      .post(url, data)
-      .then((response) => {
-        if(response.data.statusCode === 201){
-          setSignUpSuccessFul(true)
-          navigateTo("/signup/activate-account");
-        }
-        setSignUpSuccessFul(true);
-        console.log("response data at sign up ==> ", response.data);
-        return response.data;
-      })
-      .catch((error) => {
-        console.log(error.message);
-        console.log(error);
-        return error.message;
-      })
-      .finally(() => {
-        if (signUpIsSuccessful) {
-        }
-      });
+        let url = postUrl as string;
+        await axios.post(url, signUpData)
+                  .then((response) => {
+                      if(response.data.statusCode === 201){
+                        toast.success("Success")
+                        setSignUpSuccessFul(true)
+                        navigateTo("/signup/activate-account");
+                      }
+                      console.log("response data at sign up ==> ", response.data);
+                    })
+                  .catch((error) => {              
+                      console.log(error.response.data.message);
+                      toast.error(error.response.data.message, {
+                      position: toast.POSITION.TOP_CENTER
+                    })
+                  })
   }
 
   return (

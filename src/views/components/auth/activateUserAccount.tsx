@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../../../styles/components/auth/activateUserAccount.css";
 import BolaAirLogo from "../../../assets/images/jpg/logo-classic.jpg";
 import ButtonWithIcon from "../reusableComponents/buttonWithIcon";
 import axios from "axios";
-import { BASE_URL } from "../../../utilities/utility.functions.d";
+import { SIGN_IN_BASE_URL } from "../../../utilities/utility.functions";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ActivateUserAccount = () => {
   let [TOTP, setTOTP] = useState<string>("");
   const navigate = useNavigate()
-  const [accountActivationSuccessful, setAccountActivationSuccessful] = useState<boolean>(true);
+  const [accountActivationSuccessful, setAccountActivationSuccessful] = useState<boolean>(false);
   const [accountActivationFailed, setAccountActivationFailed] = useState<boolean>(false)
 
   const handleChangeEvent = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,7 +18,7 @@ const ActivateUserAccount = () => {
     let eventTarget = event.target as HTMLInputElement;
     setTOTP(TOTP+=eventTarget.value)
     if(TOTP.length === 6){
-      console.log("Totp lenght ==> "+TOTP.length);
+      console.log("Totp length ==> "+TOTP.length);
       sendOTPToBackend()
     }
     else return;
@@ -25,19 +26,22 @@ const ActivateUserAccount = () => {
 
   function sendOTPToBackend(){
     console.log("at send otp");
-    let userEmail: string = "";
-    axios.post(BASE_URL+`activate-account/${TOTP}`)
+    axios.post(SIGN_IN_BASE_URL+`activate-account/${TOTP}`)
           .then((response)=>{
             console.log("response data at send otp ==> ", response.data);
-            if(response.data.status === 201){
+            if(response.data.statusCode === 201){
+              console.log("hello");
               setAccountActivationSuccessful(true)
-              navigate(`${userEmail}/dashboard`)
+              navigate(`/${response.data.responseData.email}/dashboard`)
               console.log(response.data);
-              userEmail = response.data.data.userEmail;
-              console.log("user email ==> ", userEmail);
+              console.log("user email ==> ", response.data.responseData.email);
             }
           })
           .catch((error)=>{
+            toast.error(error.response.data.message, 
+              {position: toast.POSITION.TOP_CENTER
+            })
+            console.log(error)
             setAccountActivationFailed(true)
           })
           .finally(()=>{
@@ -51,7 +55,9 @@ const ActivateUserAccount = () => {
     navigate(`/${username}/dashboard`);
   }
   
-  function resendOTP(event: React.MouseEvent<HTMLButtonElement>): void {}
+  function resendOTP(event: React.MouseEvent<HTMLButtonElement>): void {
+    event.preventDefault();
+  }
 
   return (
     <div className="Activate-User-Account-Main-Frame">
@@ -121,7 +127,7 @@ const ActivateUserAccount = () => {
             </div>
             <div className="Didnt-Receive-OTP">
               <p>
-                Didn't Recieve An OTP,{" "}
+                Didn't Receive An OTP,{" "}
                 <button onClick={resendOTP}>Resend OTP</button>
               </p>
             </div>
@@ -131,7 +137,7 @@ const ActivateUserAccount = () => {
         <div className="Account-Activation-Successful-Div">
           <div className="Activation-Successful-Mark"></div>
           <p>
-            Congratulations, Your Account Has Been Activated Succcessfully,
+            Congratulations, Your Account Has Been Activated Successfully,
             <br />
             Click The Buttons Below To Either Go To Your Dashboard
             <br />
