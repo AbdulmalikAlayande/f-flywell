@@ -19,43 +19,43 @@ export default function Users() {
         {
             btnLabel: "Dashbaord",
             btnIcon: "pixelarticons:dashbaord",
-            btnUrl: "bola-air/admin/dashboard",
+            btnUrl: "/bola-air/admin/dashboard",
             value: "dashboard"
         },
         {
             btnLabel: "Profile",
             btnIcon: "gg:profile",
-            btnUrl: "username/profile",
+            btnUrl: "/bola-air/admin/profile",
             value: "profile"
         },
         {
             btnLabel: "Users",
             btnIcon: "uil:users-alt",
-            btnUrl: "bola-air/users",
+            btnUrl: "/bola-air/users",
             value: "users"
         },
         {
             btnLabel: "Flights",
             btnIcon: "mdi:flight",
-            btnUrl: "bola-air/all-flights",
+            btnUrl: "/bola-air/all-flights",
             value: "flights"
         },
         {
             btnLabel: "Instances",
             btnIcon: "icon-park-outline:round-trip",
-            btnUrl: "bola-air/all-trips",
+            btnUrl: "/bola-air/all-instances",
             value: "flight-instance"
         },
         {
             btnLabel: "Air Crafts",
             btnIcon: "material-symbols:flightsmode",
-            btnUrl: "bola-air/all-trips",
+            btnUrl: "/bola-air/all-aircrafts",
             value: "air-crafts"
         },
         {
             btnLabel: "Trips",
             btnIcon: "icon-park-outline:round-trip",
-            btnUrl: "bola-air/all-trips",
+            btnUrl: "/bola-air/all-trips",
             value: "trips"
         },
     ]

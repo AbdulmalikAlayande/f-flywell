@@ -7,6 +7,8 @@ import ActivateUserAccount from "./views/components/auth/activateUserAccount";
 import Trips from "./views/components/users/customer/trips/trips";
 import AdminSignUp from "./views/components/auth/adminSignUp";
 import Users from "./views/components/users/admin/users/users";
+import AdminDashboard from "./views/components/users/admin/dashboard/adminDashboard";
+import AllFlights from "./views/components/users/admin/allFlights";
 function App() {
   return (
     <Router>
@@ -19,6 +21,8 @@ function App() {
         <Route path={"/signup/activate-account"} element={<ActivateUserAccount />}/>
         <Route path={"/admin-signup"} element={<AdminSignUp />}/>
         <Route path={"/bola-air/users"} element={<Users />}/>
+        <Route path={"bola-air/admin/dashboard"} element={<AdminDashboard />}/>
+        <Route path={"bola-air/all-flights"} element={<AllFlights />}/>
       </Routes>
     </Router>
   );

@@ -1,12 +1,12 @@
 .Dashbaord-Side-Bar-Main-Frame{
-    background-color: powderblue;
     display: flex;
     flex-direction: column;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
     justify-content: space-between;
     align-content: center;
-    /* border-style: solid; */
+    border-style: solid;
+    border-color: powderblue;
     row-gap: 4%;
     height: 100vh;
     width: 15%;
@@ -14,9 +14,6 @@
 .Dashboard-Logo-Frame{
     display: flex;
     flex-direction: column;
-    border-style: solid;
-    border-width: 1px;
-    border-color: black;
     justify-content: center;
     height: 12%;
     width: 100%;
@@ -30,9 +27,6 @@
 .Middle-Part{
     display: flex;
     flex-direction: column;
-    border-style: solid;
-    border-width: 1px;
-    border-color: black;
     justify-content: space-between;
     align-items: center;
     height: 60%;
@@ -40,9 +34,6 @@
 .Foot{
     display: flex;
     flex-direction: column;
-    border-style: solid;
-    border-width: 1px;
-    border-color: black;
     justify-content: flex-end;
     align-items: center;
     row-gap: 2px;
@@ -61,28 +52,25 @@
     width: 100%;
     display: flex;
     justify-content: flex-start;
-    border-style: solid;
-    border-width: 1px;
-    border-color: green;
     column-gap: 20px;
     align-items: center;
     font-size: 18px;
     cursor: pointer;
+    /* color: rgb(144, 224, 234); */
 }
 .Foot button{
     width: 100%;
     display: flex;
     justify-content: flex-start;
-    border-style: solid;
-    border-width: 1px;
-    border-color: green;
     column-gap: 20px;
     align-items: center;
     font-size: 18px;
     cursor: pointer;
+    /* color: rgb(144, 224, 234); */
 }
-.Foot button svg{
-    color: tomato;
+.Foot button svg, .Middle-Part button svg{
+    height: 25px;
+    width: 25px;
 }
 .Dashbaord-Side-Bar-Main-Frame button:focus{
     height: 10%;

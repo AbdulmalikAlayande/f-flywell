@@ -25,7 +25,7 @@ const  DashBoardSideBar = ({userId, buttonData}: Props) => {
       eventTarget.id = "CurrentWindow";
       console.log("event target ==> ", eventTarget);
 
-      navigate(`/username/${eventTarget.value}`);
+      navigate(`${eventTarget.value}`);
     }
 
     return (
@@ -37,7 +37,7 @@ const  DashBoardSideBar = ({userId, buttonData}: Props) => {
                 {buttonData?.map((button, index)=>(
                     <ButtonWithIcon
                         key={index}
-                        value={button.btnLabel}
+                        value={button.btnUrl}
                         onClick={(event) => navigateToDashBoard(event)}
                         icon={button.btnIcon}
                         buttonPlaceHolder={button.btnLabel}
