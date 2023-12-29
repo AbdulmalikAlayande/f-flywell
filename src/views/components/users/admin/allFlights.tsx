@@ -3,6 +3,7 @@ import { adminSideBarButtonData } from "../../../../utilities/utility.functions"
 import '../../../../styles/components/users/admin/allFlights.css'
 import DashboardNavBar from "../../reusableComponents/dashboardNavBar";
 import DashBoardSideBar from "../../reusableComponents/dashBoardSideBar";
+import ButtonWithIcon from "../../reusableComponents/buttonWithIcon";
 
 export default function AllFlights(){
 
@@ -28,7 +29,10 @@ export default function AllFlights(){
                         </div>
                     </section>
                     <section className="All-Flights-Main-Body-Section-2">
-                        
+                        <div className="All-Flights">
+
+                        </div>
+                        <ButtonWithIcon icon="fluent:add-12-regular" buttonPlaceHolder="Add New Flight"/>
                     </section>
                 </div>
             </div>
