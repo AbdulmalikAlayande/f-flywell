@@ -21,7 +21,7 @@ const DashboardNavBar = () => {
   return (
     <div className="Dashboard-NavBar-Main-Frame">
       <div className="Search-Anything">
-        <input type="text" name="" id="" />
+        <input type="text" name="" id="" placeholder="Search..."/>
         <ButtonWithIcon
           iconWidth={"30px"}
           iconHeight={"30px"}
