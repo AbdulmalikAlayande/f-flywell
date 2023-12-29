@@ -16,6 +16,8 @@ interface InputProps{
     onChange?: (event: React.ChangeEvent<HTMLInputElement>)=>void,
     onInvalid?: (event: React.FormEvent<HTMLInputElement>)=>void,
     regexPattern?:string
+    spellCheck?:boolean
+
 }
 
 const AuthInput = (props: InputProps) => {
@@ -34,6 +36,7 @@ const AuthInput = (props: InputProps) => {
             pattern={props.regexPattern}
             minLength={props.minimumLength}
             maxLength={props.maximumLength}
+            spellCheck={props.spellCheck}
         />
         <span className={'Input-Instructions'}><span className={'Error-Message'}></span></span>
     </p>

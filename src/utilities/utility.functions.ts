@@ -92,7 +92,7 @@ export const addNewFlightModalStyle: ReactModal.Styles = {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "space-between",
         position: "absolute",
         borderColor: 'powderblue',
         borderRadius: '30px',
