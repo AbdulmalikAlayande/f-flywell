@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import Select from 'react-select'
 import { toast } from "react-toastify";
 import '../../../../styles/components/users/admin/addNewFlight.css'
 import { FLIGHT_BASE_URL } from "../../../../utilities/utility.functions";
@@ -22,7 +23,7 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
 
     const [newFlightData, setNewFlightData] = useState(initialFlightData)
     const [currentStep, setCurrentStep] = useState<number>(0)
-    const currentFormLabels = ["Flight Data", "AirportData"]
+    const currentFormLabels = ["Flight Data", "Airport Data"]
 
     function handleFormSubmission(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -57,15 +58,7 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
         <>
             <p className="Add-New-Flight-Header">Add New Flight</p>
             <div className="Progress-Bar-Form-Main-Frame">
-                <p>Text</p>
-                <div className="Progress-Bar-Frame">
-                    <div className="Circle-1"><div className="Circle-1-Inner-Cirle"></div></div>
-                    <div className="Main-Line">
-                        <div className="Inner-Line-1"></div>
-                        <div className="Inner-Line-2"></div>
-                    </div>
-                    <div className="Circle-2"><div className="Circle-2-Inner-Cirle"></div></div>
-                </div>
+                <p>{currentFormLabels[currentStep]}</p>
                 <div className="Next-And-Prev-Btn-Frame">
                     {<ButtonWithIcon 
                         value={0} onClick={()=>{
@@ -82,36 +75,41 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
                     />
                 </div>
                 <form onSubmit={handleFormSubmission} className="Add-New-Flight-Form">
-                    <AuthInput
-                        inputLabel={'Arrival City'} inputType={"text"}
-                        inputPlaceHolder={"Lagos, Nigeria"}
-                        spellCheck={false} onChange={handleInputChange}
-                        name={'arrivalCity'} required
-                    />
-                    <AuthInput
-                        inputLabel={'Departure City'} inputType={"text"}
-                        inputPlaceHolder={"Abuja, Nigeria"}
-                        spellCheck={false}
-                        name={'departureCity'} required
-                    />
-                    <AuthInput
-                        inputLabel={'Display Image Name'} inputType={"text"}
-                        inputPlaceHolder={"merlion"}
-                        spellCheck={false}
-                        name={'displayImageName'} required
-                    />
-                    <AuthInput
-                        inputLabel={'Flight Duration'} inputType={"number"}
-                        inputPlaceHolder={"2hrs"}
-                        name={'estimatedFlightDurationInMinutes'} required
-                    />
-                    <AuthInput
-                        inputLabel={'Airline'} inputType={"text"}
-                        inputPlaceHolder={"Bola-Air"}
-                        spellCheck={false}
-                        name={'airline'} required
-                    />
-
+                    {currentStep === 0 && <>
+                        <AuthInput
+                            inputLabel={'Arrival City'} inputType={"text"}
+                            inputPlaceHolder={"Lagos, Nigeria"}
+                            spellCheck={false} onChange={handleInputChange}
+                            name={'arrivalCity'} required
+                        />
+                        <AuthInput
+                            inputLabel={'Departure City'} inputType={"text"}
+                            inputPlaceHolder={"Abuja, Nigeria"}
+                            spellCheck={false}
+                            name={'departureCity'} required
+                        />
+                        <AuthInput
+                            inputLabel={'Display Image Name'} inputType={"text"}
+                            inputPlaceHolder={"merlion"}
+                            spellCheck={false}
+                            name={'displayImageName'} required
+                        />
+                        <AuthInput
+                            inputLabel={'Flight Duration'} inputType={"number"}
+                            inputPlaceHolder={"2hrs"}
+                            name={'estimatedFlightDurationInMinutes'} required
+                        />
+                        <AuthInput
+                            inputLabel={'Airline'} inputType={"text"}
+                            inputPlaceHolder={"Bola-Air"}
+                            spellCheck={false}
+                            name={'airline'} required
+                        />
+                    </>}
+                    {currentStep === 1 && <>
+                        <Select/>
+                        <Select/>
+                    </>}
                 </form>
             </div>
         </>

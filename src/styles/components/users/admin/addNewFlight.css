@@ -28,7 +28,6 @@
 .Inner-Line-1, .Inner-Line-2{
     width: 50%;
     height: 100%;
-    background-color: hsl(187, 52%, 80%);
 }
 .Circle-1, .Circle-2{
     display: flex;
@@ -73,8 +72,6 @@
     width: 90%;
     align-items: center;
     justify-content: space-between;
-    /* border-style: solid;
-    border-width: 1px; */
 }
 .Add-New-Flight-Form p{
     width: 100%;
