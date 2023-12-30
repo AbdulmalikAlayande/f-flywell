@@ -22,6 +22,7 @@
 .Progress-Bar-Frame progress{
     width: 70%;
     height: 50%;
+    background-color: hsl(187, 52%, 80%);
 }
 .Circle-1, .Circle-2{
     display: flex;
