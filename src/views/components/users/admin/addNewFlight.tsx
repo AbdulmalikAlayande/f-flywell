@@ -32,16 +32,16 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
     function handleFormSubmission(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
-        // axios.post(FLIGHT_BASE_URL+"add-flight/", newFlightData)
-        //     .then((response) => {
-        //         console.log(response.data.responseData);
-        //         console.log(response.data.message)
-        //         toast.info(response.data.message, {position: toast.POSITION.TOP_CENTER})
-        //         modalIsOpen(false)
-        //     }).catch((error) => {
-        //         console.log(error);
-        //         toast.error(error.message, {position: toast.POSITION.TOP_CENTER})
-        //     })
+        axios.post(FLIGHT_BASE_URL+"add-flight/", newFlightData)
+            .then((response) => {
+                console.log(response.data.responseData);
+                console.log(response.data.message)
+                toast.info(response.data.message, {position: toast.POSITION.TOP_CENTER})
+                modalIsOpen(false)
+            }).catch((error) => {
+                console.log(error);
+                toast.error(error.message, {position: toast.POSITION.TOP_CENTER})
+            })
     }
 
     function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -113,6 +113,9 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
                     {currentStep === 1 && <>
                         <Select/>
                         <Select/>
+                        <div>
+                            <button type="submit">Add</button>
+                        </div>
                     </>}
                 </form>
             </div>
@@ -120,7 +123,5 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
     )
 }
 /*
-<div>
-    <button onClick={handleClick} type="submit">Add</button>
-</div>                       
+                       
 */
