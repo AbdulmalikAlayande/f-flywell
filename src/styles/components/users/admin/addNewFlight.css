@@ -71,7 +71,7 @@
     height: 70%;
     width: 90%;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 .Add-New-Flight-Form p{
     width: 100%;
