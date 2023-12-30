@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from 'react-select'
 import { toast } from "react-toastify";
 import '../../../../styles/components/users/admin/addNewFlight.css'
@@ -27,11 +27,20 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
     const [currentStep, setCurrentStep] = useState<number>(0)
     const currentFormLabels = ["Flight Data", "Airport Data"]
     const {data, error, isLoading} = useFetchCities<PostmanCountriesData>({queryKey: [""]})
+    const [countryOptions, setCountryOptions] = useState<{value: string, label: string}[]>([])
+    const [cityOptions, setCityOptions] = useState<{value: string, label: string}[]>([])
 
+    useEffect(()=>{
+        if(data){
+            setCountryOptions(
+                data.data.map((country)=>{
+                    return {value: country.country, label: country.country}
+                })
+            )
+    }}, [data])
 
     function handleFormSubmission(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-
         axios.post(FLIGHT_BASE_URL+"add-flight/", newFlightData)
             .then((response) => {
                 console.log(response.data.responseData);
@@ -54,9 +63,25 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
     function setStepAndMove(step: number) {
         setCurrentStep(step)
         console.log("Step is ==> ", step, "current Step Is", currentStep);
-
     }
 
+    function handleCountrySelectionChange(countryData?: any) {
+        const cityOptions: {value: string, label: string}[] = []
+        const citiesInCountryData = data?.data.filter(country => country.country===countryData.value)          
+        citiesInCountryData?.map((country, index) => {
+            country.cities.map((city, index)=>{
+                cityOptions.push({
+                    value: city,
+                    label: city,
+                })
+            })
+        })
+        setCityOptions(cityOptions)
+    }
+
+    function handleCitySelectionChange(event: any){
+        console.log(event)
+    }
 
     return (
         <>
@@ -111,9 +136,53 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
                         />
                     </>}
                     {currentStep === 1 && <>
-                        <Select/>
-                        <Select/>
-                        <div>
+                        <div className={"Select-Frame"}>
+                            <Select 
+                                styles={{
+                                    control: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        borderColor: state.isFocused ? 'blue' : 'grey',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        flexWrap: 'nowrap',
+                                        width: '100%',                                    
+                                    }),
+                                    menu: (provided) => ({
+                                        ...provided,
+                                        background: 'powderblue',
+                                        width: '100%',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        marginTop: 0
+                                    }),
+                                }}
+                                options={countryOptions} 
+                                onChange={handleCountrySelectionChange}
+                            />
+                            <Select 
+                                styles={{
+                                    control: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        borderColor: state.isFocused ? 'blue' : 'grey',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        flexWrap: 'nowrap',
+                                        width: '100%',                                    
+                                    }),
+                                    menu: (provided) => ({
+                                        ...provided,
+                                        background: 'powderblue',
+                                        width: '100%',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        marginTop: 0
+                                    }),
+                                }}
+                                options={cityOptions} 
+                                onChange={handleCitySelectionChange}
+                            />
+                        </div>
+                        <div className="Add-New-Flight-Form-Submit-Button-Frame">
                             <button type="submit">Add</button>
                         </div>
                     </>}
