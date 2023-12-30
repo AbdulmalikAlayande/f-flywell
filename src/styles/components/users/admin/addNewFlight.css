@@ -19,9 +19,17 @@
     height: 10%;
     width: 100%;
 }
-.Progress-Bar-Frame progress{
+/* ">
+                        <div className=" */
+.Main-Line{
     width: 70%;
-    height: 50%;
+    height: 30%;
+    border-radius: 10px;
+    display: flex;
+}
+.Inner-Line-1, .Inner-Line-2{
+    width: 50%;
+    height: 100%;
     background-color: hsl(187, 52%, 80%);
 }
 .Circle-1, .Circle-2{

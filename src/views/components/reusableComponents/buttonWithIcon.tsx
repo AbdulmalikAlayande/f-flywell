@@ -17,6 +17,7 @@ interface ButtonWithIconProps {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   style?: {};
   backgroundColor?: string;
+  disabled?: boolean;
 }
 
 const ButtonWithIcon = (props: ButtonWithIconProps) => {
@@ -30,6 +31,7 @@ const ButtonWithIcon = (props: ButtonWithIconProps) => {
       className={props.className}
       style={props.style && props.style}
       value={props.value}
+      disabled={props.disabled}
     >
       <Icon
         icon={props.icon}
