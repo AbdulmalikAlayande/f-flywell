@@ -1,5 +1,43 @@
 .Add-New-Flight-Header{
     color: powderblue;
+    font-size: 25px;
+}
+.Progress-Bar-Form-Main-Frame{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 92%;
+    border-style: solid;
+    border-width: 1px;
+    width: 99.6%;
+}
+.Progress-Bar-Frame{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+    width: 100%;
+}
+.Progress-Bar-Frame progress{
+    width: 70%;
+}
+.Circle-1, .Circle-2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    height: 100%;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 1px;
+}
+.Circle-1-Inner-Cirle, .Circle-2-Inner-Cirle{
+    width: 80%;
+    height: 80%;
+    border-radius: inherit;
+    border-style: solid;
+    border-width: 1px;
 }
 .Add-New-Flight-Form{
     display: flex;

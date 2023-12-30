@@ -102,7 +102,7 @@ export const addNewFlightModalStyle: ReactModal.Styles = {
         left: "50%",
         transform: "translate(-50%, -50%)",
         width: "40vw",
-        height: "85vh",
+        height: "89vh",
     }
 }
 
