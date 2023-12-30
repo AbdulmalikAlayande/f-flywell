@@ -4,8 +4,10 @@ import Select from 'react-select'
 import { toast } from "react-toastify";
 import '../../../../styles/components/users/admin/addNewFlight.css'
 import { FLIGHT_BASE_URL } from "../../../../utilities/utility.functions";
+import { PostmanCountriesData } from "../../../interfaces/interface";
 import AuthInput from "../../reusableComponents/authInput";
 import ButtonWithIcon from "../../reusableComponents/buttonWithIcon";
+import { useFetchCities } from "./useFetchCities";
 
 type Props = {
     modalIsOpen: (value: boolean) => void
@@ -24,6 +26,8 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
     const [newFlightData, setNewFlightData] = useState(initialFlightData)
     const [currentStep, setCurrentStep] = useState<number>(0)
     const currentFormLabels = ["Flight Data", "Airport Data"]
+    const {data, error, isLoading} = useFetchCities<PostmanCountriesData>({queryKey: [""]})
+
 
     function handleFormSubmission(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
