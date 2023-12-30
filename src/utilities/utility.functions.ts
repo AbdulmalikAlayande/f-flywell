@@ -85,7 +85,7 @@ export const addNewFlightModalStyle: ReactModal.Styles = {
         bottom: 0,
         backgroundColor: "rgba(0, 0, 0, 0.5)",
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "space-between",
         alignItems: "center",
     },
     content: {

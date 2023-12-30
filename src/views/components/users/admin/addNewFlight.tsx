@@ -66,7 +66,7 @@ export default function AddNewFlight({ modalIsOpen }: Props){
                     <div className="Circle-2"><div className="Circle-2-Inner-Cirle"></div></div>
                 </div>
                 <div className="Next-And-Prev-Btn-Frame">
-                    <ButtonWithIcon icon={"typcn:arrow-back"}/>
+                    <ButtonWithIcon icon={"icon-park-solid:back"}/>
                     <ButtonWithIcon icon={"icon-park-solid:next"}/>
                     {/* emojione-monotone:back-arrow ic:round-navigate-next*/}
                 </div>
