@@ -70,12 +70,16 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
                     {<ButtonWithIcon 
                         value={0} onClick={()=>{
                             setStepAndMove(0)
-                        }} 
+                        }}
+                        disabled={currentStep === 0}
                         icon={"icon-park-solid:back"}
                     />}
                     <ButtonWithIcon value={1} onClick={()=>{
                             setStepAndMove(1)
-                        }}  icon={"icon-park-solid:next"} />
+                        }}  
+                        disabled={currentStep === 1}
+                        icon={"icon-park-solid:next"} 
+                    />
                 </div>
                 <form onSubmit={handleFormSubmission} className="Add-New-Flight-Form">
                     <AuthInput
