@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import '../../../../styles/components/users/admin/addNewFlight.css'
 import { FLIGHT_BASE_URL } from "../../../../utilities/utility.functions";
 import AuthInput from "../../reusableComponents/authInput";
+import ButtonWithIcon from "../../reusableComponents/buttonWithIcon";
 
 type Props={
     modalIsOpen: (value: boolean)=>void
@@ -64,46 +65,49 @@ export default function AddNewFlight({ modalIsOpen }: Props){
                     <progress content='34' color='powderblue' value={50} max={100}></progress>
                     <div className="Circle-2"><div className="Circle-2-Inner-Cirle"></div></div>
                 </div>
+                <div className="Next-And-Prev-Btn-Frame">
+                    <ButtonWithIcon icon={"typcn:arrow-back"}/>
+                    <ButtonWithIcon icon={"icon-park-solid:next"}/>
+                    {/* emojione-monotone:back-arrow ic:round-navigate-next*/}
+                </div>
                 <form onSubmit={handleFormSubmission} className="Add-New-Flight-Form">
-
+                    <AuthInput 
+                        inputLabel={'Arrival City'} inputType={"text"} 
+                        inputPlaceHolder={"Lagos, Nigeria"} 
+                        spellCheck={false} onChange={handleInputChange}
+                        name={'arrivalCity'} required    
+                    />
+                    <AuthInput 
+                        inputLabel={'Departure City'} inputType={"text"} 
+                        inputPlaceHolder={"Abuja, Nigeria"}
+                        spellCheck={false}
+                        name={'departureCity'} required 
+                    />
+                    <AuthInput 
+                        inputLabel={'Display Image Name'} inputType={"text"} 
+                        inputPlaceHolder={"merlion"}
+                        spellCheck={false} 
+                        name={'displayImageName'} required
+                    />
+                    <AuthInput 
+                        inputLabel={'Flight Duration'} inputType={"number"} 
+                        inputPlaceHolder={"2hrs"} 
+                        name={'estimatedFlightDurationInMinutes'} required
+                    />
+                    <AuthInput 
+                        inputLabel={'Airline'} inputType={"text"} 
+                        inputPlaceHolder={"Bola-Air"} 
+                        spellCheck={false}
+                        name={'airline'} required
+                    />
+                    
                 </form>
             </div>
         </>
     )
 }
 /*
-
-                <AuthInput 
-                    inputLabel={'Arrival City'} inputType={"text"} 
-                    inputPlaceHolder={"Lagos, Nigeria"} 
-                    spellCheck={false} onChange={handleInputChange}
-                    name={'arrivalCity'} required    
-                />
-                <AuthInput 
-                    inputLabel={'Departure City'} inputType={"text"} 
-                    inputPlaceHolder={"Abuja, Nigeria"}
-                    spellCheck={false}
-                    name={'departureCity'} required 
-                />
-                <AuthInput 
-                    inputLabel={'Display Image Name'} inputType={"text"} 
-                    inputPlaceHolder={"merlion"}
-                    spellCheck={false} 
-                    name={'displayImageName'} required
-                />
-                <AuthInput 
-                    inputLabel={'Flight Duration'} inputType={"number"} 
-                    inputPlaceHolder={"2hrs"} 
-                    name={'estimatedFlightDurationInMinutes'} required
-                />
-                <AuthInput 
-                    inputLabel={'Airline'} inputType={"text"} 
-                    inputPlaceHolder={"Bola-Air"} 
-                    spellCheck={false}
-                    name={'airline'} required
-                />
-                <div>
-                    <button onClick={handleClick} type="submit">Add</button>
-                </div>
-            
+<div>
+    <button onClick={handleClick} type="submit">Add</button>
+</div>                       
 */
