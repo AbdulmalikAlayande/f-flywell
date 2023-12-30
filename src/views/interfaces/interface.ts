@@ -15,3 +15,13 @@ export interface CheapFlight extends AvailableFlight{
 export interface RandomFlight extends AvailableFlight{
 
 }
+export interface PostmanCountriesData{
+    error: boolean,
+    message: string,
+    data: Country[]
+}
+
+export type Country = {
+    country: string,
+    cities: string[]
+}

@@ -1,11 +1,13 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from 'react-select'
 import { toast } from "react-toastify";
 import '../../../../styles/components/users/admin/addNewFlight.css'
 import { FLIGHT_BASE_URL } from "../../../../utilities/utility.functions";
+import { PostmanCountriesData } from "../../../interfaces/interface";
 import AuthInput from "../../reusableComponents/authInput";
 import ButtonWithIcon from "../../reusableComponents/buttonWithIcon";
+import { useFetchCities } from "./useFetchCities";
 
 type Props = {
     modalIsOpen: (value: boolean) => void
@@ -24,20 +26,31 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
     const [newFlightData, setNewFlightData] = useState(initialFlightData)
     const [currentStep, setCurrentStep] = useState<number>(0)
     const currentFormLabels = ["Flight Data", "Airport Data"]
+    const {data, error, isLoading} = useFetchCities<PostmanCountriesData>({queryKey: [""]})
+    const [countryOptions, setCountryOptions] = useState<{value: string, label: string}[]>([])
+    const [cityOptions, setCityOptions] = useState<{value: string, label: string}[]>([])
+
+    useEffect(()=>{
+        if(data){
+            setCountryOptions(
+                data.data.map((country)=>{
+                    return {value: country.country, label: country.country}
+                })
+            )
+    }}, [data])
 
     function handleFormSubmission(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-
-        // axios.post(FLIGHT_BASE_URL+"add-flight/", newFlightData)
-        //     .then((response) => {
-        //         console.log(response.data.responseData);
-        //         console.log(response.data.message)
-        //         toast.info(response.data.message, {position: toast.POSITION.TOP_CENTER})
-        //         modalIsOpen(false)
-        //     }).catch((error) => {
-        //         console.log(error);
-        //         toast.error(error.message, {position: toast.POSITION.TOP_CENTER})
-        //     })
+        axios.post(FLIGHT_BASE_URL+"add-flight/", newFlightData)
+            .then((response) => {
+                console.log(response.data.responseData);
+                console.log(response.data.message)
+                toast.info(response.data.message, {position: toast.POSITION.TOP_CENTER})
+                modalIsOpen(false)
+            }).catch((error) => {
+                console.log(error);
+                toast.error(error.message, {position: toast.POSITION.TOP_CENTER})
+            })
     }
 
     function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -50,9 +63,25 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
     function setStepAndMove(step: number) {
         setCurrentStep(step)
         console.log("Step is ==> ", step, "current Step Is", currentStep);
-
     }
 
+    function handleCountrySelectionChange(countryData?: any) {
+        const cityOptions: {value: string, label: string}[] = []
+        const citiesInCountryData = data?.data.filter(country => country.country===countryData.value)          
+        citiesInCountryData?.map((country, index) => {
+            country.cities.map((city, index)=>{
+                cityOptions.push({
+                    value: city,
+                    label: city,
+                })
+            })
+        })
+        setCityOptions(cityOptions)
+    }
+
+    function handleCitySelectionChange(event: any){
+        console.log(event)
+    }
 
     return (
         <>
@@ -107,8 +136,51 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
                         />
                     </>}
                     {currentStep === 1 && <>
-                        <Select/>
-                        <Select/>
+                        <div className={"Select-Frame"}>
+                            <Select 
+                                styles={{
+                                    control: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        borderColor: state.isFocused ? 'blue' : 'grey',
+                                        width: '17vw',
+                                        height: '5vh'                                    
+                                    }),
+                                    menu: (provided) => ({
+                                        ...provided,
+                                        background: 'powderblue',
+                                        width: '17vw',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        marginTop: 0
+                                    }),
+                                }}
+                                options={countryOptions} 
+                                onChange={handleCountrySelectionChange}
+                            />
+                            <Select 
+                                styles={{
+                                    control: (baseStyles, state) => ({
+                                        ...baseStyles,
+                                        borderColor: state.isFocused ? 'blue' : 'grey',
+                                        width: '17vw',
+                                        height: '5vh',                                    
+                                    }),
+                                    menu: (provided) => ({
+                                        ...provided,
+                                        background: 'powderblue',
+                                        width: '17w',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        marginTop: 0
+                                    }),
+                                }}
+                                options={cityOptions} 
+                                onChange={handleCitySelectionChange}
+                            />
+                        </div>
+                        <div className="Add-New-Flight-Form-Submit-Button-Frame">
+                            <button type="submit">Add</button>
+                        </div>
                     </>}
                 </form>
             </div>
@@ -116,7 +188,5 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
     )
 }
 /*
-<div>
-    <button onClick={handleClick} type="submit">Add</button>
-</div>                       
+                       
 */
