@@ -14,17 +14,12 @@ export function AirportSelection(props: Props) {
     const airportSelectionTagStyles: StylesConfig<{}, false, GroupBase<{}>> = {
         control: (baseStyles, state) => ({
             ...baseStyles,
-            borderColor: state.isFocused ? 'blue' : 'grey',
+            borderColor: state.isFocused ? 'powderblue' : 'grey',
             width: '17vw',
-            height: '5vh'
         }),
         menu: (provided) => ({
-            ...provided,
             background: 'powderblue',
             width: '17vw',
-            display: 'flex',
-            flexDirection: 'column',
-            marginTop: 0
         }),
     };
     return (

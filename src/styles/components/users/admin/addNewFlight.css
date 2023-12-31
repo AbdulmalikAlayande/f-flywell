@@ -68,7 +68,7 @@
 .Add-New-Flight-Form{
     display: flex;
     flex-direction: column;
-    height: 70%;
+    height: 80%;
     width: 90%;
     align-items: center;
     justify-content: space-evenly;
@@ -104,10 +104,10 @@
 }
 .Select-Frame-1, .Select-Frame-2{
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-style: solid;
-    border-width: 1px;
+    justify-content: center;
+    /*border-style: solid;*/
+    /*border-width: 1px;*/
+    height: 100%;
     width: 100%;
 }
 .Add-New-Flight-Form-Submit-Button-Frame{
