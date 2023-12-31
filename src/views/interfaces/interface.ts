@@ -27,34 +27,32 @@ export type Country = {
 }
 
 export interface AirportData {
-    "response": [
+    response: [
         {
-        "id": "egll",
-        "loc": {
-            "lat": 51.4706001282,
-            "long": -0.461941003799
-        },
-        "place": {
-            "name": "London Heathrow Airport",
-            "city": "London",
-            "state": "ENG",
-            "stateFull": "",
-            "country": "GB",
-            "countryFull": "United Kingdom",
-            "region": "",
-            "regionFull": "",
-            "continent": "eu",
-            "continentFull": "Europe"
-        },
-        "profile": {
-            "id": "egll",
-            "iata": "lhr",
-            "local": "",
-            "type": "la",
-            "typeENG": "large airport",
-            
-            
-        }
+            id: string,
+            loc: {
+                lat: number,
+                long: number
+            },
+            place: {
+                name: string,
+                city: string,
+                state: string,
+                stateFull: string,
+                country: string,
+                countryFull: string,
+                region: string,
+                regionFull: string,
+                continent: string,
+                continentFull: string
+            },
+            profile: {
+                id: string,
+                iata: string,
+                local: string,
+                type: string,
+                typeENG: string                
+            }
         }
     ]
 }
