@@ -3,10 +3,8 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import '../../../../styles/components/users/admin/addNewFlight.css'
 import { FLIGHT_BASE_URL } from "../../../../utilities/utility.functions";
-import { PostmanCountriesData } from "../../../interfaces/interface";
 import AuthInput from "../../reusableComponents/authInput";
 import ButtonWithIcon from "../../reusableComponents/buttonWithIcon";
-import { useFetchCities } from "./useFetchCities";
 import {AirportSelection} from "./airportSelection";
 
 type Props = {
@@ -26,18 +24,7 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
     const [newFlightData, setNewFlightData] = useState(initialFlightData)
     const [currentStep, setCurrentStep] = useState<number>(0)
     const currentFormLabels = ["Flight Data", "Departure Airport Data", "Arrival Airport Data"]
-    const {data, error, isLoading} = useFetchCities<PostmanCountriesData>({queryKey: [""]})
-    const [countryOptions, setCountryOptions] = useState<{value: string, label: string}[]>([])
-    const [cityOptions, setCityOptions] = useState<{value: string, label: string}[]>([])
-
-    useEffect(()=>{
-        if(data){
-            setCountryOptions(
-                data.data.map((country)=>{
-                    return {value: country.country, label: country.country}
-                })
-            )
-    }}, [data])
+    
 
     function handleFormSubmission(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -62,37 +49,6 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
 
     function setStepAndMove(step: number) {
         setCurrentStep(currentStep+(step))
-    }
-
-    function handleCountrySelectionChange(countryData?: any) {
-        const cityOptions: {value: string, label: string}[] = []
-        const citiesInCountryData = data?.data.filter(country => country.country===countryData.value)
-        citiesInCountryData?.map((country) => {
-            return country.cities.map((city)=>{
-                return cityOptions.push({
-                    value: city,
-                    label: city,
-                })
-            })
-        })
-        setCityOptions(cityOptions)
-    }
-
-    function handleCitySelectionChange(data: any){
-        axios.get(`https://api.aerisapi.com/places/airports/search?client_id=${process.env.REACT_APP_AERIS_API_CLENT_ID}&client_secret=${process.env.REACT_APP_AERIS_API_CLENT_SECRET}&filter=airport&query=country:uk&city=london`)
-            .then((result) => {
-                if (result.data.error && result.data.error.code){
-                
-                }
-                else{
-                
-                }
-                console.log("response ==> ", result.data);
-            })
-            .catch((error) => {
-                console.log("error ==> ",error);
-            })
-        console.log(data)
     }
 
     return (
@@ -147,11 +103,7 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
                             name={'airline'} required
                         />
                     </>}
-                     <AirportSelection
-                        cityOptions={cityOptions} countryOptions={countryOptions}
-                        handleCountrySelectionChange={handleCountrySelectionChange}
-                        currentStep={currentStep} handleCitySelectionChange={handleCitySelectionChange}
-                    />
+                     <AirportSelection currentStep={currentStep}/>
                 </form>
             </div>
         </>

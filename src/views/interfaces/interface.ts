@@ -27,32 +27,29 @@ export type Country = {
 }
 
 export interface AirportData {
-    response: [
-        {
-            id: string,
-            loc: {
-                lat: number,
-                long: number
-            },
-            place: {
-                name: string,
-                city: string,
-                state: string,
-                stateFull: string,
-                country: string,
-                countryFull: string,
-                region: string,
-                regionFull: string,
-                continent: string,
-                continentFull: string
-            },
-            profile: {
-                id: string,
-                iata: string,
-                local: string,
-                type: string,
-                typeENG: string                
-            }
-        }
-    ]
+    id: string,
+    loc: {
+        lat: number,
+        long: number
+    },
+    place: {
+        name: string,
+        city: string,
+        state: string,
+        stateFull: string,
+        country: string,
+        countryFull: string,
+        region: string,
+        regionFull: string,
+        continent: string,
+        continentFull: string
+    },
+    profile: {
+        id: string,
+        iata: string,
+        local: string,
+        type: string,
+        typeENG: string                
+    }
+
 }
