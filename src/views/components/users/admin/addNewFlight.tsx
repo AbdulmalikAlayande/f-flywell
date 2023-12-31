@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Select from 'react-select'
 import { toast } from "react-toastify";
 import '../../../../styles/components/users/admin/addNewFlight.css'
 import { FLIGHT_BASE_URL } from "../../../../utilities/utility.functions";
@@ -8,6 +7,7 @@ import { PostmanCountriesData } from "../../../interfaces/interface";
 import AuthInput from "../../reusableComponents/authInput";
 import ButtonWithIcon from "../../reusableComponents/buttonWithIcon";
 import { useFetchCities } from "./useFetchCities";
+import {AirportSelection} from "./airportSelection";
 
 type Props = {
     modalIsOpen: (value: boolean) => void
@@ -67,10 +67,10 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
 
     function handleCountrySelectionChange(countryData?: any) {
         const cityOptions: {value: string, label: string}[] = []
-        const citiesInCountryData = data?.data.filter(country => country.country===countryData.value)          
-        citiesInCountryData?.map((country, index) => {
-            country.cities.map((city, index)=>{
-                cityOptions.push({
+        const citiesInCountryData = data?.data.filter(country => country.country===countryData.value)
+        citiesInCountryData?.map((country) => {
+            return country.cities.map((city)=>{
+                return cityOptions.push({
                     value: city,
                     label: city,
                 })
@@ -79,8 +79,8 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
         setCityOptions(cityOptions)
     }
 
-    function handleCitySelectionChange(event: any){
-        console.log(event)
+    function handleCitySelectionChange(data: any){
+        console.log(data)
     }
 
     return (
@@ -89,7 +89,7 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
             <div className="Progress-Bar-Form-Main-Frame">
                 <p>{currentFormLabels[currentStep]}</p>
                 <div className="Next-And-Prev-Btn-Frame">
-                    {<ButtonWithIcon 
+                    {<ButtonWithIcon
                         value={0} onClick={()=>{
                             setStepAndMove(0)
                         }}
@@ -98,9 +98,9 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
                     />}
                     <ButtonWithIcon value={1} onClick={()=>{
                             setStepAndMove(1)
-                        }}  
+                        }}
                         disabled={currentStep === 1}
-                        icon={"icon-park-solid:next"} 
+                        icon={"icon-park-solid:next"}
                     />
                 </div>
                 <form onSubmit={handleFormSubmission} className="Add-New-Flight-Form">
@@ -135,58 +135,18 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
                             name={'airline'} required
                         />
                     </>}
-                    {currentStep === 1 && <>
-                        <div className={"Select-Frame"}>
-                            <Select 
-                                styles={{
-                                    control: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        borderColor: state.isFocused ? 'blue' : 'grey',
-                                        width: '17vw',
-                                        height: '5vh'                                    
-                                    }),
-                                    menu: (provided) => ({
-                                        ...provided,
-                                        background: 'powderblue',
-                                        width: '17vw',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        marginTop: 0
-                                    }),
-                                }}
-                                options={countryOptions} 
-                                onChange={handleCountrySelectionChange}
-                            />
-                            <Select 
-                                styles={{
-                                    control: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        borderColor: state.isFocused ? 'blue' : 'grey',
-                                        width: '17vw',
-                                        height: '5vh',                                    
-                                    }),
-                                    menu: (provided) => ({
-                                        ...provided,
-                                        background: 'powderblue',
-                                        width: '17w',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        marginTop: 0
-                                    }),
-                                }}
-                                options={cityOptions} 
-                                onChange={handleCitySelectionChange}
-                            />
-                        </div>
-                        <div className="Add-New-Flight-Form-Submit-Button-Frame">
-                            <button type="submit">Add</button>
-                        </div>
-                    </>}
+                    {currentStep === 1 && <AirportSelection
+                        cityOptions={cityOptions} countryOptions={countryOptions}
+                        handleCitySelectionChange={handleCitySelectionChange}
+                        handleCountrySelectionChange={handleCountrySelectionChange}
+                    />}
                 </form>
             </div>
         </>
     )
 }
 /*
-                       
+ <div className="Add-New-Flight-Form-Submit-Button-Frame">
+                            <button type="submit">Add</button>
+                        </div>                      
 */
