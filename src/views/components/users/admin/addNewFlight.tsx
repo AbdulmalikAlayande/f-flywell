@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Select from 'react-select'
 import { toast } from "react-toastify";
 import '../../../../styles/components/users/admin/addNewFlight.css'
 import { FLIGHT_BASE_URL } from "../../../../utilities/utility.functions";
@@ -8,6 +7,7 @@ import { PostmanCountriesData } from "../../../interfaces/interface";
 import AuthInput from "../../reusableComponents/authInput";
 import ButtonWithIcon from "../../reusableComponents/buttonWithIcon";
 import { useFetchCities } from "./useFetchCities";
+import {AirportSelection} from "./airportSelection";
 
 type Props = {
     modalIsOpen: (value: boolean) => void
@@ -25,7 +25,7 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
 
     const [newFlightData, setNewFlightData] = useState(initialFlightData)
     const [currentStep, setCurrentStep] = useState<number>(0)
-    const currentFormLabels = ["Flight Data", "Airport Data"]
+    const currentFormLabels = ["Flight Data", "Departure Airport Data", "Arrival Airport Data"]
     const {data, error, isLoading} = useFetchCities<PostmanCountriesData>({queryKey: [""]})
     const [countryOptions, setCountryOptions] = useState<{value: string, label: string}[]>([])
     const [cityOptions, setCityOptions] = useState<{value: string, label: string}[]>([])
@@ -61,16 +61,15 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
     }
 
     function setStepAndMove(step: number) {
-        setCurrentStep(step)
-        console.log("Step is ==> ", step, "current Step Is", currentStep);
+        setCurrentStep(currentStep+(step))
     }
 
     function handleCountrySelectionChange(countryData?: any) {
         const cityOptions: {value: string, label: string}[] = []
-        const citiesInCountryData = data?.data.filter(country => country.country===countryData.value)          
-        citiesInCountryData?.map((country, index) => {
-            country.cities.map((city, index)=>{
-                cityOptions.push({
+        const citiesInCountryData = data?.data.filter(country => country.country===countryData.value)
+        citiesInCountryData?.map((country) => {
+            return country.cities.map((city)=>{
+                return cityOptions.push({
                     value: city,
                     label: city,
                 })
@@ -79,8 +78,8 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
         setCityOptions(cityOptions)
     }
 
-    function handleCitySelectionChange(event: any){
-        console.log(event)
+    function handleCitySelectionChange(data: any){
+        console.log(data)
     }
 
     return (
@@ -89,18 +88,18 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
             <div className="Progress-Bar-Form-Main-Frame">
                 <p>{currentFormLabels[currentStep]}</p>
                 <div className="Next-And-Prev-Btn-Frame">
-                    {<ButtonWithIcon 
+                    {<ButtonWithIcon
                         value={0} onClick={()=>{
-                            setStepAndMove(0)
+                            setStepAndMove(-1)
                         }}
                         disabled={currentStep === 0}
                         icon={"icon-park-solid:back"}
                     />}
                     <ButtonWithIcon value={1} onClick={()=>{
                             setStepAndMove(1)
-                        }}  
-                        disabled={currentStep === 1}
-                        icon={"icon-park-solid:next"} 
+                        }}
+                        disabled={currentStep === 2}
+                        icon={"icon-park-solid:next"}
                     />
                 </div>
                 <form onSubmit={handleFormSubmission} className="Add-New-Flight-Form">
@@ -135,58 +134,18 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
                             name={'airline'} required
                         />
                     </>}
-                    {currentStep === 1 && <>
-                        <div className={"Select-Frame"}>
-                            <Select 
-                                styles={{
-                                    control: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        borderColor: state.isFocused ? 'blue' : 'grey',
-                                        width: '17vw',
-                                        height: '5vh'                                    
-                                    }),
-                                    menu: (provided) => ({
-                                        ...provided,
-                                        background: 'powderblue',
-                                        width: '17vw',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        marginTop: 0
-                                    }),
-                                }}
-                                options={countryOptions} 
-                                onChange={handleCountrySelectionChange}
-                            />
-                            <Select 
-                                styles={{
-                                    control: (baseStyles, state) => ({
-                                        ...baseStyles,
-                                        borderColor: state.isFocused ? 'blue' : 'grey',
-                                        width: '17vw',
-                                        height: '5vh',                                    
-                                    }),
-                                    menu: (provided) => ({
-                                        ...provided,
-                                        background: 'powderblue',
-                                        width: '17w',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        marginTop: 0
-                                    }),
-                                }}
-                                options={cityOptions} 
-                                onChange={handleCitySelectionChange}
-                            />
-                        </div>
-                        <div className="Add-New-Flight-Form-Submit-Button-Frame">
-                            <button type="submit">Add</button>
-                        </div>
-                    </>}
+                     <AirportSelection
+                        cityOptions={cityOptions} countryOptions={countryOptions}
+                        handleCountrySelectionChange={handleCountrySelectionChange}
+                        currentStep={currentStep} handleCitySelectionChange={handleCitySelectionChange}
+                    />
                 </form>
             </div>
         </>
     )
 }
 /*
-                       
+ <div className="Add-New-Flight-Form-Submit-Button-Frame">
+                            <button type="submit">Add</button>
+                        </div>                      
 */
