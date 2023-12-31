@@ -80,9 +80,11 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
 
     function handleCitySelectionChange(data: any){
         axios.get(`https://api.aerisapi.com/places/airports/search?client_id=${process.env.REACT_APP_AERIS_API_CLENT_ID}&client_secret=${process.env.REACT_APP_AERIS_API_CLENT_SECRET}&filter=airport&query=country:uk&city=london`)
-            .then((response) => {
-                console.log("response ==> ", response.data)
-                console.log("render");
+            .then((result) => {
+                if (result.data.error && result.data.error.code){
+                    
+                }
+                console.log("response ==> ", result.data)
                 
             })
             .catch((error) => {console.log("error ==> ",error)})
