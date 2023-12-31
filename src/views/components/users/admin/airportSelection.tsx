@@ -84,7 +84,19 @@ export function AirportSelection(props: Props) {
                     />
                 </div>
                 <div className="Fetched-Airports-Frame">
-
+                    {airportData.map((airport, index)=>(
+                            <button id={index===airportData.length-1?'Fetched-Airport-Button-Last':'Fetched-Airport-Button-'+index.toString()} key={index}>
+                                <div className="Fetched-Airport-Name-And-Loc-Frame">
+                                    <h1>{airport.place.name}</h1>                        
+                                    <p>{airport.place.city}, {airport.place.countryFull}</p>
+                                </div>
+                                <div className="Fetched-Airport-Long-And-Lat-Frame">
+                                    <p>lat: {airport.loc.lat}</p>                        
+                                    <p>long: {airport.loc.long}</p>       
+                                    <p>iata:{airport.profile.iata}</p> 
+                                </div>
+                            </button>
+                        ))}
                 </div>
             </div>
             }
@@ -103,12 +115,12 @@ export function AirportSelection(props: Props) {
                 </div>
                 <div className="Fetched-Airports-Frame">
                     {airportData.map((airport, index)=>(
-                        <button key={index}>
+                        <button id={index===airportData.length-1?'Fetched-Airport-Button-Last':'Fetched-Airport-Button-'+index.toString()} key={index}>
                             <div className="Fetched-Airport-Name-And-Loc-Frame">
                                 <h1>{airport.place.name}</h1>                        
                                 <p>{airport.place.city}, {airport.place.countryFull}</p>
                             </div>
-                            <div className="">
+                            <div className="Fetched-Airport-Long-And-Lat-Frame">
                                 <p>lat: {airport.loc.lat}</p>                        
                                 <p>long: {airport.loc.long}</p>       
                                 <p>iata:{airport.profile.iata}</p> 
