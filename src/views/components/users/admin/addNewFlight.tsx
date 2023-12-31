@@ -21,7 +21,7 @@ const initialFlightData = {
 
 export default function AddNewFlight({ modalIsOpen }: Props) {
 
-    const [newFlightData, setNewFlightData] = useState(initialFlightData)
+    const [newFlightData, setNewFlightData] = useState<{}>(initialFlightData)
     const [currentStep, setCurrentStep] = useState<number>(0)
     const currentFormLabels = ["Flight Data", "Departure Airport Data", "Arrival Airport Data"]
     
