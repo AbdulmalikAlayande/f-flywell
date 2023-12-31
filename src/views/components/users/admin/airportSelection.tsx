@@ -104,7 +104,7 @@ export function AirportSelection(props: Props) {
                 <div className="Fetched-Airports-Frame">
                     {airportData.map((airport, index)=>(
                         <button key={index}>
-                            <div className="">
+                            <div className="Fetched-Airport-Name-And-Loc-Frame">
                                 <h1>{airport.place.name}</h1>                        
                                 <p>{airport.place.city}, {airport.place.countryFull}</p>
                             </div>
