@@ -84,6 +84,9 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
                 if (result.data.error && result.data.error.code){
                 
                 }
+                else{
+                
+                }
                 console.log("response ==> ", result.data);
             })
             .catch((error) => {
