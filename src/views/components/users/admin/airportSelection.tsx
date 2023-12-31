@@ -24,30 +24,40 @@ export function AirportSelection(props: Props) {
     };
     return (
         <>
-            {props.currentStep === 1 && <div className={"Select-Frame-1"}>
-                <Select
-                    styles={airportSelectionTagStyles}
-                    options={props.countryOptions}
-                    onChange={props.handleCountrySelectionChange}
-                />
-                <Select
-                    styles={airportSelectionTagStyles}
-                    options={props.cityOptions}
-                    onChange={props.handleCitySelectionChange}
-                />
+            {props.currentStep === 1 && <div className={"Airport-Selection-Frame-1"}>
+                <div className="Select-Frame-1">
+                    <Select
+                        styles={airportSelectionTagStyles}
+                        options={props.countryOptions}
+                        onChange={props.handleCountrySelectionChange}
+                    />
+                    <Select
+                        styles={airportSelectionTagStyles}
+                        options={props.cityOptions}
+                        onChange={props.handleCitySelectionChange}
+                    />
+                </div>
+                <div className="">
+
+                </div>
             </div>
             }
-            {props.currentStep === 2 && <div className={"Select-Frame-2"}>
-                <Select
-                    styles={airportSelectionTagStyles}
-                    options={props.countryOptions}
-                    onChange={props.handleCountrySelectionChange}
-                />
-                <Select
-                    styles={airportSelectionTagStyles}
-                    options={props.cityOptions}
-                    onChange={props.handleCitySelectionChange}
-                />
+            {props.currentStep === 2 && <div className={"Airport-Selection-Frame-2"}>
+            <div className="Select-Frame-2">
+                    <Select
+                        styles={airportSelectionTagStyles}
+                        options={props.countryOptions}
+                        onChange={props.handleCountrySelectionChange}
+                    />
+                    <Select
+                        styles={airportSelectionTagStyles}
+                        options={props.cityOptions}
+                        onChange={props.handleCitySelectionChange}
+                    />
+                </div>
+                <div className="">
+
+                </div>
             </div>
             }
             

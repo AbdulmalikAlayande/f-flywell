@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import '../../../../styles/components/users/admin/addNewFlight.css'
 import { FLIGHT_BASE_URL } from "../../../../utilities/utility.functions";
-import { PostmanCountriesData } from "../../../interfaces/interface";
+import { AirportData, PostmanCountriesData } from "../../../interfaces/interface";
 import AuthInput from "../../reusableComponents/authInput";
 import ButtonWithIcon from "../../reusableComponents/buttonWithIcon";
 import { useFetchCities } from "./useFetchCities";
@@ -79,15 +79,16 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
     }
 
     function handleCitySelectionChange(data: any){
-        axios.get(`https://api.aerisapi.com/places/airports/search?client_id=${process.env.REACT_APP_AERIS_API_CLENT_ID}&client_secret=${process.env.REACT_APP_AERIS_API_CLENT_SECRET}&filter=airport&query=country:uk&city=london`)
+        let airportData: AirportData[] = []
+        axios.get(`https://api.aerisapi.com/places/airports/search?client_id=${process.env.REACT_APP_AERIS_API_CLENT_ID}&client_secret=${process.env.REACT_APP_AERIS_API_CLENT_SECRET}&limit=100&filter=airport&query=country:ru`)
             .then((result) => {
-                if (result.data.error && result.data.error.code){
-                
+                if (result.data.error){
+                    console.log(result.data.error);
+                    console.log(result.data.error.code);
                 }
                 else{
-                
+                    airportData = result.data.response;
                 }
-                console.log("response ==> ", result.data);
             })
             .catch((error) => {
                 console.log("error ==> ",error);

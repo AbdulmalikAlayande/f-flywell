@@ -102,12 +102,13 @@
     border-left: none;
     border-bottom: 2px, solid, brown;
 }
+.Airport-Selection-Frame-1, .Airport-Selection-Frame-2{
+    height: 100%;
+    width: 100%;
+}
 .Select-Frame-1, .Select-Frame-2{
     display: flex;
     justify-content: center;
-    /*border-style: solid;*/
-    /*border-width: 1px;*/
-    height: 100%;
     width: 100%;
 }
 .Add-New-Flight-Form-Submit-Button-Frame{
