@@ -37,7 +37,7 @@ export function AirportSelection(props: Props) {
                         onChange={props.handleCitySelectionChange}
                     />
                 </div>
-                <div className="">
+                <div className="Fetched-Airports-Frame">
 
                 </div>
             </div>
@@ -55,7 +55,7 @@ export function AirportSelection(props: Props) {
                         onChange={props.handleCitySelectionChange}
                     />
                 </div>
-                <div className="">
+                <div className="Fetched-Airports-Frame">
 
                 </div>
             </div>
