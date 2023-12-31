@@ -121,15 +121,19 @@
     border-radius: 20px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 .Fetched-Airport-Name-And-Loc-Frame{
     display: flex;
+    width: 40%;
     flex-direction: column;
     text-align: start;
 }
 .Fetched-Airport-Name-And-Loc-Frame h1{
-    font-size: 25px;
+    font-size: 18px;
+}
+.Fetched-Airport-Name-And-Loc-Frame p{
+    font-size: 18px;
 }
 .Add-New-Flight-Form-Submit-Button-Frame{
     width: 100%;
