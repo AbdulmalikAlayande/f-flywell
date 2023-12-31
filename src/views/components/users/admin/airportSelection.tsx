@@ -2,6 +2,7 @@ import * as React from 'react';
 import Select from "react-select";
 
 type Props = {
+    currentStep: number,
     cityOptions: {}[],
     countryOptions: {}[],
     handleCitySelectionChange: (data: any)=>void
@@ -11,7 +12,7 @@ type Props = {
 export function AirportSelection(props: Props) {
     return (
         <>
-            <div className={"Select-Frame-1"}>
+            {props.currentStep === 1 && <div className={"Select-Frame-1"}>
                 <Select
                     styles={{
                         control: (baseStyles, state) => ({
@@ -53,7 +54,8 @@ export function AirportSelection(props: Props) {
                     onChange={props.handleCitySelectionChange}
                 />
             </div>
-            <div className={"Select-Frame-2"}>
+            }
+            {props.currentStep === 2 && <div className={"Select-Frame-2"}>
                 <Select
                     styles={{
                         control: (baseStyles, state) => ({
@@ -95,6 +97,8 @@ export function AirportSelection(props: Props) {
                     onChange={props.handleCitySelectionChange}
                 />
             </div>
+            }
+            
         </>
     );
 }

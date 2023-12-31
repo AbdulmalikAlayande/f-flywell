@@ -25,7 +25,7 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
 
     const [newFlightData, setNewFlightData] = useState(initialFlightData)
     const [currentStep, setCurrentStep] = useState<number>(0)
-    const currentFormLabels = ["Flight Data", "Airport Data"]
+    const currentFormLabels = ["Flight Data", "Departure Airport Data", "AAirport Data"]
     const {data, error, isLoading} = useFetchCities<PostmanCountriesData>({queryKey: [""]})
     const [countryOptions, setCountryOptions] = useState<{value: string, label: string}[]>([])
     const [cityOptions, setCityOptions] = useState<{value: string, label: string}[]>([])
@@ -61,8 +61,7 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
     }
 
     function setStepAndMove(step: number) {
-        setCurrentStep(step)
-        console.log("Step is ==> ", step, "current Step Is", currentStep);
+        setCurrentStep(currentStep+(step))
     }
 
     function handleCountrySelectionChange(countryData?: any) {
@@ -91,7 +90,7 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
                 <div className="Next-And-Prev-Btn-Frame">
                     {<ButtonWithIcon
                         value={0} onClick={()=>{
-                            setStepAndMove(0)
+                            setStepAndMove(-1)
                         }}
                         disabled={currentStep === 0}
                         icon={"icon-park-solid:back"}
@@ -99,7 +98,7 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
                     <ButtonWithIcon value={1} onClick={()=>{
                             setStepAndMove(1)
                         }}
-                        disabled={currentStep === 1}
+                        disabled={currentStep === 2}
                         icon={"icon-park-solid:next"}
                     />
                 </div>
@@ -135,11 +134,11 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
                             name={'airline'} required
                         />
                     </>}
-                    {currentStep === 1 && <AirportSelection
+                     <AirportSelection
                         cityOptions={cityOptions} countryOptions={countryOptions}
-                        handleCitySelectionChange={handleCitySelectionChange}
                         handleCountrySelectionChange={handleCountrySelectionChange}
-                    />}
+                        currentStep={currentStep} handleCitySelectionChange={handleCitySelectionChange}
+                    />
                 </form>
             </div>
         </>
