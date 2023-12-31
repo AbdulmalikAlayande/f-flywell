@@ -60,10 +60,12 @@ export function AirportSelection(props: Props) {
             ...baseStyles,
             borderColor: state.isFocused ? 'powderblue' : 'grey',
             width: '17vw',
+            zIndex: 4,
         }),
         menu: (provided) => ({
             background: 'powderblue',
             width: '17vw',
+            zIndex: 4,
         }),
     };
     return (
@@ -100,7 +102,19 @@ export function AirportSelection(props: Props) {
                     />
                 </div>
                 <div className="Fetched-Airports-Frame">
-
+                    {airportData.map((airport, index)=>(
+                        <button key={index}>
+                            <div className="">
+                                <h1>{airport.place.name}</h1>                        
+                                <p>{airport.place.city}, {airport.place.countryFull}</p>
+                            </div>
+                            <div className="">
+                                <p>lat: {airport.loc.lat}</p>                        
+                                <p>long: {airport.loc.long}</p>       
+                                <p>iata:{airport.profile.iata}</p> 
+                            </div>
+                        </button>
+                    ))}
                 </div>
             </div>
             }
