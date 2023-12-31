@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Select from "react-select";
+import Select, {GroupBase, StylesConfig} from "react-select";
 
 type Props = {
     currentStep: number,
@@ -10,46 +10,33 @@ type Props = {
 };
 
 export function AirportSelection(props: Props) {
+    
+    const airportSelectionTagStyles: StylesConfig<{}, false, GroupBase<{}>> = {
+        control: (baseStyles, state) => ({
+            ...baseStyles,
+            borderColor: state.isFocused ? 'blue' : 'grey',
+            width: '17vw',
+            height: '5vh'
+        }),
+        menu: (provided) => ({
+            ...provided,
+            background: 'powderblue',
+            width: '17vw',
+            display: 'flex',
+            flexDirection: 'column',
+            marginTop: 0
+        }),
+    };
     return (
         <>
             {props.currentStep === 1 && <div className={"Select-Frame-1"}>
                 <Select
-                    styles={{
-                        control: (baseStyles, state) => ({
-                            ...baseStyles,
-                            borderColor: state.isFocused ? 'blue' : 'grey',
-                            width: '17vw',
-                            height: '5vh'
-                        }),
-                        menu: (provided) => ({
-                            ...provided,
-                            background: 'powderblue',
-                            width: '17vw',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            marginTop: 0
-                        }),
-                    }}
+                    styles={airportSelectionTagStyles}
                     options={props.countryOptions}
                     onChange={props.handleCountrySelectionChange}
                 />
                 <Select
-                    styles={{
-                        control: (baseStyles, state) => ({
-                            ...baseStyles,
-                            borderColor: state.isFocused ? 'blue' : 'grey',
-                            width: '17vw',
-                            height: '5vh',
-                        }),
-                        menu: (provided) => ({
-                            ...provided,
-                            background: 'powderblue',
-                            width: '17w',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            marginTop: 0
-                        }),
-                    }}
+                    styles={airportSelectionTagStyles}
                     options={props.cityOptions}
                     onChange={props.handleCitySelectionChange}
                 />
@@ -57,42 +44,12 @@ export function AirportSelection(props: Props) {
             }
             {props.currentStep === 2 && <div className={"Select-Frame-2"}>
                 <Select
-                    styles={{
-                        control: (baseStyles, state) => ({
-                            ...baseStyles,
-                            borderColor: state.isFocused ? 'blue' : 'grey',
-                            width: '17vw',
-                            height: '5vh'
-                        }),
-                        menu: (provided) => ({
-                            ...provided,
-                            background: 'powderblue',
-                            width: '17vw',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            marginTop: 0
-                        }),
-                    }}
+                    styles={airportSelectionTagStyles}
                     options={props.countryOptions}
                     onChange={props.handleCountrySelectionChange}
                 />
                 <Select
-                    styles={{
-                        control: (baseStyles, state) => ({
-                            ...baseStyles,
-                            borderColor: state.isFocused ? 'blue' : 'grey',
-                            width: '17vw',
-                            height: '5vh',
-                        }),
-                        menu: (provided) => ({
-                            ...provided,
-                            background: 'powderblue',
-                            width: '17w',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            marginTop: 0
-                        }),
-                    }}
+                    styles={airportSelectionTagStyles}
                     options={props.cityOptions}
                     onChange={props.handleCitySelectionChange}
                 />

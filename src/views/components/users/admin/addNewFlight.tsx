@@ -25,7 +25,7 @@ export default function AddNewFlight({ modalIsOpen }: Props) {
 
     const [newFlightData, setNewFlightData] = useState(initialFlightData)
     const [currentStep, setCurrentStep] = useState<number>(0)
-    const currentFormLabels = ["Flight Data", "Departure Airport Data", "AAirport Data"]
+    const currentFormLabels = ["Flight Data", "Departure Airport Data", "Arrival Airport Data"]
     const {data, error, isLoading} = useFetchCities<PostmanCountriesData>({queryKey: [""]})
     const [countryOptions, setCountryOptions] = useState<{value: string, label: string}[]>([])
     const [cityOptions, setCityOptions] = useState<{value: string, label: string}[]>([])
