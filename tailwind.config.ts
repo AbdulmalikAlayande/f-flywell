@@ -1,3 +1,6 @@
+/** @type{import('tailwindcss').Config} */
+import tailwindcss from "tailwindcss";
+// import autoprefixer from "autoprefixer";
 import defaultTheme from 'tailwindcss/defaultTheme';
 import type { Config } from "tailwindcss";
 import tailwindcssAnimate from 'tailwindcss-animate';
@@ -32,7 +35,8 @@ const config: Config = {
       },
   },
   plugins: [
-  
+    tailwindcss, 
+    // autoprefixer,
     tailwindcssAnimate,
     tailwindcssForms,
     tailwindcssTypography,

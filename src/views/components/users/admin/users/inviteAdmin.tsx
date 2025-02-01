@@ -5,6 +5,7 @@ import axios from "axios";
 import {ADMIN_BASE_URL} from "../../../../../utils/utility.functions";
 import {toast, ToastContainer} from "react-toastify";
 import {Icon} from "@iconify/react";
+import Logger from '@src/utils/logger';
 
 const initialInvitationData = {
     email: "",
@@ -41,8 +42,8 @@ export default function InviteAdmin({modalIsOpen}: Props) {
                     toast.error(error.response.data.message)
                     console.log(error.respose.data.message)
                 })
-        }catch (error) {
-        
+        }catch (error: unknown) {
+            Logger.error((error as Error).message)
         }
     }
     

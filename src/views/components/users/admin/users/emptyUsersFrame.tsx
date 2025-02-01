@@ -1,6 +1,4 @@
-import * as React from 'react';
 import {Icon} from "@iconify/react";
-import '../../../../../styles/components/users/admin/dashboard/emptyUsersFrame.css'
 
 type Props = {
     customerTypeLabel: string

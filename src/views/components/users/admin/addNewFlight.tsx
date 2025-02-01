@@ -1,7 +1,6 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
-import '../../../../styles/components/users/admin/addNewFlight.css'
 import { FLIGHT_BASE_URL } from "../../../../utils/utility.functions";
 import AuthInput from "../../reusables/authInput";
 import ButtonWithIcon from "../../reusables/buttonWithIcon";
@@ -21,7 +20,7 @@ const initialFlightData = {
 
 export default function AddNewFlight({ modalIsOpen }: Props) {
 
-    const [newFlightData, setNewFlightData] = useState<{}>(initialFlightData)
+    const [newFlightData, setNewFlightData] = useState<object>(initialFlightData)
     const [currentStep, setCurrentStep] = useState<number>(0)
     const currentFormLabels = ["Flight Data", "Departure Airport Data", "Arrival Airport Data"]
     

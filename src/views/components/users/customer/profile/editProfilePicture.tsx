@@ -1,12 +1,11 @@
 import * as React from 'react';
-import {FormEvent, useState} from "react";
-import ButtonWithIcon from "../../../reusables/buttonWithIcon";
+import {useState} from "react";
 import UseCamera from "./useCamera";
 import UseVideo from "./useVideo";
 import {UseFiles} from "./useFiles";
 import {UseWeb} from "./useWeb";
-import "../../../../../styles/components/users/customer/profile/editProfile.css"
 import { UseGoogleSearch } from './useGoogleSearch';
+import ButtonWithIcon from '@src/views/components/reusables/buttonWithIcon';
 
 
 const choiceField= {
@@ -18,14 +17,14 @@ const choiceField= {
 }
 
 type EditProfilePictureProp = {
-    method: ()=>any
+    method: ()=>unknown
 }
 function EditProfilePicture({method}: EditProfilePictureProp) {
     const [choice, setChoice] = useState<string>(choiceField.FILES)
 
     function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
         event.preventDefault();
-        let eventTarget = event.target as HTMLButtonElement;
+        const eventTarget = event.target as HTMLButtonElement;
         setChoice(eventTarget.value)
     }
 

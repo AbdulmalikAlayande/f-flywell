@@ -1,8 +1,7 @@
 import React, {useState, useRef, useCallback, SyntheticEvent} from 'react'
 import Webcam from 'react-webcam'
 import "../../../../../styles/components/users/customer/profile/useCamera.css"
-import {Icon} from "@iconify/react";
-import ButtonWithIcon from "../../../reusables/buttonWithIcon";
+import ButtonWithIcon from '@src/views/components/reusables/buttonWithIcon';
 
 
 const videoConstraints = {
@@ -12,10 +11,10 @@ const videoConstraints = {
 }
 type UseCameraProps = {
     userEmail?:string
-    postImage: (file: string | File | Blob)=>any
+    postImage: (file: string | File | Blob)=>unknown
 }
 
-const UseCamera = ({userEmail, postImage}: UseCameraProps) => {
+const UseCamera = ({postImage}: UseCameraProps) => {
     const imageRef = useRef<Webcam>(null)
     const [image, setImage] = useState<string>('')
     const [file, setFile] = useState<Blob | null>(null)

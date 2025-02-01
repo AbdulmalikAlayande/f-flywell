@@ -1,18 +1,17 @@
 import * as React from 'react';
-import ButtonWithIcon from "../../../reusables/buttonWithIcon";
-import {data} from "../../../../../utils/placeholder";
-import '../../../../../styles/components/users/admin/dashboard/customers.css'
 import {useState} from "react";
 import {EmptyUsersFrame} from "./emptyUsersFrame";
 import InviteFrame from "./inviteFrame";
+import ButtonWithIcon from '@src/views/components/reusables/buttonWithIcon';
+import { data } from '@src/utils/placeholder';
 
-type CustomerData = {
-    firstName: string,
-    lastName: string,
-    email: string,
-    phoneNumber: string,
-    ffn: string,
-}
+// type CustomerData = {
+//     firstName: string,
+//     lastName: string,
+//     email: string,
+//     phoneNumber: string,
+//     ffn: string,
+// }
 export default function Customers() {
     const [dataIsEmpty, setDataIsEmpty] = useState<boolean>(false);
     
@@ -23,14 +22,14 @@ export default function Customers() {
     
     function editUser(event: React.MouseEvent<HTMLButtonElement>) {
         event.preventDefault();
-        console.log("Hello")
+        setDataIsEmpty(false)
     }
     
     
-    const fetchProps = {
-        url: "http://localhost:8081/bola-air/api/v3/all-customers/",
-        queryKey: "users"
-    }
+    // const fetchProps = {
+    //     url: "http://localhost:8081/bola-air/api/v3/all-customers/",
+    //     queryKey: "users"
+    // }
     // const {data, error, isLoading} = useFetchUsers<CustomerData>(fetchProps)
     
     return (

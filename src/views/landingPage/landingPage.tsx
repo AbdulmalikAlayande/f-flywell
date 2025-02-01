@@ -7,14 +7,14 @@ import NavBar from "./navBar";
 const LandingPage = () => {
 
     
-  return (
-    <div className="Main-Frame">
-      <NavBar/>
-      <Hero/>
-      <Features/>
-      <Footer />
-    </div>
-  );
+    return (
+        <div className="Main-Frame">
+            <NavBar/>
+            <Hero/>
+            <Features/>
+            <Footer />
+        </div>
+    );
 };
 
 export default LandingPage;

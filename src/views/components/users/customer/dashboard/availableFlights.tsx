@@ -1,10 +1,9 @@
-import * as React from "react";
 import { AvailableFlight } from "../../../../interfaces/interface";
 import { Icon } from "@iconify/react";
-import "../../../../../styles/components/users/customer/dashboard/availableFlights.css";
 import useFlights from "./useFlights";
 import {useCallback, useState} from "react";
 import {FLIGHT_BASE_URL} from "../../../../../utils/utility.functions";
+import Logger from "@src/utils/logger";
 
 type Props = {
   availableFlights: AvailableFlight[];
@@ -19,13 +18,14 @@ export function AvailableFlights({ availableFlights }: Props) {
     url: FLIGHT_BASE_URL+"available-flights",
     queryKey: ""
   }
-  const {data, error, isLoading} = useFlights<AvailableFlight[]>(props)
+  const {data} = useFlights<AvailableFlight[]>(props)
   
   useCallback(
       () => {
+        Logger.info("Available "+flights.toString())
         if (data) setFlights(data)
       },
-      [data],
+      [data, flights],
   );
   
   return (

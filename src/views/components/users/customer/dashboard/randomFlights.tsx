@@ -1,7 +1,4 @@
-import React from "react";
 import { RandomFlight } from "../../../../interfaces/interface";
-import "../../../../../styles/components/users/customer/dashboard/randomFlights.css";
-import AbuDhabi from "../../../../../assets/images/jpg/abu-dhabi-1.jpg";
 
 type Props = {
   randomFlights: RandomFlight[];

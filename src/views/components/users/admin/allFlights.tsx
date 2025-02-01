@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { addNewFlightModalStyle, adminSideBarButtonData } from "../../../../utils/utility.functions";
-import '../../../../styles/components/users/admin/allFlights.css'
-import DashboardNavBar from "../../reusables/dashboardNavBar";
-import DashBoardSideBar from "../../reusables/dashBoardSideBar";
-import ButtonWithIcon from "../../reusables/buttonWithIcon";
 import ReactModal from "react-modal";
 import AddNewFlight from "./addNewFlight";
+import { adminSideBarButtonData, addNewFlightModalStyle } from "@src/utils/utility.functions";
+import ButtonWithIcon from "../../reusables/buttonWithIcon";
+import DashboardNavBar from "../../reusables/dashboardNavBar";
+import DashBoardSideBar from "../../reusables/dashBoardSideBar";
 
 export default function AllFlights(){
     const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
@@ -36,7 +35,7 @@ export default function AllFlights(){
                     </section>
                     <section className="All-Flights-Main-Body-Section-2">
                         <div className="All-Flights">
-                            <ReactModal style={addNewFlightModalStyle} isOpen={modalIsOpen} onRequestClose={(event) => setModalIsOpen(false)}>
+                            <ReactModal style={addNewFlightModalStyle} isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                                 <AddNewFlight modalIsOpen={openOrCloseModal}/>
                             </ReactModal>
                         </div>

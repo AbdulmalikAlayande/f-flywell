@@ -1,0 +1,80 @@
+.Login-Main-Frame{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-content: center;
+    background-color: cornsilk;
+    width: 100%;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    height: 100%;
+}
+.Login-Form{
+    margin: 5%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    align-items: center;
+}
+.Login-Form input{
+    width: 29vw;
+    height: 5vh;
+    font-size: 20px;
+    background-color: transparent;
+    outline: none; 
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    border-bottom: 2px, dotted, dodgerblue;
+}
+.Login-Form-Inputs-Frame{
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+.Login-Form input:focus {
+    border-bottom: 2px solid black;
+}
+.Login-Form label{
+    font-size: 20px;
+    color: dodgerblue;
+}
+.Login-Form button{
+    background-color: aliceblue;
+    --button-color:var(--button-background) ;
+    height: 50px;
+    width: 10vw;   
+    border-radius: 20px;
+    color: rgb(85, 167, 239);
+}
+.Login-Form button:hover{
+    height: 52px;
+    width: 10.5vw; 
+    background-color: powderblue;
+    color: black;
+}
+.Login-Submit-Button-Frame{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Other-Login-Options{
+    margin: 5%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    align-items: center;
+    align-content: center;
+}
+.Other-Login-Options button{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 25vw;
+    height: 7vh;
+    font-size: 20px;
+    background-color: azure;
+    border-width: 2px;
+    border-radius: 20px;
+}

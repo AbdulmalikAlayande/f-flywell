@@ -1,6 +1,5 @@
 import * as React from 'react';
 import ButtonWithIcon from "../../../reusables/buttonWithIcon";
-import '../../../../../styles/components/users/admin/dashboard/inviteFrame.css'
 
 type Props = {
     onClick: (event: React.MouseEvent<HTMLButtonElement>)=>void

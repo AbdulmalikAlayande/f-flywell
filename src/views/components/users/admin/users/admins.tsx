@@ -1,12 +1,11 @@
 import * as React from 'react';
-import '../../../../../styles/components/users/admin/dashboard/admins.css'
-import {data} from "../../../../../utils/placeholder";
+import {data} from "@src/utils/placeholder";
 import ButtonWithIcon from "../../../reusables/buttonWithIcon";
 import {useState} from "react";
 import InviteFrame from "./inviteFrame";
 import {EmptyUsersFrame} from "./emptyUsersFrame";
 import ReactModal from "react-modal";
-import {inviteAdminModalStyle} from "../../../../../utils/utility.functions";
+import {inviteAdminModalStyle} from "@src/utils/utility.functions";
 import InviteAdmin from "./inviteAdmin";
 import {useFetchUsers} from "./useFetchUsers";
 
@@ -36,6 +35,7 @@ export default function Admins() {
     const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
     
     function viewUser(event: React.MouseEvent<HTMLButtonElement>) {
+        setDataIsEmpty(false)
         event.preventDefault();
         console.log("Hi")
     }
@@ -53,7 +53,7 @@ export default function Admins() {
     
     return (
         <div className={'Admin-Main-Frame'}>
-            <ReactModal style={inviteAdminModalStyle} isOpen={modalIsOpen} onRequestClose={(event) => setModalIsOpen(false)}>
+            <ReactModal style={inviteAdminModalStyle} isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                 <InviteAdmin modalIsOpen={openOrCloseModal}/>
             </ReactModal>
             {dataIsEmpty ? <EmptyUsersFrame customerTypeLabel={'Admin'}/>

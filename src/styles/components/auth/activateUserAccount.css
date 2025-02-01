@@ -1,0 +1,171 @@
+.Activate-User-Account-Main-Frame{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border-style: solid;
+    border-width: 1px; */
+    min-height: 100vh;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(#FFFFFF, rgb(227, 239, 239),rgb(54, 141, 178) );
+}
+.Activate-User-Account-Inner-Frame{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-style: solid;
+    border-width: 1px;
+    height: 75%;
+    border-radius: 20px;
+    width: 60%;
+    box-shadow: 0 0 5px 4px powderblue;
+}
+.Part-1{
+    border-width: 1px;
+    background-color: rosybrown;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    row-gap: 100px;
+    width: 45%;
+    height: 100%;
+}
+.Input-Fields-Main-Frame{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    width: 55%;
+    background-color: powderblue;
+    height: 100%;
+}
+.Input-Fields-Frame{
+    width: 100%;
+    height: 80%;
+}
+.Input-Fields-Form{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    column-gap: 20px;
+    width: 100%;
+    height: 100%;
+}
+.Logo-Frame{
+    height: 20%;
+    width: 30%;
+}
+.Logo-Frame img{
+    height: 100%;
+    width: 100%;
+}
+input{
+    height: 8vh;
+    width: 3vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    border-bottom: 2px solid black;
+    justify-content: flex-end;
+    font-size: 40px;
+}
+.Input-Fields-Form input:focus{
+    border: none;
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    border-bottom: 2px solid black;
+}
+.Input-Fields-Form input:focus:required:invalid, .Input-Fields-Form input:hover:invalid{
+    border-bottom: 2px solid red;
+}
+.Input-Fields-Form input:valid{
+    border-bottom: 2px solid green;
+}
+.Didnt-Receive-OTP p{
+    font-size: 20px;
+}
+.Didnt-Receive-OTP button{
+    background: none;
+    color: #fffafa;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+.Didnt-Receive-OTP button:hover{
+    color: #afa;
+    cursor: pointer;
+    font-size: 25px;
+}
+.Prompt{
+    height: 30%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+
+
+/*                            Account-Activation-Successful-Div              */
+.Account-Activation-Successful-Div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-style: solid;
+    border-width: 1px;
+    height: 75%;
+    border-radius: 20px;
+    width: 60%;
+    box-shadow: 0 0 5px 4px powderblue;
+    
+}
+.Account-Activation-Successful-Div p{
+    font-size: 20px;
+    text-align: center;
+    justify-content: center;
+}
+.Activation-Successful-Mark{
+    border-radius: 50%;
+    height: 30%;
+    width: 18%;
+    border-style: solid;
+    border-width: 1px;
+}
+.Next-Steps{
+    display: flex;
+    justify-content: space-evenly;
+    width: 80%;
+}
+.Next-Steps button{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 25px;
+    background-color: rgb(18, 73, 121);
+    --button-color:var(--button-background) ;
+    height: 50px;
+    width: 13vw;   
+    border-radius: 20px;
+    color: #fffafa;
+    
+}
+.Next-Steps button:hover{
+    height: 55px;
+    width: 14vw; 
+}
+.Next-Steps button:focus{
+    height: 55px;
+    width: 14vw; 
+    background-color: rgb(18, 114, 121);
+}

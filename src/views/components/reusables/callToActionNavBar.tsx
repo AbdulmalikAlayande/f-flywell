@@ -1,14 +1,13 @@
 import CallToActionButton from "./callToActionButton";
 import React from "react";
-import "../../../styles/components/reusableComponents/callToActionNavBar.css";
 import Logo from "../../../assets/images/svg/logo-no-background.svg";
 
 function CallToActionNavBar() {
   function handleClick(
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void {
-    let eventTarget = event.target as HTMLButtonElement;
-    let currentButton = document.querySelector(`.${eventTarget.className}`);
+    const eventTarget = event.target as HTMLButtonElement;
+    const currentButton = document.querySelector(`.${eventTarget.className}`);
     if (currentButton) currentButton.className = "Current-Button";
   }
 

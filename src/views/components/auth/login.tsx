@@ -56,7 +56,8 @@ const Login = () => {
   }
 
   return (
-    <div className="p-4 m-0 h-full flex flex-col">
+  
+      <div className="p-4 m-0 h-full flex flex-col">
         <div className="w-full flex items-center justify-end">
             <ThemeToggle/>
         </div>

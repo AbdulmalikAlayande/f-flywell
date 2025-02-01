@@ -38,8 +38,8 @@ export function AirportSelection(props: Props) {
         setCityOptions(cityOptions)
     }
 
-    function handleCitySelectionChange(data: any){
-        let airportData: AirportData[] = []
+    function handleCitySelectionChange(data: object | string | number){
+        
         axios.get(`https://api.aerisapi.com/places/airports/search?client_id=${process.env.REACT_APP_AERIS_API_CLENT_ID}&client_secret=${process.env.REACT_APP_AERIS_API_CLENT_SECRET}&limit=100&filter=airport&query=country:ru`)
             .then((result) => {
                 if (result.data.error){

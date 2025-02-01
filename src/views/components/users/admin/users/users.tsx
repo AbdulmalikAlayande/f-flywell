@@ -1,16 +1,14 @@
 import * as React from 'react';
-import DashBoardSideBar from "../../../reusables/dashBoardSideBar";
-import DashboardNavBar from "../../../reusables/dashboardNavBar";
-import "../../../../../styles/components/users/admin/dashboard/users.css";
 import {useState} from "react";
 import Customers from "./customers";
 import Admins from "./admins";
-import { adminSideBarButtonData } from '../../../../../utils/utility.functions';
-
-
-enum UserType{
-    CUSTOMERS = "Customers",
-    ADMINS = "Admins",
+import DashBoardSideBar from '@src/views/components/reusables/dashBoardSideBar';
+import { adminSideBarButtonData } from '@src/utils/utility.functions';
+import DashboardNavBar from '@src/views/components/reusables/dashboardNavBar';
+    
+enum UserType {
+    ADMINS="admins",
+    CUSTOMERS= "customers",
     CREW_MEMBERS = "Crew Members",
     FRONT_DESK_OFFICERS ="Front Desk Officers"
 }
@@ -20,11 +18,11 @@ export default function Users() {
     
     function displaySpecifiedUsers(event: React.MouseEvent<HTMLButtonElement>) {
         event.preventDefault();
-        let eventTarget = event.target as HTMLButtonElement;
+        const eventTarget = event.target as HTMLButtonElement;
         setUserType( eventTarget.value as UserType)
     }
     
-    let buttonFocusStyle = {
+    const buttonFocusStyle = {
         backgroundColor: "powderBlue",
         borderRadius: "30px",
         color: "black"

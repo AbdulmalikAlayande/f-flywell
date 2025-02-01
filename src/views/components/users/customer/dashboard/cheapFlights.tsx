@@ -1,16 +1,14 @@
-import * as React from "react";
-import { CheapFlight } from '../../../../interfaces/interface';
-import "../../../../../styles/components/users/customer/dashboard/cheapFlights.css";
-import ButtonWithIcon from "../../../reusables/buttonWithIcon";
 import fetchCartoonImageOfLocation from './fetchCartoonImageOfLocation'
 import {useCallback, useState} from "react";
 import useFlights from "./useFlights";
-import {cheapFlightsUrl} from "../../../../../utils/utility.functions";
 import {toast} from "react-toastify";
+import { cheapFlightsUrl } from '@src/utils/utility.functions';
+import ButtonWithIcon from '@src/views/components/reusables/buttonWithIcon';
+// import { CheapFlight } from '@src/views/interfaces/interface';
 
-type Props = {
-  cheapFlights: CheapFlight[];
-};
+// type Props = {
+//   cheapFlights: CheapFlight[];
+// };
 
 const requestProps = {
   url: cheapFlightsUrl as string,
@@ -22,7 +20,7 @@ FIXME:
    One by One, which means that the parameter passed to fetchCartoonImageOfLocation, should be different for each
    Render
 */
-export function CheapFlights({ cheapFlights }: Props) {
+export function CheapFlights() {
 
       const [fromLocUrl, setFromLocUrl] = useState<string>("")
       const [toLocUrl, setToLocUrl] = useState<string>("")

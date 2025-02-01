@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
 import ButtonWithIcon from "./buttonWithIcon";
-import "../../../styles/components/reusableComponents/dashboardNavBar.css";
 
 const DashboardNavBar = () => {
   const [currentDate, setCurrentDate] = useState("");

@@ -1,5 +1,4 @@
 import React from "react";
-import "../../../styles/components/reusableComponents/dashboardSideBar.css";
 import ButtonWithIcon from "./buttonWithIcon";
 import Logo from "../../../assets/images/svg/logo-no-background.svg";
 import { useNavigate } from "react-router";

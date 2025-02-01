@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import ButtonWithIcon from "../../../reusables/buttonWithIcon";
 import { Icon } from "@iconify/react";
 import "../../../../../styles/components/users/customer/profile/profile.css";
-import DashBoardSideBar from "../../../reusables/dashBoardSideBar";
-import DashboardNavBar from "../../../reusables/dashboardNavBar";
 import ReactModal from "react-modal";
 import EditProfilePicture from "./editProfilePicture";
 import axios from "axios";
-import { cloudinaryUploadUrl, profileEditModalStyle } from "../../../../../utils/utility.functions";
+import { cloudinaryUploadUrl, profileEditModalStyle } from "@src/utils/utility.functions";
+import ButtonWithIcon from "@src/views/components/reusables/buttonWithIcon";
+import DashboardNavBar from "@src/views/components/reusables/dashboardNavBar";
+import DashBoardSideBar from "@src/views/components/reusables/dashBoardSideBar";
 
 const Profile = () => {
     const imageUrl = localStorage.getItem("profileImageUrl");
@@ -17,7 +17,7 @@ const Profile = () => {
     const [flyerNumberIsOpened, setFlyerNumberIsOpened] = useState<boolean>(false)
 
 
-  async function postToCloudinary(file?: File): Promise<any> {
+  async function postToCloudinary(file?: File): Promise<object | undefined> {
     const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
     const apiSecret = process.env.REACT_APP_CLOUDINARY_API_SECRET;
     const apiKey = process.env.REACT_APP_CLOUDINARY_API_KEY;
@@ -39,6 +39,7 @@ const Profile = () => {
           localStorage.setItem("profileImageUrl", response.data.secure_url)
         } catch (error) {
           console.error(error);
+          return { error };
         }
       }
     }
@@ -86,14 +87,14 @@ const Profile = () => {
                   </p>
                   <p className={"View-And-Copy-Frame"}>
                     <ButtonWithIcon 
-                      id={"Passport-Id"} onClick={(event)=>{
+                      id={"Passport-Id"} onClick={(event: { preventDefault: () => void; })=>{
                         event.preventDefault();
                         if(!passportIdIsOpened)
                           setPassportIdIsOpened(true)
                         else setPassportIdIsOpened(false)
                       }}  iconHeight={'30px'} iconWidth={'30px'} iconColor="powderblue" icon={!passportIdIsOpened ?"el:eye-open":"mdi:hide"}/>
                     <ButtonWithIcon 
-                      icon={"solar:copy-bold"} onClick={(event)=>copyData(event, "0987654")}
+                      icon={"solar:copy-bold"} onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>)=>copyData(event, "0987654")}
                       iconHeight={'30px'} iconWidth={'30px'} iconColor="powderblue"
                     />
                   </p>
@@ -106,14 +107,14 @@ const Profile = () => {
                   </p>
                   <p className={"View-And-Copy-Frame"}>
                     <ButtonWithIcon 
-                      id={"Flyer-Number"} onClick={(event)=>{
+                      id={"Flyer-Number"} onClick={(event: { preventDefault: () => void; })=>{
                         event.preventDefault();
                         if(!flyerNumberIsOpened)
                           setFlyerNumberIsOpened(true)
                         else setFlyerNumberIsOpened(false)
                       }} iconHeight={'30px'} iconWidth={'30px'} iconColor="powderblue" icon={!flyerNumberIsOpened? "el:eye-open":"mdi:hide"}/>
                     <ButtonWithIcon 
-                      icon={"solar:copy-bold"} onClick={(event)=>copyData(event, "123456")}
+                      icon={"solar:copy-bold"} onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>)=>copyData(event, "123456")}
                       iconHeight={'30px'} iconWidth={'30px'} iconColor="powderblue" 
                     />
                       </p>
