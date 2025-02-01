@@ -1,0 +1,54 @@
+.Edit-Profile-Main-Frame{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1%;
+    align-items: center;
+    justify-content: space-evenly;
+    /*border-width: 1px;*/
+    /*border-style: solid;*/
+    width: 95%;
+    height: 95%;
+
+}
+.Edit-Choices-Button-Frame{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    /*border-width: 1px;*/
+    /*border-style: solid;*/
+    height: 25%;
+    width: 100%;
+}
+.Edit-Choices-Button-Frame button{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    width: 9vw;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+}
+.Edit-Choices-Button-Frame button:hover{
+    background-color: ivory;
+    border-bottom: 10px solid cadetblue;
+}
+.Edit-Choices-Button-Frame button:focus{
+    background-color: ivory;
+    border-bottom: 10px solid cadetblue;
+}
+.Edit-Choices-Frame{
+    height: 79%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /*border-width: 1px;*/
+    /*border-style: solid;*/
+}
+.Current-Button{
+    background-color: white;
+    border-bottom: 6px solid cadetblue;
+}

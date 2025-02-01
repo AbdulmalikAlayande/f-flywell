@@ -1,0 +1,124 @@
+.User-Trips-Main-Frame{
+       display: flex;
+       justify-content: space-between;
+       column-gap: 5px;
+       margin: 5px;
+       background-color: whitesmoke;
+}
+.User-Trips-Part-Two{
+       display: flex;
+       flex-direction: column;
+       row-gap: 3%;
+       width: 83%;
+}
+.User-Trips-Main-Body{
+       border-color: powderblue;
+       border-style: solid;
+       border-width: 2px;
+       /* background-color: floralwhite; */
+       height: 100%;
+       display: flex;
+       flex-direction: column;
+       row-gap: 10px;
+       align-items: center;
+       justify-content: space-evenly;
+       border-radius: 30px;
+       overflow-y: auto;
+       overflow-x: auto;
+}
+.Trip{
+       display: flex;
+       background-color: powderblue;
+       justify-content: space-evenly;
+       border-radius: 30px;
+       width: 98%;
+       height: auto;
+       /* border-style: solid;
+       border-width: 2px; */
+       height: 15vh;
+}
+.Trip-Info-Section{
+       display: flex;
+       align-items: center;
+       justify-content: space-evenly;
+       column-gap: 50px;
+       width: 70%;
+}
+.Trip-From-Frame, .Trip-To-Frame{
+       display: flex;
+       column-gap: 15px;
+}
+.Trip-From-Frame img, .Trip-To-Frame img{
+       width: 75px;
+       height: 75px;
+       border-radius: 15px;
+       border-style: solid;
+       border-width: 1px;
+}
+.Trip-From-Inner-Frame, .Trip-To-Inner-Frame{
+       display: flex;
+       flex-direction: column;
+       align-items: flex-start;
+       justify-content: space-evenly;
+}
+/*                                                       */
+/*                                                       */
+.Trip-Middle-Part{
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       font-size: 18px;
+
+}
+.Trip-Divider-Frame{
+       display: flex;
+       align-items: center;
+}
+.Divider-Circle-1, .Divider-Circle-2{
+       border-radius: 50%;
+       border-style: solid;
+       background-color: rgb(29, 101, 110);
+       border-width: 1px;
+       border-color: rgb(29, 101, 110);
+       height: 7px;
+       width: 7px;
+}
+.Divider-Line{
+       border-style: solid;
+       border-width: 1px;
+       width: 200px;
+       border-color: rgb(29, 101, 110);
+       height: 0;
+}
+
+
+/*               ---------------------------                                                                                                       */
+/*               ---------------------------                                                                                               */
+.Section-2{
+       display: flex;
+       justify-content: flex-end;
+       align-items: center;
+       width: 30%;
+}
+.Flight-Number-And-View-Flight-Btn-Frame{
+       display: flex;
+       flex-direction: column;
+       align-items: flex-start;
+       justify-content: space-evenly;
+       width: 50%;
+       height: 100%;
+       text-align: center;
+}
+.Flight-Number-And-View-Flight-Btn-Frame button{
+       display: flex;
+       align-items: center;
+       justify-content: space-evenly;
+       width: 6vw;
+       height: 4vh;
+       font-size: 20px;
+       border-radius: 10px;
+       border-style: none;
+}
+.Flight-Number-And-View-Flight-Btn-Frame p{
+       font-size: 20px;
+}

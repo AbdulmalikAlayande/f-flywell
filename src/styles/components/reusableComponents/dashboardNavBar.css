@@ -1,0 +1,75 @@
+.Dashboard-NavBar-Main-Frame{
+    display: flex;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    height: 8%;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    /* column-gap: 50px; */
+}
+.Search-Anything{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    height: 90%;
+    width: 30%;
+    border-radius: 15px;
+}
+.Search-Anything input{
+    outline: none;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+    padding-left: 1%;
+    position: relative;
+    display: flex;
+    height: 95%;
+    font-size: 20px;
+}
+
+.Search-Anything button{
+    width: 18%;
+    height: 85%;
+    cursor: pointer;
+    left: 80%;
+    position: absolute;
+    background: powderblue;
+    border-radius: 15px;
+    border: none;
+}
+
+.Time-And-Date-Frame{
+    height: 80%;
+    width: 25%;
+    background-color: powderblue;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    /* border-style: solid;
+    border-width: 1px;*/
+    font-size: 20px;
+    border-radius: 15px;
+}
+.Dashboard-NavBar-Icons-Frame button{
+    width: 50px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: powderblue;
+    align-items: center;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+.Dashboard-NavBar-Icons-Frame{
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    column-gap: 20px;
+}

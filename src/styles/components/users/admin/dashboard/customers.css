@@ -1,0 +1,58 @@
+.Customer-Main-Frame{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    justify-content: flex-end;
+}
+.Table{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*position: relative;*/
+    z-index: 1;
+    justify-content: space-evenly;
+}
+.Table-Header-Frame{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 500;
+}
+.Table-Data-Frame{
+    display: flex;
+    font-size: 15px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 35px;
+}
+#Coloured{
+    background-color: powderblue ;
+}
+.Table-Header-Frame p, .Data-Frame{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12%; /*#b0e0e6*/
+    height: 100%;
+}
+.Action-Button-Frame{
+    display: flex;
+    justify-content: center;
+    width: 12%;
+    height: 100%;
+}
+.Action-Button-Frame button{
+    width: 45px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
