@@ -1,7 +1,7 @@
 import React, { FormEvent, useState } from "react";
 import AuthInput from "../reusables/authInput";
 import CallToActionButton from "../reusables/callToActionButton";
-import { Icon } from "@iconify/react";
+import { Icon } from "@iconify-icon/react";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { SignUpData, LoginData } from "../../../styles/components/types";

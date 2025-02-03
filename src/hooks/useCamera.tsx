@@ -1,6 +1,5 @@
 import React, {useState, useRef, useCallback, SyntheticEvent} from 'react'
 import Webcam from 'react-webcam'
-import "../../../../../styles/components/users/customer/profile/useCamera.css"
 import ButtonWithIcon from '@src/views/components/reusables/buttonWithIcon';
 
 

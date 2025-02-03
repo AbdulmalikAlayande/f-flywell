@@ -2,9 +2,9 @@ import * as React from 'react';
 import {useState} from "react";
 import Customers from "./customers";
 import Admins from "./admins";
-import DashBoardSideBar from '@src/views/components/reusables/dashBoardSideBar';
+import DashBoardSideBar from '@src/views/components/users/customer/dashboard/sidebar';
 import { adminSideBarButtonData } from '@src/utils/utility.functions';
-import DashboardNavBar from '@src/views/components/reusables/dashboardNavBar';
+import DashboardNavBar from '@src/views/components/users/customer/dashboard/navbar';
     
 enum UserType {
     ADMINS="admins",

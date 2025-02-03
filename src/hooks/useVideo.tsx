@@ -1,6 +1,5 @@
-import React, { useRef, useState, useCallback } from 'react';
+import React, { useRef, useState } from 'react';
 import Webcam from 'react-webcam';
-import "../../../../../styles/components/users/customer/profile/useVideo.css"
 
 const videoConstraints = {
   width: 400,
@@ -10,11 +9,12 @@ const videoConstraints = {
 
 type UseVideoProps = {
   userEmail?:string
-  postImage: ()=>any
+  postImage: (video: string) => void
 }
-const UseVideo = ({postImage}: UseVideoProps) => {
+const UseVideo = (props: UseVideoProps) => {
+  
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
-  const chunksRef = useRef<any[]>([]);
+  const chunksRef = useRef<Blob[]>([]);
   const [video, setVideo] = useState<string>('');
   const webcamRef = useRef<Webcam>(null);
 
@@ -57,6 +57,9 @@ const UseVideo = ({postImage}: UseVideoProps) => {
       <div className='Use-Video-Start-And-Stop-Buttons-Frame'>
         <button onClick={(event) => {event.preventDefault(); startRecording()}}>Start Recording</button>
         <button onClick={(event) => {event.preventDefault(); stopRecording()}}>Stop Recording</button>
+      </div>
+      <div className='Use-Video-Post-Button-Frame'>
+        <button onClick={() => props.postImage(video)}>Post Video</button>
       </div>
     </div>
   );

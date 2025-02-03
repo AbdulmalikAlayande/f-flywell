@@ -1,6 +1,6 @@
 import { AvailableFlight } from "../../../../interfaces/interface";
 import { Icon } from "@iconify/react";
-import useFlights from "./useFlights";
+import useFlights from "../../../../../hooks/useFlights";
 import {useCallback, useState} from "react";
 import {FLIGHT_BASE_URL} from "../../../../../utils/utility.functions";
 import Logger from "@src/utils/logger";

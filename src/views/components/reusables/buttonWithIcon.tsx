@@ -1,4 +1,4 @@
-import { Icon } from "@iconify/react";
+import { Icon } from "@iconify-icon/react";
 import React from "react";
 
 interface ButtonWithIconProps {

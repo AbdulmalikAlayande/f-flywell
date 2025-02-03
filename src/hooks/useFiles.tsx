@@ -1,11 +1,10 @@
 import * as React from 'react';
-import "../../../../../styles/components/users/customer/profile/useFiles.css"
-import {Icon} from "@iconify/react";
+import {Icon} from "@iconify-icon/react";
 import {useState} from "react";
 
 type UseFilesProps = {
     userEmail?:string
-    postImage: (file: string | File)=>any
+    postImage: (file: string | File) => void
 }
 export function UseFiles({postImage}: UseFilesProps) {
 
@@ -24,7 +23,7 @@ export function UseFiles({postImage}: UseFilesProps) {
     function postToCloud(event: React.FormEvent<HTMLFormElement>): void {
         event.preventDefault();
         if(file){
-            let valueReturned = postImage(file)
+            const valueReturned = postImage(file)
             console.log('valueReturned ==> ',valueReturned);
             
         }

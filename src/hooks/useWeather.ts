@@ -1,3 +1,4 @@
+import Logger from "@src/utils/logger";
 import axios from "axios";
 
 type Props = {
@@ -36,9 +37,9 @@ const UseWeather = (props: Props) => {
     const result = fetchLongitudeAndLatitude();
     axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${result.latitude}&lon=${result.longitude}&appid=${process.env.REACT_APP_OPEN_WEATHER_MAP_API_KEY}`)
         .then((response)=>{
-
+            Logger.info(response.toString());
         }).catch((error)=>{
-
+            Logger.error(error.message());
         });
 };
 

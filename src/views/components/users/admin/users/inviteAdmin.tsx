@@ -4,7 +4,7 @@ import {useState} from "react";
 import axios from "axios";
 import {ADMIN_BASE_URL} from "../../../../../utils/utility.functions";
 import {toast, ToastContainer} from "react-toastify";
-import {Icon} from "@iconify/react";
+import { Icon } from "@iconify-icon/react";
 import Logger from '@src/utils/logger';
 
 const initialInvitationData = {

@@ -7,7 +7,7 @@ import { IStaticMethods } from "preline/preline";
 import LandingPage from "./views/landingPage/landingPage";
 import { BrowserRouter as Router, Route, Routes } from "react-router";
 
-import Dashboard from "./views/components/users/customer/dashboard/dashboard";
+import Dashboard from "./views/components/users/customer/dashboard";
 import Profile from "./views/components/users/customer/profile/profile";
 import Trips from "./views/components/users/customer/trips/trips";
 import AdminSignUp from "./views/components/auth/adminSignUp";
@@ -16,6 +16,8 @@ import AdminDashboard from "./views/components/users/admin/dashboard/adminDashbo
 import AllFlights from "./views/components/users/admin/allFlights";
 import Login from './views/components/auth/login';
 import SignUp from './views/components/auth/signUp';
+import PageTitle from './utils/pageTitle';
+import Reservations from './views/components/users/customer/dashboard/reservations';
 
 
 declare global {
@@ -65,9 +67,26 @@ function AppContent() {
             <Route path={"/"} element={<LandingPage />} />
             <Route path={"/auth/login"} element={<Login />} />
             <Route path={"/auth/signup"} element={<SignUp />} />
-
-            <Route path={"/:username/profile"} element={<Profile />} />
-            <Route path={"/:username/my-trips"} element={<Trips />} />
+            <Route 
+                path={"/:pid/dashboard"} 
+                element={
+                    <>
+                        <PageTitle title={'Dashboard | Quick Analytics'} />
+                        <Dashboard />
+                    </>
+                } 
+            />
+            <Route 
+                path={"/:pid/reservations"} 
+                element={
+                    <>
+                        <PageTitle title={'Reservation | Flight Booking Views'} />
+                        <Reservations />
+                    </>
+                } 
+            />
+            <Route path={"/:pid/profile"} element={<Profile />} />
+            <Route path={"/:pid/my-trips"} element={<Trips />} />
             <Route path={"/admin-signup"} element={<AdminSignUp />}/>
             <Route path={"/bola-air/users"} element={<Users />}/>
             <Route path={"bola-air/admin/dashboard"} element={<AdminDashboard />}/>

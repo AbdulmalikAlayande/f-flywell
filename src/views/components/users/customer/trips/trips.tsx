@@ -1,6 +1,6 @@
 import ButtonWithIcon from '@src/views/components/reusables/buttonWithIcon'
-import DashboardNavBar from '@src/views/components/reusables/dashboardNavBar'
-import DashBoardSideBar from '@src/views/components/reusables/dashBoardSideBar'
+import DashboardNavBar from '@src/views/components/users/customer/dashboard/navbar'
+import DashBoardSideBar from '@src/views/components/users/customer/dashboard/sidebar'
 import '../../../../../styles/components/users/customer/trips/trips.css'
 import { availableFlights } from '@src/utils/placeholder'
 

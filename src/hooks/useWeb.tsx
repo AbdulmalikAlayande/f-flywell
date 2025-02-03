@@ -1,11 +1,10 @@
 import * as React from 'react';
-import "../../../../../styles/components/users/customer/profile/useWeb.css"
 import {useState} from "react";
 
 
 type UseWebProps = {
     userEmail?:string
-    postImage: (file: string | File | Blob | null)=>any
+    postImage: (file: string | File | Blob | null)=>void
 }
 
 export function UseWeb({userEmail, postImage}: UseWebProps) {
@@ -16,7 +15,7 @@ export function UseWeb({userEmail, postImage}: UseWebProps) {
 
     function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
         event.preventDefault();
-        let eventTarget = event.target as HTMLInputElement
+        const eventTarget = event.target as HTMLInputElement
         const value = eventTarget.value;
         setImageUrl(value);
     }

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Icon } from '@iconify/react';
+import { Icon } from "@iconify-icon/react";
 import TextBlock from '../typography/textBlock';
 import Logger from '@src/utils/logger';
 

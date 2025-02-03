@@ -1,6 +1,6 @@
 import fetchCartoonImageOfLocation from './fetchCartoonImageOfLocation'
 import {useCallback, useState} from "react";
-import useFlights from "./useFlights";
+import useFlights from "../../../../../hooks/useFlights";
 import {toast} from "react-toastify";
 import { cheapFlightsUrl } from '@src/utils/utility.functions';
 import ButtonWithIcon from '@src/views/components/reusables/buttonWithIcon';

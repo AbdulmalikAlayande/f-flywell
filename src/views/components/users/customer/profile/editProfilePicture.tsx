@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {useState} from "react";
-import UseCamera from "./useCamera";
-import UseVideo from "./useVideo";
-import {UseFiles} from "./useFiles";
-import {UseWeb} from "./useWeb";
-import { UseGoogleSearch } from './useGoogleSearch';
+import UseCamera from "../../../../../hooks/useCamera";
+import UseVideo from "../../../../../hooks/useVideo";
+import {UseFiles} from "../../../../../hooks/useFiles";
+import {UseWeb} from "../../../../../hooks/useWeb";
+import { UseGoogleSearch } from '../../../../../hooks/useGoogleSearch';
 import ButtonWithIcon from '@src/views/components/reusables/buttonWithIcon';
 
 

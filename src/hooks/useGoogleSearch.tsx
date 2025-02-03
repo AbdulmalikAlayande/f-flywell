@@ -1,14 +1,14 @@
 // @flow
+import Logger from '@src/utils/logger';
 import * as React from 'react';
 import {useEffect} from "react";
-import '../../../../../styles/components/users/customer/profile/useGoogleSearch.css'
 
 type UseGoogleSearchProps = {
     userEmail?:string
-    postImage: ()=>any
+    postImage: ()=>void
 }
 
-export function UseGoogleSearch({postImage}: UseGoogleSearchProps) {
+export function UseGoogleSearch(props: UseGoogleSearchProps) {
 
     const [image, setImage] = React.useState('');
     const [imageUrl, setImageUrl] = React.useState('');
@@ -29,15 +29,20 @@ export function UseGoogleSearch({postImage}: UseGoogleSearchProps) {
 
 
     function handleInputChange(event: React.ChangeEvent<HTMLInputElement>): void {
-
+        event.preventDefault();
+        const { value } = event.target;
+        props.postImage();
+        setImageUrl(value);
     }
 
     function handleFormSubmission(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+        event.preventDefault();
 
     }
 
     function postToCloudinary(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
-
+        event.preventDefault();
+        Logger.info(imageUrl)
     }
 
     return (

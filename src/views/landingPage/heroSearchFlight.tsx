@@ -49,9 +49,9 @@ const HeroSearchFlight = () => {
     }
     
     return (
-        <div className="hidden w-full md:flex rounded-lg">
-                <div className={"w-full h-full flex flex-col gap-4 max-w-screen-xl mx-auto shadow-2xl rounded-xl pb-4"}>
-                    <div className="w-full h-15 rounded-lg md:flex items-center max-w-screen-xl mx-auto text-sm/6 md:text-lg/8">
+        <div className="w-full md:flex rounded-lg">
+                <div className={"relative border border-gray-200 transform transition-y-[10px] w-full h-full flex flex-col gap-4 max-w-screen-xl mx-auto shadow-2xl rounded-xl pb-4"}>
+                    <div className="w-full h-15 rounded-lg grid grid-cols-2 md:grid-cols-4 items-center max-w-screen-xl mx-auto text-sm/6 md:text-lg/8">
                         <ButtonWithIcon 
                             icon={<BiSolidPlaneAlt />} 
                             className={"w-full h-full flex items-center justify-center gap-2 md:gap-4 rounded-tl-lg md:rounded-tl-xl bg-[#2563eb] dark:bg-gray-100 focus:bg-gray-100 dark:focus:bg-[#2563eb] text-gray-100 dark:text-[#2563eb] focus:text-[#2563eb] dark:focus:text-gray-100"} 
@@ -69,12 +69,12 @@ const HeroSearchFlight = () => {
                         />
                         <ButtonWithIcon 
                             icon={<BiSolidTimeFive />} 
-                            className={"w-full h-full flex items-center justify-center gap-2 md:gap-4 rounded-tr-lg md:rounded-tr-xl bg-[#2563eb] dark:bg-gray-100 focus:bg-gray-100 dark:focus:bg-[#2563eb] text-gray-100 dark:text-[#2563eb] focus:text-[#2563eb] dark:focus:text-gray-100"} 
+                            className={"w-full h-full flex items-center justify-center gap-2 md:gap-4 md:rounded-tr-xl bg-[#2563eb] dark:bg-gray-100 focus:bg-gray-100 dark:focus:bg-[#2563eb] text-gray-100 dark:text-[#2563eb] focus:text-[#2563eb] dark:focus:text-gray-100"} 
                             buttonPlaceHolder={"Flight Status"} 
                         />
                     </div>
                     
-                    <div className="w-full flex justify-evenly gap-2 max-w-screen-xl mx-auto px-6">
+                    <div className="w-full flex flex-col md:flex-row justify-evenly gap-2 max-w-screen-xl mx-auto px-6">
                         <div className="w-full h-full">
                             <label htmlFor={""} className={"text-gray-900 dark:text-gray-100"}>From</label>
                             <select id={""} 
@@ -117,7 +117,7 @@ const HeroSearchFlight = () => {
                             <DatePicker2 onClear={onClearDate} label={"Click..."} minDate={new Date()} maxDate={addYears(new Date(), 1)} />
                         </div>
                         <div className="w-full h-full">
-                            <label htmlFor={""} className={"text-gray-900 dark:text-gray-100"}>Number of Passengers</label>
+                            <label htmlFor={""} className={"text-gray-900 dark:text-gray-100"}>Passengers</label>
                             <select id={""} 
                                 data-hs-select={JSON.stringify(selectConfig)} 
                                 className={`hidden`}

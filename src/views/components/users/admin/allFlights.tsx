@@ -3,8 +3,8 @@ import ReactModal from "react-modal";
 import AddNewFlight from "./addNewFlight";
 import { adminSideBarButtonData, addNewFlightModalStyle } from "@src/utils/utility.functions";
 import ButtonWithIcon from "../../reusables/buttonWithIcon";
-import DashboardNavBar from "../../reusables/dashboardNavBar";
-import DashBoardSideBar from "../../reusables/dashBoardSideBar";
+import DashboardNavBar from "../customer/dashboard/navbar";
+import DashBoardSideBar from "../customer/dashboard/sidebar";
 
 export default function AllFlights(){
     const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)

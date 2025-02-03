@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import { Icon } from "@iconify/react";
+import { Icon } from "@iconify-icon/react";
 import "../../../../../styles/components/users/customer/profile/profile.css";
 import ReactModal from "react-modal";
 import EditProfilePicture from "./editProfilePicture";
 import axios from "axios";
 import { cloudinaryUploadUrl, profileEditModalStyle } from "@src/utils/utility.functions";
 import ButtonWithIcon from "@src/views/components/reusables/buttonWithIcon";
-import DashboardNavBar from "@src/views/components/reusables/dashboardNavBar";
-import DashBoardSideBar from "@src/views/components/reusables/dashBoardSideBar";
+import DashboardNavBar from "@src/views/components/users/customer/dashboard/navbar";
+import DashBoardSideBar from "@src/views/components/users/customer/dashboard/sidebar";
+import { useParams } from "react-router";
 
 const Profile = () => {
+
+    const param = useParams()
     const imageUrl = localStorage.getItem("profileImageUrl");
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [profileImage, setProfileImage] = useState<string>(imageUrl?imageUrl:'')
@@ -17,51 +20,51 @@ const Profile = () => {
     const [flyerNumberIsOpened, setFlyerNumberIsOpened] = useState<boolean>(false)
 
 
-  async function postToCloudinary(file?: File): Promise<object | undefined> {
-    const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
-    const apiSecret = process.env.REACT_APP_CLOUDINARY_API_SECRET;
-    const apiKey = process.env.REACT_APP_CLOUDINARY_API_KEY;
+    async function postToCloudinary(file?: File): Promise<object | undefined> {
+      const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
+      const apiSecret = process.env.REACT_APP_CLOUDINARY_API_SECRET;
+      const apiKey = process.env.REACT_APP_CLOUDINARY_API_KEY;
 
-    const formData = new FormData()
-    if(apiKey && apiSecret && uploadPreset){
-        formData.append("public_id", `cloudinary_images/bola_air/user_media/image ${file?.name}`)
-        formData.append("api_key", apiKey)
-        formData.append("resource_type", "auto")
-        formData.append("api_secret", apiSecret)
-        formData.append("upload_preset", uploadPreset)
-        formData.append("file", file as Blob)
+      const formData = new FormData()
+      if(apiKey && apiSecret && uploadPreset){
+          formData.append("public_id", `cloudinary_images/bola_air/user_media/image ${file?.name}`)
+          formData.append("api_key", apiKey)
+          formData.append("resource_type", "auto")
+          formData.append("api_secret", apiSecret)
+          formData.append("upload_preset", uploadPreset)
+          formData.append("file", file as Blob)
 
-        try {
-          const response = await axios.post(cloudinaryUploadUrl, formData, {headers: {
-            "Content-Type": "multipart/form-data",},
-          })
-          setProfileImage(response.data.secure_url)
-          localStorage.setItem("profileImageUrl", response.data.secure_url)
-        } catch (error) {
-          console.error(error);
-          return { error };
+          try {
+            const response = await axios.post(cloudinaryUploadUrl, formData, {headers: {
+              "Content-Type": "multipart/form-data",},
+            })
+            setProfileImage(response.data.secure_url)
+            localStorage.setItem("profileImageUrl", response.data.secure_url)
+          } catch (error) {
+            console.error(error);
+            return { error };
+          }
         }
       }
+    
+
+    function openPopUp(event: React.MouseEvent<HTMLButtonElement>) {
+      event.preventDefault();
+      setIsOpen(true);
     }
-  
 
-  function openPopUp(event: React.MouseEvent<HTMLButtonElement>) {
-    event.preventDefault();
-    setIsOpen(true);
-  }
-
-  function copyData(event: React.MouseEvent<HTMLButtonElement>, value?: string): void {
-    event.preventDefault();
-    navigator.clipboard
-             .writeText(value ? value : '')
-             .then( response => console.log(response))
-  }
+    function copyData(event: React.MouseEvent<HTMLButtonElement>, value?: string): void {
+      event.preventDefault();
+      navigator.clipboard
+              .writeText(value ? value : '')
+              .then( response => console.log(response))
+    }
 
   return (
     <div className={"User-Profile-Main-Frame"}>
-      <DashBoardSideBar  userId={""}/>
+      <DashBoardSideBar  userId={param.userId} open={false} setSidebarOpen={() => true}/>
       <div className="Profile-Part-Two">
-        <DashboardNavBar />
+        <DashboardNavBar sidebarOpen={false} setSidebarOpen={()=>{}} />
         <div className={"User-Profile-Main-Body"}>
 
           <div className="User-Profile-Main-Body-1">
