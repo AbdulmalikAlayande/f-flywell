@@ -1,8 +1,8 @@
-import { AvailableFlight } from "../../../../interfaces/interface";
-import { Icon } from "@iconify/react";
-import useFlights from "../../../../../hooks/useFlights";
+import { AvailableFlight } from "../../../../../interfaces/interface";
+import { Icon } from "@iconify-icon/react";
+import useFlights from "../../../../../../hooks/useFlights";
 import {useCallback, useState} from "react";
-import {FLIGHT_BASE_URL} from "../../../../../utils/utility.functions";
+import {FLIGHT_BASE_URL} from "../../../../../../utils/utility.functions";
 import Logger from "@src/utils/logger";
 
 type Props = {
@@ -41,13 +41,13 @@ export function AvailableFlights({ availableFlights }: Props) {
           className="Available-Flight"
         >
           <div className="Available-Flight-To-From-P-Tag">
-            {availableFlight.departureLocation}
+            {availableFlight.flight.departureCity}
             <div className="Available-Flight-To-From-P-Tag-Div">
               <Icon icon={"cil:arrow-right"} height={"25px"} width={"70px"} />
               <p>{availableFlight.duration}</p>
             </div>
 
-            {availableFlight.arrivalLocation}
+            {availableFlight.flight.arrivalCity}
           </div>
           <p>{availableFlight.seatsRemaining}</p>
         </div>

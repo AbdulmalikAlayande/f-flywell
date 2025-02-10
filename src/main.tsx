@@ -8,6 +8,15 @@ import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ThemeProvider } from './themeprovider.tsx';
 
+import _ from "lodash";
+
+declare global {
+  interface Window {
+    _: typeof _;
+  }
+}
+
+window._ = _; 
 
 const queryClient = new QueryClient();
 

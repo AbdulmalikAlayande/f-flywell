@@ -1,11 +1,38 @@
+import { List } from "lodash";
+
+type Seat = {
+    seatNumber: string;
+    status: "RESERVED" | "EMPTY";
+    price: number;
+    reservationNumber: string;
+}
+type Airport = {
+    name: string;
+    icaoCode: string;
+    iataCode: string;
+    isoCountryCode: string;
+    address: string;
+    longitude: number;
+    latitude: number;
+}
+
+type FlightRelation = {
+    arrivalCity: string;
+    departureCity: string;
+    displayImage: string;
+    arrivalAirport: Airport;
+    departureAirport: Airport;
+}
 export interface AvailableFlight{
+   
+    flightNumber: string;
+	departureTime: Date;
+	arrivalTime: Date;
+    seats: List<Seat>;
+    flight: FlightRelation;
     publicId: string;
     seatsRemaining: number;
-    departureLocation: string;
-    arrivalLocation: string;
-    date: Date;
     duration: string;
-    time: string;
 }
 export interface CheapFlight extends AvailableFlight{
     flightName: string,

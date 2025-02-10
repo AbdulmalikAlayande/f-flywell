@@ -18,6 +18,7 @@ import Login from './views/components/auth/login';
 import SignUp from './views/components/auth/signUp';
 import PageTitle from './utils/pageTitle';
 import Reservations from './views/components/users/customer/dashboard/reservations';
+import NewReservation from './views/components/users/customer/dashboard/reservations/newReservation';
 
 
 declare global {
@@ -82,6 +83,15 @@ function AppContent() {
                     <>
                         <PageTitle title={'Reservation | Flight Booking Views'} />
                         <Reservations />
+                    </>
+                } 
+            />
+            <Route 
+                path={"/reservations/new"} 
+                element={
+                    <>
+                        <PageTitle title={'New Reservation'} />
+                        <NewReservation />
                     </>
                 } 
             />

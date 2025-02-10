@@ -17,13 +17,14 @@ import {
     DatePickerToolbar,
     DatePickerToolbarProps,
 } from '@mui/x-date-pickers/DatePicker'
+import OutsideClickHandler from '../components/users/customer/dashboard/outsideClickHandler';
 
 type DatePickerProps = {
     onClear: (value?: object | null)=>void;
     onChange?: ((value: Date | null) => void);
     label: string;
-    minDate: Date; 
-    maxDate: Date;
+    minDate?: Date; 
+    maxDate?: Date;
     
 }
 
@@ -68,7 +69,7 @@ const DatePicker2 = (props: DatePickerProps) => {
         
         assert(date instanceof Date, "Date should be an instance of Date");
 
-        if (date < props.minDate || date > props.maxDate)
+        if (date < (props.minDate ?? new Date(0)) || date > (props.maxDate ?? new Date(8640000000000000)))
             setError(true);
 
         else
@@ -112,15 +113,15 @@ const DatePicker2 = (props: DatePickerProps) => {
                             actions: ['clear'],
                         },
                         textField: {
-                            size: 'small',
                             InputProps: {
                                 style: {
-                                  backgroundColor: themeContext.theme === 'dark' ? '#364153' : '#f3f4f6',
-                                  
+                                  backgroundColor: themeContext.theme === 'dark' ? '#364153' : '#F8F8FF',
+                                  borderRadius: "12px",
+                                  height: "100%",                                  
                                 },
                             },
-                            variant: 'filled',
-                            focused: true,
+                            // variant: 'filled',
+                            // focused: true,
                             color: 'primary',
                             error: error,
                             helperText: error ? "Date is required" : "",
@@ -135,9 +136,11 @@ const DatePicker2 = (props: DatePickerProps) => {
                 />
                 
                 {cleared && (
-                    <Alert className='absolute bottom-0 right-0'severity="success">
-                        Field cleared!
-                    </Alert>
+                    <OutsideClickHandler onClick={() => setCleared(false)}>
+                        <Alert className='absolute bottom-0 right-0'severity="success">
+                            Field cleared!
+                        </Alert>
+                    </OutsideClickHandler>
                 )}
             </div>
         </LocalizationProvider>

@@ -17,7 +17,7 @@ interface CardProps {
     className?: string;
 }
 
-const Card: React.FC<CardProps> = (props) => {
+const FeatureCard: React.FC<CardProps> = (props) => {
 
     useEffect(() => {
         Logger.info("Icon: "+props.icon);
@@ -42,4 +42,4 @@ const Card: React.FC<CardProps> = (props) => {
     );
 };
 
-export default Card;
+export default FeatureCard;

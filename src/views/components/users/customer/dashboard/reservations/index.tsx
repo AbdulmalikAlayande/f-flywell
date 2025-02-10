@@ -2,7 +2,7 @@ import DashboardNavBar from '@src/views/components/users/customer/dashboard/navb
 import { useEffect, useState } from 'react'
 import DashBoardSideBar from '../sidebar'
 import Logger from '@src/utils/logger'
-import { useParams } from 'react-router'
+import { NavLink, useParams } from 'react-router'
 
 const Reservations = () => {
     const param = useParams()
@@ -18,12 +18,21 @@ const Reservations = () => {
     }
 
     return (
-        <div>
+        <div className='flex w-full h-screen overflow-hidden items-center justify-between'>
             <DashBoardSideBar userId={param.userId} open={isSidebarOpen} setSidebarOpen={openSidebar}/>
-            <main>
-                <DashboardNavBar/>
-                <section>
-                    
+            <main className='flex flex-col w-screen min-h-screen px-4 lg:px-6'>
+                <DashboardNavBar sidebarOpen={false} setSidebarOpen={()=>{}}/>
+
+                <section className="flex-1 overflow-y-auto mt-6 lg:mt-8">
+                    <div className='h-10 w-full flex justify-end items-center'>
+                        <NavLink 
+                            to={'/reservations/new'} 
+                            className={'bg-[#2563eb] h-full flex items-center p-2 rounded-lg'}
+                        >
+                            <span className='text-[#f3f4f6] dark:text-[#1f2937]'>Make a reservation</span>
+                        </NavLink>
+                    </div>
+                    {/*  */}
                 </section>
             </main>
         </div>

@@ -8,11 +8,14 @@ export default defineConfig({
     base: './',
     plugins: [react()],
     server: {
-        open: true,
+        open: false,
         port: 3000
     },
     build: {
         outDir: 'build',
+    },
+    css: {
+        postcss: './postcss.config.ts',
     },
     resolve: {
         alias: {
@@ -21,13 +24,13 @@ export default defineConfig({
             "@utils": path.resolve(__dirname, "./src/utils"),
             "@assets": path.resolve(__dirname, "./src/assets"),
             '@components': path.resolve(__dirname, './src/views/components'),
-            '@styles': path.resolve(__dirname, './src/styles'),
-            '@images': '/src/assets/images',
+            "@images": path.resolve(__dirname, "/src/assets/images"),
+            "@routes": path.resolve(__dirname, "./src/routes"),
             // "@api": path.resolve(__dirname, "./src/api"),
             // "@context": path.resolve(__dirname, "./src/context"),
             // "@hooks": path.resolve(__dirname, "./src/hooks"),
             // "@pages": path.resolve(__dirname, "./src/views/pages"),
-            // "@routes": path.resolve(__dirname, "./src/routes"),
+
             
         },
     },

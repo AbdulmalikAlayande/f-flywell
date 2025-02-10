@@ -1,0 +1,126 @@
+.noUi-target {
+    position: relative;
+    height: 1rem;
+    width: 100%;
+    background-color: #f3f4f6;
+    border-radius: 1rem;
+    overflow: hidden;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: rgba(12, 98, 228, 0);
+    -webkit-user-select: none;
+    -ms-touch-action: none;
+    touch-action: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.dark .noUi-target {
+    background-color: #404040;
+}
+
+.noUi-base {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.noUi-origin {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: 0 0;
+    border-radius: 9999px;
+}
+
+.noUi-handle {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    width: 1.125rem;
+    height: 1.125rem;
+    background-color: white;
+    border: 4px solid #2563eb;
+    border-radius: 9999px;
+    cursor: pointer;
+    transform: translate(50%, -50%);
+}
+
+.dark .noUi-handle {
+    border-color: #3b82f6;
+}
+
+.noUi-connects {
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.noUi-connect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    background-color: #2563eb;
+    transform-origin: 0 0;
+}
+
+.dark .noUi-connect {
+    background-color: #3b82f6;
+}
+
+.noUi-touch-area {
+    position: absolute;
+    top: -0.25rem;
+    bottom: -0.25rem;
+    left: -0.25rem;
+    right: -0.25rem;
+}
+
+.noUi-tooltip {
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    display: block; 
+    background: #fff;
+    padding: 5px;
+    text-align: center;
+    white-space: nowrap;
+    height: 1.5rem;
+    width: 3rem;
+    color: #1f2937;
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.75rem;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10; 
+    
+}
+
+.dark .noUi-tooltip {
+    background-color: #262626;
+    border-color: #404040;
+    color: white;
+}
+
+.noUi-horizontal .noUi-origin > .noUi-tooltip {
+    -webkit-transform: translate(50%, 0);
+    transform: translate(50%, 0);
+    left: auto;
+    bottom: 10px;
+}
+  
