@@ -16,6 +16,7 @@ import AdminDashboard from "./views/components/users/admin/dashboard/adminDashbo
 import AllFlights from "./views/components/users/admin/allFlights";
 import Login from './views/components/auth/login';
 import SignUp from './views/components/auth/signUp';
+import ActivateUserAccount from './views/components/auth/activateUserAccount';
 import PageTitle from './utils/pageTitle';
 import Reservations from './views/components/users/customer/dashboard/reservations';
 import NewReservation from './views/components/users/customer/dashboard/reservations/newReservation';
@@ -66,8 +67,24 @@ function AppContent() {
             <Route path={"/:username/dashboard"} element={<Dashboard />} />
             <Route path={"/home"} element={<LandingPage />} />
             <Route path={"/"} element={<LandingPage />} />
-            <Route path={"/auth/login"} element={<Login />} />
-            <Route path={"/auth/signup"} element={<SignUp />} />
+            <Route 
+                path={"/auth/login"} 
+                element={
+                    <>
+                        <PageTitle title={'Login | Quick Analytics'} />
+                        <Login />
+                    </>
+                }
+            />
+            <Route 
+                path={"/auth/signup"} 
+                element={
+                    <>
+                        <PageTitle title={'Sign Up | Quick Analytics'} />
+                        <SignUp />
+                    </>
+                } 
+            />
             <Route 
                 path={"/:pid/dashboard"} 
                 element={
@@ -76,6 +93,15 @@ function AppContent() {
                         <Dashboard />
                     </>
                 } 
+            />
+            <Route 
+                path={"/activate-account/:token"} 
+                element={
+                    <>
+                        <PageTitle title={'Activate Account | Quick Analytics'} />
+                        <ActivateUserAccount />
+                    </>
+                }
             />
             <Route 
                 path={"/:pid/reservations"} 

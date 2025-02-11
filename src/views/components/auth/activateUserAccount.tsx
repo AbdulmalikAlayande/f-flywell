@@ -1,150 +1,96 @@
-import React, { useState } from "react";
-import BolaAirLogo from "../../../assets/images/jpg/logo-classic.jpg";
-import ButtonWithIcon from "../reusables/buttonWithIcon";
-import axios from "axios";
-import { SIGN_IN_BASE_URL } from "../../../utils/utility.functions";
-import { useNavigate } from "react-router";
-import { toast } from "react-toastify";
-import Logger from "../../../utils/logger";
+import React, { useState, useRef } from 'react';
+import axios from 'axios';
+import { SIGN_IN_BASE_URL } from '../../../utils/utility.functions';
+import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
+import Logger from '../../../utils/logger';
 
 const ActivateUserAccount = () => {
-    const [otp, setOtp] = useState<string>("");
-    const navigate = useNavigate()
-    const [accountActivationSuccessful, setAccountActivationSuccessful] = useState<boolean>(false);
+  const [otp, setOtp] = useState(Array(6).fill(''));
+  const inputs = useRef<HTMLInputElement[]>([]);
+  const navigate = useNavigate();
 
-    const handleChangeEvent = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
+    const { value } = e.target;
+    if (/^\d$/.test(value)) {
+      const newOtp = [...otp];
+      newOtp[index] = value;
+      setOtp(newOtp);
+      if (index < 5) {
+        inputs.current[index + 1].focus();
+      } else {
+        sendOTPToBackend(newOtp.join(''));
+      }
+    }
+  };
 
-        event.preventDefault();
-        const eventTarget = event.target as HTMLInputElement;
-        setOtp(otp+eventTarget.value)
-
-        if(otp.length === 6){
-            sendOTPToBackend()
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => {
+    if (e.key === 'Backspace') {
+      e.preventDefault();
+      const newOtp = [...otp];
+      if (newOtp[index] === '') {
+        if (index > 0) {
+          inputs.current[index - 1].focus();
         }
-        else return;
-    };
+      } else {
+        newOtp[index] = '';
+        setOtp(newOtp);
+      }
+    }
+  };
 
-    function sendOTPToBackend(){
-        axios.post(SIGN_IN_BASE_URL+`activate-account/${otp}`)
-        .then((response)=>{
-            if(response.data.statusCode === 201){
-                console.log("hello");
-                setAccountActivationSuccessful(true)
-                navigate(`/${response.data.responseData.email}/dashboard`)
-                Logger.success("Response Data:: "+response.data);
-            }
-        }).catch((error)=>{
-              toast.error(error.response.data.message, 
-                {position: toast.POSITION.TOP_CENTER
-              })
-              Logger.error(error)
-        })
-    }
+  const sendOTPToBackend = (otp: string) => {
+    axios
+      .post(`${SIGN_IN_BASE_URL}activate-account/${otp}`)
+      .then((response) => {
+        if (response.data.statusCode === 201) {
+          navigate(`/${response.data.responseData.email}/dashboard`);
+          Logger.success('Response Data: ' + response.data);
+        }
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+        Logger.error(error);
+      });
+  };
 
-    function navigateToDashboard(event: React.MouseEvent<HTMLButtonElement>){
-      event.preventDefault();
-      const username = 'username';
-      navigate(`/${username}/dashboard`);
-    }
-    
-    function resendOTP(event: React.MouseEvent<HTMLButtonElement>): void {
-      event.preventDefault();
-    }
+  const resendOTP = (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    // Implement resend OTP functionality here
+  };
 
   return (
-    <div className="Activate-User-Account-Main-Frame">
-      {!accountActivationSuccessful ? (
-        <div className="Activate-User-Account-Inner-Frame">
-          <div className="Part-1">
-            <div className="Logo-Frame">
-              <img src={BolaAirLogo} alt="Logo" />
-            </div>
-            <p className="Prompt">
-              We Sent An OTP To Your Mail At {localStorage.getItem("email")},
-              Please Enter The OTP Sent To You, To Activate Your Account
-            </p>
-          </div>
-          <div className="Input-Fields-Main-Frame">
-            <div className="Input-Fields-Frame">
-              <form className="Input-Fields-Form">
-                <input
-                  id={"OTPInput"}
-                  tabIndex={0}
-                  placeholder={"0"}
-                  onChange={handleChangeEvent}
-                  type="text"
-                  required
-                />
-                <input
-                  id={"OTPInput"}
-                  tabIndex={1}
-                  placeholder={"0"}
-                  onChange={handleChangeEvent}
-                  type="text"
-                  required
-                />
-                <input
-                  id={"OTPInput"}
-                  tabIndex={2}
-                  placeholder={"0"}
-                  onChange={handleChangeEvent}
-                  type="text"
-                  required
-                />
-                <input
-                  id={"OTPInput"}
-                  tabIndex={3}
-                  placeholder={"0"}
-                  onChange={handleChangeEvent}
-                  type="text"
-                  required
-                />
-                  <input
-                  id={"OTPInput"}
-                  tabIndex={2}
-                  placeholder={"0"}
-                  onChange={handleChangeEvent}
-                  type="text"
-                  required
-                />
-                  <input
-                  id={"OTPInput"}
-                  tabIndex={2}
-                  placeholder={"0"}
-                  onChange={handleChangeEvent}
-                  type="text"
-                  required
-                />
-              </form>
-            </div>
-            <div className="Didnt-Receive-OTP">
-              <p>
-                Didn't Receive An OTP,{" "}
-                <button onClick={resendOTP}>Resend OTP</button>
-              </p>
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div className="Account-Activation-Successful-Div">
-          <div className="Activation-Successful-Mark"></div>
-          <p>
-            Congratulations, Your Account Has Been Activated Successfully,
-            <br />
-            Click The Buttons Below To Either Go To Your Dashboard
-            <br />
-            Or Go Back To Our Home Page
-          </p>
-          <div className="Next-Steps">
-            <ButtonWithIcon icon={"uil:home"} buttonPlaceHolder={"Home"} />
-            <ButtonWithIcon
-              onClick={navigateToDashboard}
-              icon={"pixelarticons:dashbaord"}
-              buttonPlaceHolder={"Dashboard"}
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+      <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-8 max-w-md w-full">
+        <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6 text-center">
+          Account Activation
+        </h2>
+        <p className="text-gray-600 dark:text-gray-400 mb-4 text-center">
+          Enter the 6-digit code sent to your email.
+        </p>
+        <div className="flex justify-center space-x-2 mb-6">
+          {otp.map((digit, index) => (
+            <input
+              key={index}
+              type="text"
+              maxLength={1}
+              value={digit}
+              onChange={(e) => handleChange(e, index)}
+              onKeyDown={(e) => handleKeyDown(e, index)}
+              ref={(el) => el && (inputs.current[index] = el)}
+              className="w-12 h-12 text-center text-xl border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
             />
-          </div>
+          ))}
         </div>
-      )}
+        <button
+          onClick={resendOTP}
+          className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-blue-500 dark:hover:bg-blue-600"
+        >
+          Resend OTP
+        </button>
+      </div>
     </div>
   );
 };
