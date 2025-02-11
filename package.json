@@ -17,6 +17,7 @@
     "@mui/material": "^6.4.2",
     "@mui/x-date-pickers": "^7.24.1",
     "@preline/range-slider": "^2.5.2",
+    "@preline/scrollspy": "^2.5.2",
     "@preline/select": "^2.5.2",
     "@tailwindcss/postcss": "^4.0.3",
     "@tailwindcss/vite": "^4.0.0",

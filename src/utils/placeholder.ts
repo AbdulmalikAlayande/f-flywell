@@ -1,4 +1,12 @@
 import { AvailableFlight, CheapFlight, RandomFlight } from "../views/interfaces/interface";
+import beijing from "@assets/images/jpg/beijing.jpg";
+import london from "@assets/images/jpg/london.jpg";
+import newYork from "@assets/images/jpg/new-york.jpg";
+import melbourne from "@assets/images/jpg/melbourne.jpg";
+import paris from "@assets/images/jpg/paris.jpg";
+import dubai from "@assets/images/jpg/dubai.jpg";
+import frankFurt from "@assets/images/jpg/frankfurt.jpg";
+import rome from "@assets/images/jpg/rome.jpg";
 
 
 
@@ -26,7 +34,7 @@ export const availableFlights: AvailableFlight[] = [
         flight: {
             arrivalCity: "New York",
             departureCity: "Los Angeles",
-            displayImage: "../../../../../../assets/images/jpg/new-york.jpg",
+            displayImage: newYork,
             arrivalAirport: {
                 name: "John F. Kennedy International Airport",
                 icaoCode: "KJFK",
@@ -61,7 +69,7 @@ export const availableFlights: AvailableFlight[] = [
         flight: {
             arrivalCity: "London",
             departureCity: "Chicago",
-            displayImage: "../../../../../../assets/images/jpg/london.jpg",
+            displayImage: london,
             arrivalAirport: {
                 name: "Heathrow Airport",
                 icaoCode: "EGLL",
@@ -96,7 +104,7 @@ export const availableFlights: AvailableFlight[] = [
         flight: {
             arrivalCity: "Beijing, China",
             departureCity: "San Francisco, CA",
-            displayImage: "../../../../../../assets/images/jpg/beijing.jpg",
+            displayImage: beijing,
             arrivalAirport: {
                 name: "Beijing Capital International Airport",
                 icaoCode: "ZBAA",
@@ -131,7 +139,7 @@ export const availableFlights: AvailableFlight[] = [
         flight: {
             arrivalCity: "Paris, France",
             departureCity: "Miami, FL",
-            displayImage: "../../../../../../assets/images/jpg/paris.jpg",
+            displayImage: paris,
             arrivalAirport: {
                 name: "Charles de Gaulle Airport",
                 icaoCode: "LFPG",
@@ -166,7 +174,7 @@ export const availableFlights: AvailableFlight[] = [
         flight: {
             arrivalCity: "Dubai UAE",
             departureCity: "Sydney Australia",
-            displayImage: "../../../../../../assets/images/jpg/dubai.jpg",
+            displayImage: dubai,
             arrivalAirport: {
                 name: "Dubai International Airport",
                 icaoCode: "OMDB",
@@ -201,7 +209,7 @@ export const availableFlights: AvailableFlight[] = [
         flight: {
             arrivalCity: "Frankfurt, Germany",
             departureCity: "Tokyo, Jpan",
-            displayImage: "../../../../../../assets/images/jpg/frankfurt.jpg",
+            displayImage: frankFurt,
             arrivalAirport: {
                 name: "Frankfurt Airport",
                 icaoCode: "EDDF",
@@ -236,7 +244,7 @@ export const availableFlights: AvailableFlight[] = [
         flight: {
             arrivalCity: "Melbourne, Australia",
             departureCity: "Johannesburg, South Africa",
-            displayImage: "../../../../../../assets/images/jpg/melbourne.jpg",
+            displayImage: melbourne,
             arrivalAirport: {
                 name: "Melbourne Airport",
                 icaoCode: "YMML",
@@ -271,7 +279,7 @@ export const availableFlights: AvailableFlight[] = [
         flight: {
             arrivalCity: "Rome, Italy",
             departureCity: "Buenos Aires, Argentina",
-            displayImage: "../../../../../../assets/images/jpg/rome.jpg",
+            displayImage: rome,
             arrivalAirport: {
                 name: "Leonardo da Vinci International Airport",
                 icaoCode: "LIRF",

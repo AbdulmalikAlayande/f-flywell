@@ -13,6 +13,15 @@ const tabs = [
   { id: 3, label: "Cheapest", icon: "mdi:tag" },
 ];
 
+const refundableBadges = ["partially", "non", "fully"] as const;
+const sortOptionBadges = ["recommended", "cheapest", "fastest"] as const;
+
+function getRandomNumber(offset: number, stop: number) {
+    return Math.floor(Math.random() * (stop - offset + 1)) + offset;
+}
+
+
+
 const NewReservation = () => {
 
     const [activeTab, setActiveTab] = useState(tabs[0]);
@@ -102,22 +111,28 @@ const NewReservation = () => {
                 </div>
             </section>
             {/* Filter, Sort  and Result */}
-            <section className='w-full mt-6 flex items-center justify-between gap-8'>
+            <section 
+                className={`
+                    relative w-full mt-6 flex flex-col lg:flex-row gap-10 lg:gap-6 
+                    min-h-[calc(100vh-300px)] items-center justify-between
+                `}
+            >
                 {/* Filter */}
                 <aside 
                     id="hs-sidebar-content-push" 
                     className={`
-                        hidden hs-overlay [--auto-close:md] lg:block lg:translate-x-0 lg:end-auto lg:bottom-0 max-w-65
-                        hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform h-full top-0 
-                        start-0 bottom-0 z-[60]
+                        hidden hs-overlay [--auto-close:md] lg:block lg:translate-x-0 lg:end-auto lg:bottom-0 max-w-65 
+                        hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform h-full top-0
+                        start-0 bottom-0 z-[60] lg:sticky lg:top-4 lg:h-[calc(100vh-120px)] lg:overflow-y-auto lg:w-80 w-full
+                        flex-shrink-0 rounded-xl mt-4 px-4 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600
                     `}
                     role="dialog" 
                     tabIndex={-1 }
                     aria-label="Sidebar"
                 >
                     {/* Header */}
-                    <header className="p-4 flex justify-between items-center gap-x-2">
-                        <div className="lg:hidden -me-2 bg-green-300 h-15 w-15">
+                    <header className="lg:hidden -me-2 p-4 flex justify-between items-center gap-x-2">
+                        <div className="h-15 w-15">
                             {/* Close Button */}
                             <button type="button" className="flex justify-center items-center gap-x-3 size-6 dark:bg-white focus:bg-gray-100 bg-neutral-800 border border-gray-200 text-sm text-gray-600 hover:bg-gray-100 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:hover:text-neutral-200 dark:focus:text-neutral-200" data-hs-overlay="#hs-sidebar-content-push">
                                 <svg className="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
@@ -192,14 +207,14 @@ const NewReservation = () => {
                 </aside>
                 {/* Result and Sort */}
                 
-                <div className='flex flex-col w-screen max-w-full gap-4'>
+                <div className='flex flex-col flex-grow w-full lg:w-auto max-w-full gap-4'>
                     <div className="sm:hs-overlay-layout-open:ms-64 max-h-15 transition-all duration-300">
                         {/* Navigation Toggle */}
                         <div className="lg:hidden p-2">
                             <button type="button" className="flex justify-center items-center gap-x-3 size-8 text-sm text-gray-600 hover:bg-gray-100 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:hover:text-neutral-200 dark:focus:text-neutral-200" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-sidebar-content-push" aria-label="Toggle navigation" data-hs-overlay="#hs-sidebar-content-push">
-                            <svg className="sm:hidden shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M15 3v18"/><path d="m8 9 3 3-3 3"/></svg>
-                            <svg className="hidden sm:block shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M15 3v18"/><path d="m10 15-3-3 3-3"/></svg>
-                            <span className="sr-only">Navigation Toggle</span>
+                                <svg className="sm:hidden shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M15 3v18"/><path d="m8 9 3 3-3 3"/></svg>
+                                <svg className="hidden sm:block shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M15 3v18"/><path d="m10 15-3-3 3-3"/></svg>
+                                <span className="sr-only">Navigation Toggle</span>
                             </button>
                         </div>
                         {/* End Navigation Toggle */}
@@ -208,43 +223,44 @@ const NewReservation = () => {
                         <p className={"dark:text-white font-medium text-gray-500"}>10 of 150 Results</p>
                     </div>
                     {/* Sort */}
-                    <nav className="flex items-center h-20 w-full bg-white dark:bg-[#202A3A] font-medium rounded-2xl" aria-label="Sort Tabs" role="sort-tablist" aria-orientation="horizontal">
-                        <ul className="relative list-none h-full w-full lg:w-1/2 flex items-center justify-start overflow-x-auto">
-                            {tabs.map((tab, index) => (
-                                <motion.li 
-                                    key={tab.id} 
-                                    className={`flex flex-col md:flex-row items-center gap-4 px-4 pt-4 md:pt-0 w-full h-full relative cursor-pointer select-none text-[#0f1115]`}
-                                    onClick={() => setActiveTab(tab)}
-                                >
-                                    <Icon icon={tab.icon} />
-                                    <p className="whitespace-nowrap">{tab.label}</p>
-                                    {tab === activeTab ? (
-                                        <motion.span
-                                            className={`ml-2 md:mr-0 ${index === 0 && 'rounded-l-xl'} ${index === tabs.length - 1 && 'rounded-r-xl'} absolute bg-[#2563eb] bottom-0 left-0 right-0 h-1`} 
-                                            layoutId="underline"
-                                            id="underline"
-                                        />
-                                    ) : null}
-                                </motion.li>
-                            ))}
-                        </ul>
+                    <nav className="sticky top-0 z-10 bg-white dark:bg-[#202A3A] rounded-xl mb-4">
+                        <div className="flex items-center h-20 w-full font-medium">
+                            <ul className="relative list-none h-full w-full lg:w-1/2 flex items-center justify-start overflow-x-auto">
+                                {tabs.map((tab, index) => (
+                                    <motion.li 
+                                        key={index} 
+                                        className="flex flex-col md:flex-row items-center gap-4 px-4 pt-4 md:pt-0 w-full h-full relative cursor-pointer select-none text-[#0f1115]"
+                                        onClick={() => setActiveTab(tab)}
+                                    >
+                                        <Icon icon={tab.icon} />
+                                        <p className="whitespace-nowrap">{tab.label}</p>
+                                        {tab === activeTab && (
+                                            <motion.span
+                                                className="ml-2 md:mr-0 absolute bg-[#2563eb] bottom-0 left-0 right-0 h-1"
+                                                layoutId="underline"
+                                            />
+                                        )}
+                                    </motion.li>
+                                ))}
+                            </ul>
+                        </div>
                     </nav>
                     {/* Result */}
-                    <main className={'w-full'}>
-                        <ul className={"w-full flex flex-col gap-4 md:gap-6"}>
+                    <main className="h-[calc(100vh-200px)] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600">
+                        <ul className="flex flex-col gap-4"> 
                             {availableFlights.map((flight, index) => (
                                 <li 
                                     className={`
                                         w-full items-center bg-white border border-gray-200 text-gray-800 
-                                        rounded-2xl dark:bg-[#] dark:border-neutral-700 dark:text-white
+                                        rounded-2xl dark:bg-[#202A3A] dark:border-neutral-700 dark:text-white
                                     `}
                                 >
                                     <AvailableFlightCard 
                                         key={index}
                                         {...flight}
                                         badge={{
-                                            refundable: "partially",
-                                            sortOption: "recommended"
+                                            refundable: refundableBadges[getRandomNumber(0, 2)],
+                                            sortOption: sortOptionBadges[getRandomNumber(0, 2)]
                                         }}
                                     />
                                 </li>
