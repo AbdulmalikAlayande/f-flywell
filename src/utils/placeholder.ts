@@ -10,18 +10,18 @@ import rome from "@assets/images/jpg/rome.jpg";
 
 
 
-function generateUUID(): string {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      const r = (Math.random() * 16) | 0,
-            v = c === 'x' ? r : (r & 0x3) | 0x8;
-      return v.toString(16);
-    });
-}
+// function generateUUID(): string {
+//     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+//       const r = (Math.random() * 16) | 0,
+//             v = c === 'x' ? r : (r & 0x3) | 0x8;
+//       return v.toString(16);
+//     });
+// }
 
 export const availableFlights: AvailableFlight[] = [
 
     {
-        publicId: generateUUID(),
+        publicId: "d5e6f7a8-9b0c-1d2e-3f4a-5b6c7d8e9f0a",
         seatsRemaining: 150,
         duration: "6hrs",   
         flightNumber: "AA123",
@@ -56,7 +56,7 @@ export const availableFlights: AvailableFlight[] = [
         },
     },
     {
-        publicId: generateUUID(),
+        publicId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
         seatsRemaining: 120,
         duration: "5hrs",
         flightNumber: "BA456",
@@ -91,7 +91,7 @@ export const availableFlights: AvailableFlight[] = [
         },
     },
     {
-        publicId: generateUUID(),
+        publicId: "9b2e3d7e-6c3b-4b7e-8a2e-1d2c3e4f5a6b",
         seatsRemaining: 180,
         duration: "7hrs",
         flightNumber: "CA789",
@@ -126,7 +126,7 @@ export const availableFlights: AvailableFlight[] = [
         },
     },
     {
-        publicId: generateUUID(),
+        publicId: "d2c3e4f5-6a7b-8c9d-0e1f-2b3c4d5e6f7a",
         seatsRemaining: 100,
         duration: "8hrs",
         flightNumber: "DL012",
@@ -161,7 +161,7 @@ export const availableFlights: AvailableFlight[] = [
         },
     },
     {
-        publicId: generateUUID(),
+        publicId: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
         seatsRemaining: 130,
         duration: "9hrs",
         flightNumber: "EK345",
@@ -196,7 +196,7 @@ export const availableFlights: AvailableFlight[] = [
         },
     },
     {
-        publicId: generateUUID(),
+        publicId: "3e4f5a6b-7c8d-9e0f-1a2b-3c4d5e6f7a8b",
         seatsRemaining: 140,
         duration: "10hrs",
         flightNumber: "LH678",
@@ -231,7 +231,7 @@ export const availableFlights: AvailableFlight[] = [
         },
     },
     {
-        publicId: generateUUID(),
+        publicId: "5c6d7e8f-9a0b-1c2d-3e4f-5a6b7c8d9e0f",
         seatsRemaining: 160,
         duration: "11hrs",
         flightNumber: "QF901",
@@ -266,7 +266,7 @@ export const availableFlights: AvailableFlight[] = [
         },
         },
     {
-        publicId: generateUUID(),
+        publicId: "7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d",
         seatsRemaining: 110,
         duration: "12hrs",
         flightNumber: "AF234",
@@ -302,7 +302,7 @@ export const availableFlights: AvailableFlight[] = [
         
     },
     {
-        publicId: generateUUID(),
+        publicId: "9e0f1a2b-3c4d-5e6f-7a8b-9c0d1e2f3a4b",
         seatsRemaining: 90,
         duration: "13hrs",
         flightNumber: "SQ567",
@@ -337,7 +337,7 @@ export const availableFlights: AvailableFlight[] = [
         },
     },
     {
-        publicId: generateUUID(),
+        publicId: "b1c2d3e4-5f6a-7b8c-9d0e-1f2a3b4c5d6e",
         seatsRemaining: 80,
         duration: "14hrs",
         flightNumber: "UA890",

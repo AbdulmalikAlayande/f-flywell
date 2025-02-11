@@ -7,7 +7,7 @@ import axios from "axios";
 import { loginUrl } from "../../../utils/utility.functions";
 import { useNavigate } from "react-router";
 import Logger from "../../../utils/logger";
-import Logo from "@assets/images/tsx/Logo"
+import Logo from "@src/assets/icons/tsx/Logo"
 import ThemeToggle from "@src/utils/themeToggle";
 
 

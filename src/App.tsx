@@ -20,6 +20,7 @@ import ActivateUserAccount from './views/components/auth/activateUserAccount';
 import PageTitle from './utils/pageTitle';
 import Reservations from './views/components/users/customer/dashboard/reservations';
 import NewReservation from './views/components/users/customer/dashboard/reservations/newReservation';
+import FlightDetails from './views/components/users/customer/dashboard/reservations/flightDetails';
 
 
 declare global {
@@ -65,8 +66,24 @@ function AppContent() {
     return(
         <Routes>
             <Route path={"/:username/dashboard"} element={<Dashboard />} />
-            <Route path={"/home"} element={<LandingPage />} />
-            <Route path={"/"} element={<LandingPage />} />
+            <Route 
+                path={"/home"} 
+                element={
+                    <>
+                        <PageTitle title={'Home | Quick Analytics'} />
+                        <LandingPage />
+                    </>
+                } 
+            />
+            <Route 
+                path={"/"} 
+                element={
+                    <>
+                        <PageTitle title={'Home | Quick Analytics'} />
+                        <LandingPage />
+                    </>
+                } 
+            />
             <Route 
                 path={"/auth/login"} 
                 element={
@@ -121,6 +138,17 @@ function AppContent() {
                     </>
                 } 
             />
+            
+            <Route 
+                path={"/flights"} 
+                element={
+                    <>
+                        <PageTitle title={'Flight Details'} />
+                        <FlightDetails />
+                    </>
+                } 
+            /> 
+
             <Route path={"/:pid/profile"} element={<Profile />} />
             <Route path={"/:pid/my-trips"} element={<Trips />} />
             <Route path={"/admin-signup"} element={<AdminSignUp />}/>

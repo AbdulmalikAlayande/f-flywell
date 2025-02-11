@@ -9,7 +9,7 @@ import { signUpUrl } from "@utils/utility.functions";
 import { toast } from "react-toastify";
 import Logger  from "@utils/logger";
 import ThemeToggle from "@src/utils/themeToggle";
-import Logo from "@src/assets/images/tsx/Logo";
+import Logo from "@src/assets/icons/tsx/Logo";
 
 const initialData: SignUpData = {
   email: "",

@@ -1,6 +1,6 @@
 import { useRef } from "react";
 // import ButtonWithIcon from "./buttonWithIcon";
-import Logo from "@assets/images/tsx/Logo";
+import Logo from "@src/assets/icons/tsx/Logo";
 import { NavLink, useLocation } from "react-router";
 import { IoMdClose } from "react-icons/io";
 import { RiDashboardFill } from "react-icons/ri";

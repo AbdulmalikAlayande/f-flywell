@@ -6,10 +6,10 @@ type Props = {
     queryKey: string
 };
 
-function useFlights<Flight>(props: Props): UseQueryResult<Flight, Error> {
-    async function queryFunction(): Promise<Flight> {
-        const result = await axios.get<Flight>(props.url)
-            .then((axiosResponse: AxiosResponse<Flight>)=>{
+function useFlights<Flights>(props: Props): UseQueryResult<Flights, Error> {
+    async function queryFunction(): Promise<Flights> {
+        const result = await axios.get<Flights>(props.url)
+            .then((axiosResponse: AxiosResponse<Flights>)=>{
                 console.log("flight data => ", axiosResponse.data)
                 return axiosResponse.data
             }).catch((error)=>{
@@ -21,7 +21,7 @@ function useFlights<Flight>(props: Props): UseQueryResult<Flight, Error> {
         throw new Error(result.message);
     }
 
-    return useQuery<Flight>({
+    return useQuery<Flights>({
         queryKey: [props.queryKey],
         queryFn: queryFunction,
         refetchOnMount: false

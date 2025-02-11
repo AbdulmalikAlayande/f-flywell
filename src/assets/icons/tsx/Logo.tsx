@@ -1,5 +1,5 @@
 
-import logo from "../../../../public/logo.svg";
+import logo from "@assets/images/svg/logo.svg";
 
 
 type LogoProps = {

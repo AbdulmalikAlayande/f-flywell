@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { availableFlights } from '@src/utils/placeholder';
 import AvailableFlightCard from './availableFlightCard';
+import { AvailableFlight } from '@src/views/interfaces/interface';
+import { useQuery } from '@tanstack/react-query';
 
 
 const tabs = [
@@ -26,7 +28,33 @@ const NewReservation = () => {
 
     const [activeTab, setActiveTab] = useState(tabs[0]);
     
+    // const { data } = useFlights<AvailableFlight>({
+    //     url: "http://localhost:5000/flights",
+    //     queryKey: "flights"
+    // });
+    const fetchAvailableFlights = async (): Promise<AvailableFlight[]> => {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(availableFlights);
+            }, 1000); 
+        });
+    };
+
+    const { data, error, isLoading } = useQuery<AvailableFlight[]>({
+
+        queryKey: ["flights"],
+        queryFn:fetchAvailableFlights
+    });
+
     function clearDate(){
+    }
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error loading flights</div>;
     }
 
     return (
@@ -248,7 +276,7 @@ const NewReservation = () => {
                     {/* Result */}
                     <main className="h-[calc(100vh-200px)] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600">
                         <ul className="flex flex-col gap-4"> 
-                            {availableFlights.map((flight, index) => (
+                            {data?.map((flight, index) => (
                                 <li 
                                     className={`
                                         w-full items-center bg-white border border-gray-200 text-gray-800 

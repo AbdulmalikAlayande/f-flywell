@@ -1,5 +1,5 @@
 import ThemeToggle from "@utils/themeToggle"
-import Logo from "@assets/images/tsx/Logo"
+import Logo from "@src/assets/icons/tsx/Logo"
 import { useNavigate } from "react-router"
 
 const NavBar = () => {
