@@ -4,7 +4,7 @@ import CallToActionButton from "../reusables/callToActionButton";
 import { Icon } from "@iconify-icon/react";
 import { LoginData, SignUpData } from "../../../styles/components/types";
 import axios from "axios";
-import { loginUrl } from "../../../utils/utility.functions";
+import { loginUrl } from "../../../utils/functions";
 import { useNavigate } from "react-router";
 import Logger from "../../../utils/logger";
 import Logo from "@src/assets/icons/tsx/Logo"

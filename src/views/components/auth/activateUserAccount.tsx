@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
-import { SIGN_IN_BASE_URL } from '../../../utils/utility.functions';
+import { SIGN_IN_BASE_URL } from '../../../utils/functions';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import Logger from '../../../utils/logger';

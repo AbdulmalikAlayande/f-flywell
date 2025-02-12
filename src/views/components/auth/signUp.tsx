@@ -5,7 +5,7 @@ import { Icon } from "@iconify-icon/react";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { SignUpData, LoginData } from "../../../styles/components/types";
-import { signUpUrl } from "@utils/utility.functions";
+import { signUpUrl } from "@src/utils/functions";
 import { toast } from "react-toastify";
 import Logger  from "@utils/logger";
 import ThemeToggle from "@src/utils/themeToggle";

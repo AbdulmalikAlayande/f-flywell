@@ -11,6 +11,7 @@ import preline from 'preline/plugin';
 const config: Config = {
   darkMode: "class", 
   content: [
+      './index.html',
       './src/**/*.{html,js,jsx,ts,tsx}',
       'node_modules/preline/dist/*.js', 
   ], 

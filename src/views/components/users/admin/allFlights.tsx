@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactModal from "react-modal";
 import AddNewFlight from "./addNewFlight";
-import { adminSideBarButtonData, addNewFlightModalStyle } from "@src/utils/utility.functions";
+import { adminSideBarButtonData, addNewFlightModalStyle } from "@src/utils/functions";
 import ButtonWithIcon from "../../reusables/buttonWithIcon";
 import DashboardNavBar from "../customer/dashboard/navbar";
 import DashBoardSideBar from "../customer/dashboard/sidebar";

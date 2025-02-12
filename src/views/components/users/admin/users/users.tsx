@@ -3,7 +3,7 @@ import {useState} from "react";
 import Customers from "./customers";
 import Admins from "./admins";
 import DashBoardSideBar from '@src/views/components/users/customer/dashboard/sidebar';
-import { adminSideBarButtonData } from '@src/utils/utility.functions';
+import { adminSideBarButtonData } from '@src/utils/functions';
 import DashboardNavBar from '@src/views/components/users/customer/dashboard/navbar';
     
 enum UserType {

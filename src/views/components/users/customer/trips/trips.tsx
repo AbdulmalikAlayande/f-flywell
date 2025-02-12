@@ -1,7 +1,6 @@
 import ButtonWithIcon from '@src/views/components/reusables/buttonWithIcon'
 import DashboardNavBar from '@src/views/components/users/customer/dashboard/navbar'
 import DashBoardSideBar from '@src/views/components/users/customer/dashboard/sidebar'
-import '../../../../../styles/components/users/customer/trips/trips.css'
 import { availableFlights } from '@src/utils/placeholder'
 
 const Trips = () => {
@@ -9,9 +8,9 @@ const Trips = () => {
     const  userId = "Hello"
        return (
               <div className={"User-Trips-Main-Frame"}>
-              <DashBoardSideBar userId={userId}/>
+              <DashBoardSideBar userId={userId} open={false} setSidebarOpen={function (arg: boolean): void {} }/>
                      <div className="User-Trips-Part-Two">
-                            <DashboardNavBar />
+                            <DashboardNavBar sidebarOpen={false} setSidebarOpen={function (arg: boolean): void {} } />
                             <div className={"User-Trips-Main-Body"}>
                             {availableFlights.map((trip)=>(
                                    <div className="Trip">

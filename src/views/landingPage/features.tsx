@@ -1,4 +1,4 @@
-import FeatureCard from "../components/reusables/card"
+import FeatureCard from "../components/reusables/featureCard"
 import TextBlock from "../components/typography/textBlock"
 import { RiSecurePaymentFill } from "react-icons/ri";
 import { FaChartBar } from "react-icons/fa";

@@ -93,7 +93,7 @@ const AvailableFlightCard = (props: AvailableFlightCardProps) => {
                 {/* Price & Action */}
                 <div className="flex flex-col items-end gap-3 min-w-[120px]">
                     <span className={`
-                        px-3 py-1 rounded-full text-xs font-medium
+                        px-1 md:px-3 py-1 rounded-full text-xs font-medium
                         ${props.badge.sortOption === "recommended" 
                             ? "bg-blue-100 text-blue-800 dark:bg-blue-800/30 dark:text-blue-500"
                             : props.badge.sortOption === "cheapest"
@@ -112,7 +112,7 @@ const AvailableFlightCard = (props: AvailableFlightCardProps) => {
                             className={`w-full rounded-[inherit]`}
                         >
                             View
-                        </NavLink>tag
+                        </NavLink>
                     </button>
                 </div>
             </div>
