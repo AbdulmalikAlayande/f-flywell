@@ -86,10 +86,8 @@ const HeroSearchFlight = () => {
                                         <option value="">Select a location</option>
                                         <option
                                             key={flight.publicId}
-                                            value={flight.departureLocation}
                                             data-hs-select-option={JSON.stringify(selectOptionConfig)}
                                         >
-                                            {flight.departureLocation}
                                         </option>
                                     </>
                                 ))}
@@ -104,10 +102,8 @@ const HeroSearchFlight = () => {
                                 {availableFlights.map((flight) => (
                                     <option
                                         key={flight.publicId}
-                                        value={flight.departureLocation}
                                         data-hs-select-option={JSON.stringify(selectOptionConfig)}
                                     >
-                                        {flight.departureLocation}
                                     </option>
                                 ))}
                             </select>
@@ -125,10 +121,8 @@ const HeroSearchFlight = () => {
                                 {availableFlights.map((flight) => (
                                     <option
                                         key={flight.publicId}
-                                        value={flight.departureLocation}
                                         data-hs-select-option={JSON.stringify(selectOptionConfig)}
                                     >
-                                        {flight.departureLocation}
                                     </option>
                                 ))}
                             </select>

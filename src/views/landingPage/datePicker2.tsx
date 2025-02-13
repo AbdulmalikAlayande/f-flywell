@@ -17,7 +17,7 @@ import {
     DatePickerToolbar,
     DatePickerToolbarProps,
 } from '@mui/x-date-pickers/DatePicker'
-import OutsideClickHandler from '../components/users/customer/dashboard/outsideClickHandler';
+import OutsideClickHandler from '../components/reusables/outsideClickHandler';
 
 type DatePickerProps = {
     onClear: (value?: object | null)=>void;
