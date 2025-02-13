@@ -9,11 +9,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router";
 
 import Dashboard from "./views/components/users/customer/dashboard";
 import Profile from "./views/components/users/customer/profile/profile";
-import Trips from "./views/components/users/customer/trips/trips";
 import AdminSignUp from "./views/components/auth/adminSignUp";
 import Users from "./views/components/users/admin/users/users";
-import AdminDashboard from "./views/components/users/admin/dashboard/adminDashboard";
-import AllFlights from "./views/components/users/admin/allFlights";
+import AdminDashboard from "./views/components/users/admin/dashboard";
 import Login from './views/components/auth/login';
 import SignUp from './views/components/auth/signUp';
 import ActivateUserAccount from './views/components/auth/activateUserAccount';
@@ -150,11 +148,9 @@ function AppContent() {
             /> 
 
             <Route path={"/:pid/profile"} element={<Profile />} />
-            <Route path={"/:pid/my-trips"} element={<Trips />} />
             <Route path={"/admin-signup"} element={<AdminSignUp />}/>
             <Route path={"/bola-air/users"} element={<Users />}/>
             <Route path={"bola-air/admin/dashboard"} element={<AdminDashboard />}/>
-            <Route path={"bola-air/all-flights"} element={<AllFlights />}/>
         </Routes>
     )
 }

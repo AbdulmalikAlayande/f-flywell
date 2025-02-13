@@ -1,5 +1,3 @@
-import React from "react";
-import "../../../../../styles/components/users/customer/dashboard/pieChart.css";
 import { Pie } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -7,7 +5,6 @@ import {
   Tooltip,
   Legend,
   ChartData,
-  ChartOptions,
 } from "chart.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -82,7 +79,6 @@ const PieChart = () => {
     ],
   };
 
-  const options: ChartOptions = {};
   return (
     <div className="Flight-Schedule-Frame">
       {/**/}

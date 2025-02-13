@@ -257,7 +257,7 @@ const NewReservation = () => {
                                 {tabs.map((tab, index) => (
                                     <motion.li 
                                         key={index} 
-                                        className="flex flex-col md:flex-row items-center gap-4 px-4 pt-4 md:pt-0 w-full h-full relative cursor-pointer select-none text-[#0f1115]"
+                                        className="flex flex-col md:flex-row items-center gap-4 dark:text-white px-4 pt-4 md:pt-0 w-full h-full relative cursor-pointer select-none text-[#0f1115]"
                                         onClick={() => setActiveTab(tab)}
                                     >
                                         <Icon icon={tab.icon} />

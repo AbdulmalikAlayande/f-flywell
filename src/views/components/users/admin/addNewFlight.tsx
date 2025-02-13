@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { FLIGHT_BASE_URL } from "../../../../utils/utility.functions";
+import { FLIGHT_BASE_URL } from "../../../../utils/functions";
 import AuthInput from "../../reusables/authInput";
 import ButtonWithIcon from "../../reusables/buttonWithIcon";
 import {AirportSelection} from "./airportSelection";

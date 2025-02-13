@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaBell } from 'react-icons/fa';
-import OutsideClickHandler from '../outsideClickHandler';
+import OutsideClickHandler from '../../../../reusables/outsideClickHandler';
 import { format } from 'date-fns';
 
 const notifications = [

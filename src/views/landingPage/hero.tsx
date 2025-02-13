@@ -1,4 +1,4 @@
-import TextBlock from "../components/typography/textBlock";
+import TextBlock from "../components/reusables/ui/typography/textBlock";
 import earthLogo from "@assets/images/png/plane-round-the-globe.png"
 import HeroSearchFlight from "./heroSearchFlight";
 

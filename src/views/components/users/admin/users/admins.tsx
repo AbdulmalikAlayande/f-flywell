@@ -5,7 +5,7 @@ import {useState} from "react";
 import InviteFrame from "./inviteFrame";
 import {EmptyUsersFrame} from "./emptyUsersFrame";
 import ReactModal from "react-modal";
-import {inviteAdminModalStyle} from "@src/utils/utility.functions";
+import {inviteAdminModalStyle} from "@src/utils/functions";
 import InviteAdmin from "./inviteAdmin";
 import {useFetchUsers} from "./useFetchUsers";
 

@@ -1,6 +1,4 @@
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import { PickersDay } from '@mui/x-date-pickers/PickersDay';
 import { MdOutlineEditCalendar, MdRocketLaunch } from "react-icons/md";
 import { styled } from '@mui/material/styles';
@@ -17,7 +15,7 @@ import {
     DatePickerToolbar,
     DatePickerToolbarProps,
 } from '@mui/x-date-pickers/DatePicker'
-import OutsideClickHandler from '../components/users/customer/dashboard/outsideClickHandler';
+import OutsideClickHandler from '../components/reusables/outsideClickHandler';
 
 type DatePickerProps = {
     onClear: (value?: object | null)=>void;
@@ -83,67 +81,65 @@ const DatePicker2 = (props: DatePickerProps) => {
     }
 
     return (
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <div className="w-full h-full flex items-center relative">
-                <DatePicker 
-                    label={props.label} 
-                    onChange={(date) => {
-                        handleChange(date);
-                    }}
-                    maxDate={props.maxDate}
-                    minDate={props.minDate}
-                    slots={{
-                        openPickerIcon: MdOutlineEditCalendar,
-                        openPickerButton: StyledButton,
-                        day: StyledDay,
-                        toolbar: CustomToolbar,
-                    }}
-                    slotProps={{
-                        field: { 
-                            clearable: true, 
-                            onClear: handleClear
-                        },
-                        openPickerIcon: { fontSize: 'large' },
-                        openPickerButton: { color: 'primary' },
-                        toolbar: {
-                            toolbarFormat: 'yyyy',
-                            toolbarPlaceholder: '??',
-                        },
-                        actionBar: {
-                            actions: ['clear'],
-                        },
-                        textField: {
-                            InputProps: {
-                                style: {
-                                  backgroundColor: themeContext.theme === 'dark' ? '#364153' : '#F8F8FF',
-                                  borderRadius: "12px",
-                                  height: "100%",                                  
-                                },
+        <div className="w-full h-full flex items-center relative">
+            <DatePicker 
+                label={props.label} 
+                onChange={(date) => {
+                    handleChange(date);
+                }}
+                maxDate={props.maxDate}
+                minDate={props.minDate}
+                slots={{
+                    openPickerIcon: MdOutlineEditCalendar,
+                    openPickerButton: StyledButton,
+                    day: StyledDay,
+                    toolbar: CustomToolbar,
+                }}
+                slotProps={{
+                    field: { 
+                        clearable: true, 
+                        onClear: handleClear
+                    },
+                    openPickerIcon: { fontSize: 'large' },
+                    openPickerButton: { color: 'primary' },
+                    toolbar: {
+                        toolbarFormat: 'yyyy',
+                        toolbarPlaceholder: '??',
+                    },
+                    actionBar: {
+                        actions: ['clear'],
+                    },
+                    textField: {
+                        InputProps: {
+                            style: {
+                                backgroundColor: themeContext.theme === 'dark' ? '#364153' : '#F8F8FF',
+                                borderRadius: "12px",
+                                height: "100%",                                  
                             },
-                            // variant: 'filled',
-                            // focused: true,
-                            color: 'primary',
-                            error: error,
-                            helperText: error ? "Date is required" : "",
-                            className: twMerge(`
-                                w-full h-full px-4 py-2 text-sm md:text-lg 
-                                rounded-lg md:rounded-tr-xl 
-                                focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-                                ${error ? "border-red-500 ring-red-500" : "border-gray-300"}
-                            `)
                         },
-                    }}
-                />
-                
-                {cleared && (
-                    <OutsideClickHandler onClick={() => setCleared(false)}>
-                        <Alert className='absolute bottom-0 right-0'severity="success">
-                            Field cleared!
-                        </Alert>
-                    </OutsideClickHandler>
-                )}
-            </div>
-        </LocalizationProvider>
+                        // variant: 'filled',
+                        // focused: true,
+                        color: 'primary',
+                        error: error,
+                        helperText: error ? "Date is required" : "",
+                        className: twMerge(`
+                            w-full h-full px-4 py-2 text-sm md:text-lg 
+                            rounded-lg md:rounded-tr-xl 
+                            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+                            ${error ? "border-red-500 ring-red-500" : "border-gray-300"}
+                        `)
+                    },
+                }}
+            />
+            
+            {cleared && (
+                <OutsideClickHandler onClick={() => setCleared(false)}>
+                    <Alert className='absolute bottom-0 right-0'severity="success">
+                        Field cleared!
+                    </Alert>
+                </OutsideClickHandler>
+            )}
+        </div>
     )
 }
 

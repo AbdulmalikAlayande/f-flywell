@@ -4,7 +4,7 @@ import axios from "axios";
 import {toast} from "react-toastify";
 import {useNavigate} from "react-router";
 import Logger from '@src/utils/logger';
-import { ADMIN_BASE_URL } from '@src/utils/utility.functions';
+import { ADMIN_BASE_URL } from '@src/utils/functions';
 import AuthInput from '../reusables/authInput';
 import CallToActionButton from '../reusables/callToActionButton';
 

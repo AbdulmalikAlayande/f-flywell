@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Icon } from "@iconify-icon/react";
-import "../../../../../styles/components/users/customer/profile/profile.css";
 import ReactModal from "react-modal";
 import EditProfilePicture from "./editProfilePicture";
 import axios from "axios";
-import { cloudinaryUploadUrl, profileEditModalStyle } from "@src/utils/utility.functions";
+import { cloudinaryUploadUrl, profileEditModalStyle } from "@src/utils/functions";
 import ButtonWithIcon from "@src/views/components/reusables/buttonWithIcon";
 import DashboardNavBar from "@src/views/components/users/customer/dashboard/navbar";
 import DashBoardSideBar from "@src/views/components/users/customer/dashboard/sidebar";

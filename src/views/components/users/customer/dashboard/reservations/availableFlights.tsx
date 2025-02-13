@@ -2,7 +2,7 @@ import { AvailableFlight } from "../../../../../interfaces/interface";
 import { Icon } from "@iconify-icon/react";
 import useFlights from "../../../../../../hooks/useFlights";
 import {useCallback, useState} from "react";
-import {FLIGHT_BASE_URL} from "../../../../../../utils/utility.functions";
+import {FLIGHT_BASE_URL} from "../../../../../../utils/functions";
 import Logger from "@src/utils/logger";
 
 type Props = {
