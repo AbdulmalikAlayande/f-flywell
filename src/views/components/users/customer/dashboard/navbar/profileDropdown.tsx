@@ -1,5 +1,5 @@
 import { useState } from "react";
-import OutsideClickHandler from "../outsideClickHandler";
+import OutsideClickHandler from "../../../../reusables/outsideClickHandler";
 import { Icon } from "@iconify-icon/react";
 
 const ProfileDropdown = () => {
