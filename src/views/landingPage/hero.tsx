@@ -1,10 +1,16 @@
 import TextBlock from "../components/reusables/ui/typography/textBlock";
 import earthLogo from "@assets/images/png/plane-round-the-globe.png"
 import HeroSearchFlight from "./heroSearchFlight";
+import { useNavigate } from "react-router";
 
 
 const Hero = () => {
 
+    const navigate = useNavigate();
+
+    function navigateTo(route: string): void {
+        navigate(route);
+    }
 
 
     return (
@@ -20,8 +26,18 @@ const Hero = () => {
 
                     {/* Actions */}
                     <div className={"flex flex-col items-center sm:flex-row justify-center gap-8 lg:justify-start mt-8"}>
-                        <button className={"font-bold px-8 lg:px-10 py-3 rounded bg-[#2563eb] dark:bg-[#1e40af] dark:text-gray-100 focus:bg-primary-700 focus:shadow-outline focus:outline-none transition duration-300"}>Book a Flight</button>
-                        <button className={"font-bold px-8 lg:px-10 py-3 rounded bg-[#2563eb] dark:bg-[#1e40af] dark:text-gray-100 hocus:bg-primary-700 focus:shadow-outline focus:outline-none transition duration-300"}>Our Services</button>
+                        <button
+                            onClick={()=>navigateTo("/reservations/new")}
+                            className={"font-bold px-8 lg:px-10 py-3 rounded cursor-pointer bg-[#2563eb] dark:bg-[#1e40af] dark:text-gray-100 focus:bg-primary-700 focus:shadow-outline focus:outline-none transition duration-300"}
+                        >
+                            Book a Flight
+                        </button>
+                        <button 
+                            onClick={() => navigateTo("#services")}
+                            className={"font-bold px-8 lg:px-10 py-3 rounded cursor-pointer bg-[#2563eb] dark:bg-[#1e40af] dark:text-gray-100 hocus:bg-primary-700 focus:shadow-outline focus:outline-none transition duration-300"}
+                        >
+                            Our Services
+                        </button>
                     </div>
                 </div>
                 {/* Right Column */}
