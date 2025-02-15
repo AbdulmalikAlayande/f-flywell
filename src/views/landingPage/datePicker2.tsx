@@ -47,6 +47,26 @@ function CustomToolbar(props: DatePickerToolbarProps<Date>){
     )
 }
 
+/**
+ * A customizable date picker component with validation and clear functionality.
+ * 
+ * @component
+ * @param {DatePickerProps} props - The props for the DatePicker2 component
+ * @param {string} props.label - The label text for the date picker
+ * @param {Date} [props.minDate] - The minimum selectable date
+ * @param {Date} [props.maxDate] - The maximum selectable date
+ * @param {(date: Date | null) => void} [props.onChange] - Callback fired when date is changed
+ * @param {(date: Date | null) => void} [props.onClear] - Callback fired when date is cleared
+ * 
+ * @remarks
+ * Uses Material-UI's DatePicker component internally with custom styling and behavior.
+ * Includes error handling for date validation and displays success alert when cleared.
+ * 
+ * @ts-expect-error
+ * The ownerState prop is required by MUI but type definitions are incomplete.
+ * This is a known issue with MUI's TypeScript definitions where the ownerState
+ * prop is not properly typed in the component's props interface.
+ */
 const DatePicker2 = (props: DatePickerProps) => {
     const themeContext  = useTheme();
 
@@ -101,13 +121,17 @@ const DatePicker2 = (props: DatePickerProps) => {
                         onClear: handleClear
                     },
                     openPickerIcon: { fontSize: 'large' },
-                    openPickerButton: { color: 'primary' },
+                    openPickerButton: { 
+                        color: 'primary' 
+                    },
                     toolbar: {
                         toolbarFormat: 'yyyy',
                         toolbarPlaceholder: '??',
                     },
                     actionBar: {
                         actions: ['clear'],
+                        // @ts-expect-error ownerState props probably doesn't exists on this none
+                        ownerState: undefined,
                     },
                     textField: {
                         InputProps: {

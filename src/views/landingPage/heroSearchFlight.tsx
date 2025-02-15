@@ -86,11 +86,10 @@ const HeroSearchFlight = () => {
                                 data-hs-select={JSON.stringify(selectConfig)} 
                                 className={`hidden`}
                             >
-                                {availableFlights.map((flight) => (
+                                {availableFlights.map((flight, index) => (
                                     <>
-                                        <option value="">Select a location</option>
                                         <option
-                                            key={flight.publicId}
+                                            key={`${index + 0}-${flight.publicId}`}
                                             data-hs-select-option={JSON.stringify(selectOptionConfig)}
                                         >
                                         </option>
@@ -104,9 +103,9 @@ const HeroSearchFlight = () => {
                                 data-hs-select={JSON.stringify(selectConfig)} 
                                 className={`hidden`}
                             >
-                                {availableFlights.map((flight) => (
+                                {availableFlights.map((flight, index) => (
                                     <option
-                                        key={flight.publicId}
+                                        key={`${index + 1}-${flight.publicId}`}
                                         data-hs-select-option={JSON.stringify(selectOptionConfig)}
                                     >
                                     </option>
