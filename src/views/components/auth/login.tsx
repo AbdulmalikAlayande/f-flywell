@@ -17,11 +17,11 @@ interface LoginData {
 }
 
 type LoginRequest = LoginData;
-interface LoginResponse extends LoginData {
+// interface LoginResponse extends LoginData {
     
-    message: string;
-    publicId: string;
-}
+//     message: string;
+//     publicId: string;
+// }
 const Login = () => {
   const [userData, setUserData] = useState<LoginRequest>({email: "", password: "",});
   const [loginIsSuccessful, setLoginSuccessFul] = useState<boolean>(false);

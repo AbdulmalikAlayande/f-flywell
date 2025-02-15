@@ -27,11 +27,11 @@ const initialData: SignUpRequest = {
   phoneNumber: "",
 };
 
-interface SignupResponse extends SignUpRequest {
+// interface SignupResponse extends SignUpRequest {
 
-    message: string;
-    publicId: string;
-}
+//     message: string;
+//     publicId: string;
+// }
 
 const SignUp = () => {
 

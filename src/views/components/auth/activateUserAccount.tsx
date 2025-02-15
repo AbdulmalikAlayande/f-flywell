@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
-import { SIGN_IN_BASE_URL } from '../../../utils/functions';
+import { SERVER_BASE_URL } from '../../../utils/constants';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import Logger from '../../../utils/logger';
@@ -41,7 +41,7 @@ const ActivateUserAccount = () => {
 
   const sendOTPToBackend = (otp: string) => {
     axios
-      .post(`${SIGN_IN_BASE_URL}activate-account/${otp}`)
+      .post(`${SERVER_BASE_URL}customer/activate-account/${otp}`)
       .then((response) => {
         if (response.data.statusCode === 201) {
           navigate(`/${response.data.responseData.email}/dashboard`);
