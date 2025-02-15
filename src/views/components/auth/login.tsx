@@ -4,7 +4,7 @@ import CallToActionButton from "../reusables/callToActionButton";
 import { Icon } from "@iconify-icon/react";
 import axios from "axios";
 import { loginUrl } from "../../../utils/functions";
-import { useNavigate } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import Logger from "../../../utils/logger";
 import Logo from "@src/assets/icons/tsx/Logo"
 import ThemeToggle from "@src/utils/themeToggle";
@@ -144,9 +144,9 @@ const Login = () => {
                 {/* Sign In Route */}
                 <p className="mt-10 text-center text-sm/6 text-gray-500">
                     Don't have an account?{' '}
-                    <a href="/auth/signup" className="font-semibold text-[#2563eb] dark:text-[#1e40af] hover:text-indigo-500">
+                    <NavLink to="/auth/signup" className="font-semibold text-[#2563eb] dark:text-[#1e40af] hover:text-indigo-500">
                         Sign Up
-                    </a>
+                    </NavLink>
                 </p>
 
             </section>
