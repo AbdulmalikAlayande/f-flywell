@@ -28,6 +28,11 @@ const NewReservation = () => {
 
     const [activeTab, setActiveTab] = useState(tabs[0]);
     
+    const [checkboxStates, setCheckboxStates] = useState({
+        oneWay: false,
+        roundTrip: false,
+        multiCity: false,
+    });
     // const { data } = useFlights<AvailableFlight>({
     //     url: "http://localhost:5000/flights",
     //     queryKey: "flights"
@@ -48,6 +53,16 @@ const NewReservation = () => {
 
     function clearDate(){
     }
+
+    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        
+        const { name, checked } = event.target;
+        setCheckboxStates(prevState => ({
+            ...prevState,
+            [name]: checked
+        }));
+    };
+
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -111,17 +126,35 @@ const NewReservation = () => {
             <section className='flex flex-col lg:flex-row items-center gap-10 lg:w-3/4 mt-6'>
                 <div className="flex gap-6">
                     <div className="flex">
-                        <input type="radio" name="hs-radio-group" className="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" id="hs-radio-group-1" checked />
+                        <input 
+                            checked={checkboxStates.oneWay}
+                            onChange={handleCheckboxChange}
+                            type="radio" name="hs-radio-group" 
+                            className="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" 
+                            id={"hs-radio-group-1"} 
+                        />
                         <label htmlFor="hs-radio-group-1" className="text-sm text-gray-500 ms-2 dark:text-neutral-400">One-Way</label>
                     </div>
 
                     <div className="flex">
-                        <input type="radio" name="hs-radio-group" className="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" id="hs-radio-group-2" />
+                        <input 
+                            checked={checkboxStates.roundTrip}
+                            onChange={handleCheckboxChange}
+                            type="radio" name="hs-radio-group" 
+                            className="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" 
+                            id="hs-radio-group-2"
+                        />
                         <label htmlFor="hs-radio-group-2" className="text-sm text-gray-500 ms-2 dark:text-neutral-400">Round-Trip</label>
                     </div>
 
                     <div className="flex">
-                        <input type="radio" name="hs-radio-group" className="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" id="hs-radio-group-3" />
+                        <input 
+                            checked={checkboxStates.multiCity}
+                            onChange={handleCheckboxChange}
+                            type="radio" name="hs-radio-group" 
+                            className="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" 
+                            id="hs-radio-group-3" 
+                        />
                         <label htmlFor="hs-radio-group-3" className="text-sm text-gray-500 ms-2 dark:text-neutral-400">Multi-City</label>
                     </div>
                 </div>
