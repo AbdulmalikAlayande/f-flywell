@@ -311,6 +311,7 @@ const NewReservation = () => {
                         <ul className="flex flex-col gap-4"> 
                             {data?.map((flight, index) => (
                                 <li 
+                                    key={`${index + 1}-${flight.publicId}`}
                                     className={`
                                         w-full items-center bg-white border border-gray-200 text-gray-800 
                                         rounded-2xl dark:bg-[#202A3A] dark:border-neutral-700 dark:text-white

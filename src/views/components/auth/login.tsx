@@ -2,7 +2,6 @@ import React, { FormEvent, useState } from "react";
 import AuthInput from "../reusables/authInput";
 import CallToActionButton from "../reusables/callToActionButton";
 import { Icon } from "@iconify-icon/react";
-import { LoginData, SignUpData } from "../../../styles/components/types";
 import axios from "axios";
 import { loginUrl } from "../../../utils/functions";
 import { useNavigate } from "react-router";
@@ -10,14 +9,21 @@ import Logger from "../../../utils/logger";
 import Logo from "@src/assets/icons/tsx/Logo"
 import ThemeToggle from "@src/utils/themeToggle";
 
+interface LoginData {
+    
+    email: string;
+    password: string;
+    phoneNumber?: string;
+}
 
-const initialData: LoginData = {
-  email: "",
-  password: "",
-};
-
+type LoginRequest = LoginData;
+interface LoginResponse extends LoginData {
+    
+    message: string;
+    publicId: string;
+}
 const Login = () => {
-  const [userData, setUserData] = useState<LoginData>(initialData);
+  const [userData, setUserData] = useState<LoginRequest>({email: "", password: "",});
   const [loginIsSuccessful, setLoginSuccessFul] = useState<boolean>(false);
   const navigateTo = useNavigate();
 
@@ -26,12 +32,9 @@ const Login = () => {
     postDataToBackend(userData, loginUrl);
   }
 
-  function postDataToBackend(data: LoginData | SignUpData, postUrl?: string | URL) {
-    const url = postUrl as string;
-    console.log(postUrl);
-    console.log(data);
+  function postDataToBackend(data: LoginData, url?: string | URL) {
 
-    axios.post(url, data)
+    axios.post(url as string, data)
       .then((response) => {
         setLoginSuccessFul(true);
         Logger.success("login response data ==> "+response.data);
