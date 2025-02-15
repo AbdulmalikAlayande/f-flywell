@@ -7,6 +7,11 @@ import DatePicker2 from "./datePicker2";
 import { addYears } from "date-fns";
 import Logger from "@src/utils/logger";
 
+const passengerTypes: Array<string> = [
+    "One Adult", "Multiple Adults", 
+    "One Adult and One Child", "One Adult and Multiple Children",
+    "Multiple Adults and One Child", "Multiple Adults and Multiple Children",
+]
 
 const HeroSearchFlight = () => {
     
@@ -77,7 +82,7 @@ const HeroSearchFlight = () => {
                     <div className="w-full flex flex-col md:flex-row justify-evenly gap-2 max-w-screen-xl mx-auto px-6">
                         <div className="w-full h-full">
                             <label htmlFor={""} className={"text-gray-900 dark:text-gray-100"}>From</label>
-                            <select id={""} 
+                            <select id={"departure-city-select"} 
                                 data-hs-select={JSON.stringify(selectConfig)} 
                                 className={`hidden`}
                             >
@@ -94,8 +99,8 @@ const HeroSearchFlight = () => {
                             </select>
                         </div>
                         <div className="w-full h-full">
-                            <label htmlFor={""} className={"text-gray-900 dark:text-gray-100"}>To</label>
-                            <select id={""} 
+                            <label htmlFor={"arrival-city-select"} className={"text-gray-900 dark:text-gray-100"}>To</label>
+                            <select id={"arrival-city-select"} 
                                 data-hs-select={JSON.stringify(selectConfig)} 
                                 className={`hidden`}
                             >
@@ -109,20 +114,21 @@ const HeroSearchFlight = () => {
                             </select>
                         </div>
                         <div className="w-full h-full">
-                            <label htmlFor={""} className={"text-gray-900 dark:text-gray-100"} >Departure Date</label>
+                            <label htmlFor={"passenger-type-select"} className={"text-gray-900 dark:text-gray-100"} >Departure Date</label>
                             <DatePicker2 onClear={onClearDate} label={"Click..."} minDate={new Date()} maxDate={addYears(new Date(), 1)} />
                         </div>
                         <div className="w-full h-full">
                             <label htmlFor={""} className={"text-gray-900 dark:text-gray-100"}>Passengers</label>
-                            <select id={""} 
+                            <select id={"passenger-type-select"} 
                                 data-hs-select={JSON.stringify(selectConfig)} 
                                 className={`hidden`}
                             >
-                                {availableFlights.map((flight) => (
+                                {passengerTypes.map((passengerType, index) => (
                                     <option
-                                        key={flight.publicId}
+                                        key={index}
                                         data-hs-select-option={JSON.stringify(selectOptionConfig)}
                                     >
+                                        {passengerType}
                                     </option>
                                 ))}
                             </select>
