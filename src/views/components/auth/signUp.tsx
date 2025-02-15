@@ -3,7 +3,7 @@ import AuthInput from "../reusables/authInput";
 import CallToActionButton from "../reusables/callToActionButton";
 import { Icon } from "@iconify-icon/react";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import Logger  from "@utils/logger";
 import ThemeToggle from "@src/utils/themeToggle";
@@ -179,9 +179,9 @@ const SignUp = () => {
                 </div>
                 <p className="mt-10 text-center text-sm/6 text-gray-500">
                     Already have an account?{' '}
-                    <a href="/auth/login" className="font-semibold text-[#2563eb] dark:text-[#1e40af] hover:text-indigo-500">
+                    <NavLink to="/auth/login" className="font-semibold text-[#2563eb] dark:text-[#1e40af] hover:text-indigo-500">
                         Sign In
-                    </a>
+                    </NavLink>
                 </p>
             </section>
         </div>
