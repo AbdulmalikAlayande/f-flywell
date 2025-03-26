@@ -110,7 +110,7 @@ function AppContent() {
                 } 
             />
             <Route 
-                path={"/activate-account/:token"} 
+                path={"auth/activate-account/"} 
                 element={
                     <>
                         <PageTitle title={'Activate Account | Quick Analytics'} />

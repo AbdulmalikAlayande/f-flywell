@@ -3,6 +3,7 @@ import { AvailableFlight } from "@src/views/interfaces/interface";
 import { NavLink } from 'react-router';
 
 interface AvailableFlightCardProps extends AvailableFlight {
+    openFlightDetailsViewPage: () => void;
     badge: {
         refundable: "partially" | "non" | "fully",
         sortOption: "recommended" | "cheapest" | "fastest",
@@ -106,7 +107,9 @@ const AvailableFlightCard = (props: AvailableFlightCardProps) => {
                     <span className="text-lg font-semibold dark:text-white">
                         {props.flightNumber}
                     </span>
-                    <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors">
+                    <button 
+                        onClick={props.openFlightDetailsViewPage}
+                        className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors">
                         <NavLink 
                             to={`/flights?pid=${props.publicId}`}
                             className={`w-full rounded-[inherit]`}

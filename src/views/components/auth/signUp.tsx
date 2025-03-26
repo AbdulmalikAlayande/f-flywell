@@ -2,82 +2,113 @@ import React, { FormEvent, useState } from "react";
 import AuthInput from "../reusables/authInput";
 import CallToActionButton from "../reusables/callToActionButton";
 import { Icon } from "@iconify-icon/react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { NavLink, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import Logger  from "@utils/logger";
+import { ApiClient } from '@src/utils/apiClient';
 import ThemeToggle from "@src/utils/themeToggle";
+import { CONFIG } from '@src/utils/constants';
 import Logo from "@src/assets/icons/tsx/Logo";
 import { SERVER_BASE_URL } from "@src/utils/constants";
+import { userDetailsStore } from '@src/store/userDetailsStore';
 
 interface SignupData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  phoneNumber: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    phoneNumber: string;
 }
-type SignUpRequest = SignupData;
 
-const initialData: SignUpRequest = {
-  email: "",
-  password: "",
-  firstName: "",
-  lastName: "",
-  phoneNumber: "",
+const initialData: SignupData = {
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
 };
 
-// interface SignupResponse extends SignUpRequest {
+interface SignupResponse {
 
-//     message: string;
-//     publicId: string;
-// }
+    message: string;
+    publicId: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phoneNumber: string;
+}
 
 const SignUp = () => {
 
-    const [userData, setUserData] = useState<SignUpRequest>(initialData);
+    const [userData, setUserData] = useState<SignupData>(initialData);
+    
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    
     const navigateTo = useNavigate();
 
     function handleInputChange(event: React.ChangeEvent<HTMLInputElement>): void {
         
         event.preventDefault();
-        const eventTarget = event.target as HTMLInputElement;
-        setUserData((previousValue) => ({
-            ...previousValue,
-            [eventTarget.name]: eventTarget.value,
+        const { name, value } = event.target;
+        
+        setUserData(prev => ({
+            ...prev,
+            [name]: value,
         }));
-    }
-
-    function handleSubmit(event: FormEvent<HTMLFormElement>): void {
-        event.preventDefault();
-        const url: URL = new URL(`${SERVER_BASE_URL}customer/new`)
-        postDataToBackend(userData, url);
+        
+        Logger.info(`onchange:: name: ${name}, value: ${value}`);
+        if (error) setError(null);
     }
     
-    async function postDataToBackend(request: SignUpRequest, url?: string | URL) {
+    const validateForm = (): boolean => {
+
+        return true;
+    }
+
+    function handleFormSubmission(event: FormEvent<HTMLFormElement>): void {
+        event.preventDefault();
+        signup(userData);
+    }
+    
+    async function signup(request: SignUpRequest, url?: string | URL) {
         
-      Logger.info("request:: "+JSON.stringify(request));
+        Logger.info("request:: "+JSON.stringify(request));
         
-        await axios.post(url as string, request)
-            .then((response) => {
-                try {
-                    if(response.data.statusCode === 201){
-                        toast.success("Success")
-                        Logger.success("Sign up was successful");
-                        navigateTo("/signup/activate-account");
-                    }
-                    Logger.info("response data at sign up ==> "+response.data);
-                }
-                catch (error) {
-                    Logger.error((error as Error).message);
-                }
-            })
-            .catch((error) => {              
-                Logger.error(error.message);
-                toast.error(error.message, {
-                    position: toast.POSITION.TOP_CENTER
-                })
-            })
+        if (!validateForm()) return;
+
+        setIsLoading(true);
+        setError(null);
+        
+        try {
+            
+            const apiClient = new ApiClient<SignupData, SignupResponse>(CONFIG.development.SERVER_BASE_URL, {});
+            const response = await apiClient.post('customer/new', userData);
+            
+            Logger.info("signup:: Response data: "+response.data)
+            if(response.status === 201){
+                const {publicId, firstName, lastName, email, phoneNumber} = response.data;
+                userDetailsStore.getState().setUserDetails({publicId, firstName, lastName, email, phoneNumber})
+
+                toast.success("Sign up was successful")
+                Logger.success("Sign up was successful");
+                
+                navigateTo("/auth/activate-account");
+            }
+        }
+        catch(error: unknown) {
+            const errorMessage = error instanceof AxiosError || error instanceof Error  ? error.response?.data?.message || error.message : 'Signup failed';
+            setError(errorMessage);
+            Logger.error(errorMessage);
+            toast.error(errorMessage, {
+                position: toast.POSITION.TOP_CENTER
+            });
+            
+        }
+        finally {
+            setIsLoading(false);
+        }
     }
 
     return (
@@ -96,7 +127,7 @@ const SignUp = () => {
                     </h2>
                 </div>
                 <div className={"flex flex-col items-center justify-center mt-10 p-6 sm:mx-auto sm:w-full sm:max-w-sm max-w-md bg-white dark:bg-transparent rounded-lg shadow-2xl"}>
-                    <form onSubmit={handleSubmit} className={"w-full space-y-6"}>
+                    <form onSubmit={handleFormSubmission} className={"w-full space-y-6"}>
                         <AuthInput
                           name={"firstName"}
                           inputType={"text"}
@@ -149,11 +180,16 @@ const SignUp = () => {
                         />
 
                         <div className="">
-                          <CallToActionButton
-                            type={"submit"}
-                            buttonPlaceHolder={"Sign Up"}
-                            className={"flex w-full justify-center rounded-md bg-[#2563eb] dark:bg-[#1e40af] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs cursor-pointer hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"}
-                          />
+                            {error && (
+                        	<div className="text-red-500 text-sm text-center">
+                        	    {error}
+                        	</div>
+                            )}
+                            <CallToActionButton
+                                type={"submit"}
+                                buttonPlaceHolder={isLoading ? "Signing up": "Sign up"}
+                                className={`flex w-full justify-center rounded-md bg-[#2563eb] dark:bg-[#1e40af] ${isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#2563eb] hover:bg-indigo-500'} px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs cursor-pointer hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
+                            />
                         </div>
                     </form>
 

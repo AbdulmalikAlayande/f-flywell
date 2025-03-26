@@ -9,20 +9,22 @@ interface ButtonProps{
     buttonPlaceHolder: string,
     type?: "button" | "submit" | "reset" | undefined,
     onClick?: (event: React.MouseEvent<HTMLButtonElement>)=>void,
-    style?: object
+    style?: object,
+    disabled?: boolean
 }
 
 const CallToActionButton = (props: ButtonProps) => {
   return (
       <button
-          id={props.id}
-          type={props.type}
-          onClick={props.onClick}
-          className={`Call-To-Action-Button ${props.className}`}
-          style={props.style && props.style}
-          value={props.value}
-          >
-              {props.buttonPlaceHolder}
+            id={props.id}
+            type={props.type}
+            onClick={props.onClick}
+            className={`Call-To-Action-Button ${props.className}`}
+            style={props.style && props.style}
+            value={props.value}
+            disabled={props.disabled}
+        >
+            {props.buttonPlaceHolder}
       </button>
   )
 }
