@@ -179,7 +179,7 @@ const SignUp = () => {
                           required
                         />
 
-                        <div className="">
+                        <div className="w-full flex flex-column items-center justify-between gap-4">
                             {error && (
                         	<div className="text-red-500 text-sm text-center">
                         	    {error}

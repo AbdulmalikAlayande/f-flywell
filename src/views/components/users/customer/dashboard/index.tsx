@@ -18,7 +18,7 @@ const Dashboard = () => {
     useEffect(fetchAndGet, [fetchAndGet]);
     
     useEffect(() => {
-        Logger.info("params: "+param.toString())  
+        Logger.info("params: "+JSON.stringify(param))  
     }, [param]);
     
 

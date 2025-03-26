@@ -27,7 +27,7 @@ const Reservations = () => {
     const [reservations, setReservations] = useState<Reservation[]>();
 
     const {data, error, isLoading} = useQuery({
-        queryKey: [`${param.userId}-reservations`],
+        queryKey: [`${param.username}-reservations`],
         queryFn: fetchReservations,
         staleTime: 6_000_000
 
@@ -66,7 +66,7 @@ const Reservations = () => {
     return (
         <div className='flex w-full h-screen overflow-hidden items-center justify-between'>
             
-            <DashBoardSideBar userId={param.userId} open={isSidebarOpen} setSidebarOpen={openSidebar}/>
+            <DashBoardSideBar userId={param.username} open={isSidebarOpen} setSidebarOpen={openSidebar}/>
             
             <main className='flex flex-col w-screen min-h-screen px-4 lg:px-6'>
                 
