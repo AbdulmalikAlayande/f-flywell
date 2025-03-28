@@ -1,13 +1,21 @@
 
-import { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { availableFlights } from '@src/utils/placeholder';
 import { AvailableFlight } from '@src/views/interfaces/interface';
 import { useQuery } from '@tanstack/react-query';
 import AvailableFlights from './availableFlights';
 import { SearchForm } from './searchForm';
-import { FilterSidebar } from './filterSidebar';
+import { FilterSidebar } from './mobile-filter-sidebar'
 import { TabNavigation } from './tabNavigation';
-
+import { FlightDetailsSheet } from "./flightDetails";
+import { 
+    Sheet, 
+    SheetContent, 
+    SheetHeader, 
+    SheetTitle 
+} from '@/components/ui/sheet';
+import { Button } from '@/components/ui/button';
+import { X } from 'lucide-react';
 
 const tabs = [
 
@@ -28,6 +36,9 @@ const NewReservation = () => {
         multiCity: false,
     });
     
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const [selectedFlight, setSelectedFlight] = useState<AvailableFlight | null>(null);
+
     const fetchAvailableFlights = useCallback(async (): Promise<AvailableFlight[]> => {
         
         return new Promise((resolve) => {
@@ -50,6 +61,24 @@ const NewReservation = () => {
 
     }, [])
 
+    const filteredFlights = useMemo(() => {
+        if (!data) return [];
+
+        switch (activeTab.label) {
+            case "Recommended":
+                return data.sort((f1, f2) => f1.seatsRemaining - f2.seatsRemaining)
+            case "Fastest":
+                return data.sort((f1, f2) => {
+                    return new Date(f1.departureTime).getTime() - new Date(f2.departureTime).getTime();
+                })
+            case "Cheapest":
+                return data;
+            default:
+                return data;
+        }
+    }, [activeTab.label, data]);
+
+
     const handleCheckboxChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
         
         const { name, checked } = event.target;
@@ -61,12 +90,21 @@ const NewReservation = () => {
 
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-blue-500"></div>
+            </div>
+        );
     }
 
     if (error) {
-        return <div>Error loading flights</div>;
+        return (
+            <div className="flex justify-center items-center h-screen text-red-500">
+                Error loading flights
+            </div>
+        );
     }
+
 
     return (
         <div className={'w-full relative'}>
@@ -133,18 +171,40 @@ const NewReservation = () => {
                     `}
                 >
                     {/* Filter */}
-                    <FilterSidebar />
+                    <Sheet open={isFilterOpen} onOpenChange={setIsFilterOpen}>
+                        <SheetContent side="left" className="w-[300px]">
+                            
+                            <SheetHeader>
+                                <SheetTitle>Filter Flights</SheetTitle>
+                                <Button 
+                                    variant="ghost" 
+                                    size="icon" 
+                                    className="absolute top-4 right-4"
+                                    onClick={() => setIsFilterOpen(!isFilterOpen)}
+                                >
+                                    <X className="h-4 w-4" />
+                                </Button>
+                            </SheetHeader>
+                            
+                            <FilterSidebar />
+                        </SheetContent>
+                    </Sheet>
+
 
                     {/* Result and Sort */}
-                    <div className='flex flex-col flex-grow w-full lg:w-auto max-w-full gap-4'>
+                    <div className='flex flex-col flex-grow w-full lg:w-auto max-w-full gap-8'>
                         <div className="sm:hs-overlay-layout-open:ms-64 max-h-15 transition-all duration-300">
                             {/* Navigation Toggle */}
                             <div className="lg:hidden p-2">
-                                <button type="button" className="flex justify-center items-center gap-x-3 size-8 text-sm text-gray-600 hover:bg-gray-100 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:hover:text-neutral-200 dark:focus:text-neutral-200" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-sidebar-content-push" aria-label="Toggle navigation" data-hs-overlay="#hs-sidebar-content-push">
+                                <Button 
+                                    variant="ghost" 
+                                    size="icon" 
+                                    className="absolute top-0 left-4"
+                                    onClick={() => setIsFilterOpen(!isFilterOpen)}
+                                >                                   
                                     <svg className="sm:hidden shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M15 3v18"/><path d="m8 9 3 3-3 3"/></svg>
                                     <svg className="hidden sm:block shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M15 3v18"/><path d="m10 15-3-3 3-3"/></svg>
-                                    <span className="sr-only">Navigation Toggle</span>
-                                </button>
+                                </Button>
                             </div>
                             {/* End Navigation Toggle */}
                         </div>
@@ -152,7 +212,12 @@ const NewReservation = () => {
                             <p className={"dark:text-white font-medium text-gray-500"}>10 of 150 Results</p>
                         </div>
                         {/* Sort */}
-                        <TabNavigation tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
+                        <TabNavigation
+                                tabs={tabs}
+                                activeTab={activeTab}
+                                setActiveTab={setActiveTab}
+                                onTabSelect={() => filteredFlights}
+                        />
                         {/* Result */}
                         <main className="h-[calc(100vh-200px)] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600">
                             <AvailableFlights 
@@ -166,12 +231,10 @@ const NewReservation = () => {
             </div>
 
             {/* Flight Details View Sidebar */}
-            <div className={`
-                hidden absolute h-full z-100 left-0 top-0 overflow-y-hidden duration-300 ease-linear
-                ${flightDetailsViewIsOpen && 'translate-x-[2/5]'}
-            `}>
-
-            </div>
+            <FlightDetailsSheet 
+                flight={selectedFlight} 
+                onClose={() => setSelectedFlight(null)} 
+            />
         </div>
     )
 }

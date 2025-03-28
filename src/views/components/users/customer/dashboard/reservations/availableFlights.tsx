@@ -1,5 +1,6 @@
 import { AvailableFlight } from '@src/views/interfaces/interface'
 import AvailableFlightCard from './availableFlightCard'
+import { motion, AnimatePresence } from 'framer-motion';
 
 type AvailableFlightProps = {
 
@@ -17,26 +18,36 @@ function getRandomNumber(offset: number, stop: number) {
 function AvailableFlights(props: AvailableFlightProps) {
   
     return (
-        <ul className='flex flex-col gap-4'>
-            {props.flights.map((flight, index) => (
-                <li 
-                    key={`${index + 1}-${flight.publicId}`}
-                    className={`
-                        w-full items-center bg-white border border-gray-200 text-gray-800 
-                        rounded-2xl dark:bg-[#202A3A] dark:border-neutral-700 dark:text-white
-                    `}
-                >
-                    <AvailableFlightCard 
-                        openFlightDetailsViewPage={props.openFlightDetailsViewPage}
-                        key={index}
-                        {...flight}
-                        badge={{
-                            refundable: refundableBadges[getRandomNumber(0, 2)],
-                            sortOption: sortOptionBadges[getRandomNumber(0, 2)]
-                        }}                    />
-                </li>
-            ))}
-        </ul>
+        <AnimatePresence>
+        
+            <ul className='flex flex-col gap-4'>
+                {props.flights.map((flight, index) => (
+                    <motion.div 
+                        key={`${index + 1}-${flight.publicId}`}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{
+                            duration: 0.3,
+                            delay: index * 0.1
+                        }}
+                        className={`
+                            w-full items-center bg-white border border-gray-200 text-gray-800 
+                            rounded-2xl dark:bg-[#202A3A] dark:border-neutral-700 dark:text-white
+                        `}
+                    >
+                        <AvailableFlightCard 
+                            openFlightDetailsViewPage={props.openFlightDetailsViewPage}
+                            key={index}
+                            {...flight}
+                            badge={{
+                                refundable: refundableBadges[getRandomNumber(0, 2)],
+                                sortOption: sortOptionBadges[getRandomNumber(0, 2)]
+                            }}                    />
+                    </motion.div>
+                ))}
+            </ul>
+        </AnimatePresence>
     )
 }
 

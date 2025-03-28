@@ -18,7 +18,7 @@ import ActivateUserAccount from './views/components/auth/activateUserAccount';
 import PageTitle from './utils/pageTitle';
 import Reservations from './views/components/users/customer/dashboard/reservations';
 import NewReservation from './views/components/users/customer/dashboard/reservations/newReservation';
-import FlightDetails from './views/components/users/customer/dashboard/reservations/flightDetails';
+// import { FlightDetailsSheet } from './views/components/users/customer/dashboard/reservations/flightDetails';
 
 
 declare global {
@@ -137,15 +137,15 @@ function AppContent() {
                 } 
             />
             
-            <Route 
+            {/* <Route 
                 path={"/flights"} 
                 element={
                     <>
                         <PageTitle title={'Flight Details'} />
-                        <FlightDetails />
+                        <FlightDetailsSheet />
                     </>
                 } 
-            /> 
+            />  */}
 
             <Route path={"/:pid/profile"} element={<Profile />} />
             <Route path={"/admin-signup"} element={<AdminSignUp />}/>

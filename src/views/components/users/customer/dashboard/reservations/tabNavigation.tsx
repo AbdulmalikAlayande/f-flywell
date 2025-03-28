@@ -1,18 +1,20 @@
 import { Icon } from '@iconify-icon/react';
 import { motion } from "framer-motion";
 import React from "react";
+import {AvailableFlight} from "@/views/interfaces/interface.ts";
 
 
 interface TabNavigationProps {
     tabs: {id: number; label: string; icon: string}[]
     activeTab: {id: number; label: string; icon: string};
     setActiveTab: (tab: {id: number; label: string; icon: string}) => void;
+    onTabSelect: () => AvailableFlight[];
 }
 
 export const TabNavigation = React.memo(({ tabs, activeTab, setActiveTab }: TabNavigationProps) => {
     
     return (
-      
+
         <nav className="sticky top-0 z-10 bg-white dark:bg-[#202A3A] rounded-xl mb-4">
         
             <div className="flex items-center h-20 w-full font-medium">
