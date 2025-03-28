@@ -3,8 +3,7 @@ import AvailableFlightCard from './availableFlightCard'
 import { motion, AnimatePresence } from 'framer-motion';
 
 type AvailableFlightProps = {
-
-    openFlightDetailsViewPage: () => void; 
+    openFlightDetailsSheet: () => void;
     flights: AvailableFlight[];
 }
 
@@ -37,13 +36,14 @@ function AvailableFlights(props: AvailableFlightProps) {
                         `}
                     >
                         <AvailableFlightCard 
-                            openFlightDetailsViewPage={props.openFlightDetailsViewPage}
+                            openFlightDetailsSheet={props.openFlightDetailsSheet}
                             key={index}
                             {...flight}
                             badge={{
                                 refundable: refundableBadges[getRandomNumber(0, 2)],
                                 sortOption: sortOptionBadges[getRandomNumber(0, 2)]
-                            }}                    />
+                            }}                    
+                        />
                     </motion.div>
                 ))}
             </ul>

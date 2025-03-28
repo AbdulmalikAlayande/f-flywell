@@ -1,13 +1,28 @@
 import React from 'react';
 import PriceRangeSlider from './priceRangeSlider';
+import { Slider } from '@/components/ui/slider';
 
 export const FilterSidebar = React.memo(() => {
     
+    const [durationInSec, setDurationInSec] = React.useState<number>(4500)
+    
+    function formatToHour(duration: number ): string{
+        return "3hrs20min"
+    }
+
+    function resetDurationInSec(){
+
+    }
+
     return (
         
         <aside 
             id="hs-sidebar-content-push" 
-            className="hidden hs-overlay [--auto-close:md] lg:block lg:translate-x-0 lg:end-auto lg:bottom-0 max-w-65 hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform h-full top-0 start-0 bottom-0 z-[60] lg:sticky lg:top-4 lg:h-[calc(100vh-120px)] lg:overflow-y-auto lg:w-80 w-full flex-shrink-0 rounded-xl mt-4 px-4 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600"
+            className={`
+                hidden lg:block w-full h-full max-w-62 [--auto-close:md] lg:translate-x-0 lg:end-auto lg:bottom-0 
+                transition-all duration-300 transform top-0 start-0 bottom-0 z-[60] lg:top-4
+                flex-shrink-0 rounded-xl`
+            }
             role="dialog" 
             tabIndex={-1}
             aria-label="Sidebar"
@@ -30,7 +45,7 @@ export const FilterSidebar = React.memo(() => {
             {/* Body */}
             <div className="relative w-full md:flex flex-col gap-4">
                 
-                <div className="flex gap-6">
+                <div className="flex">
                     <h5 className="dark:text-white font-medium">Filter By</h5>
                 </div>
                 
@@ -98,6 +113,20 @@ export const FilterSidebar = React.memo(() => {
                 {/* Price Range Slider */}
                 <div className="bg-white dark:bg-[#202A3A] w-full text-base flex flex-col items-center gap-4 rounded-2xl p-4">
                     <PriceRangeSlider />
+                </div>
+
+                {/*Flight Duration Filter*/}
+                <div className={"bg-white dark:bg-[#202A3A] w-full text-base flex flex-col items-center gap-4 rounded-2xl p-4"}>
+                    <div className={"flex items-center justify-between w-full"}>  
+                        <p className="dark:text-white text-sm md:text-[16px]">Flight Duration</p>
+                        <button type="reset" className="inline-flex items-center font-medium rounded-lg border border-transparent cursor-pointer text-[#2563eb] hover:text-blue-700 focus:outline-none focus:bg-blue-100 focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none">
+                            Reset
+                        </button>
+                    </div>
+                    <Slider onChange={resetDurationInSec}/>
+                    <div>
+                        <p>{formatToHour(durationInSec)}</p>
+                    </div>
                 </div>
             </div>                
         </aside>

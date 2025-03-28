@@ -5,7 +5,7 @@ import { AvailableFlight } from '@src/views/interfaces/interface';
 import { useQuery } from '@tanstack/react-query';
 import AvailableFlights from './availableFlights';
 import { SearchForm } from './searchForm';
-import { FilterSidebar } from './mobile-filter-sidebar'
+import { MobileFilterSidebar } from './mobileFilterSidebar'
 import { TabNavigation } from './tabNavigation';
 import { FlightDetailsSheet } from "./flightDetails";
 import { 
@@ -16,6 +16,8 @@ import {
 } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
+import { FilterSidebar } from "./filterSidebar";
+import Logger from "@/utils/logger";
 
 const tabs = [
 
@@ -28,7 +30,7 @@ const tabs = [
 const NewReservation = () => {
 
     const [activeTab, setActiveTab] = useState(tabs[0]);
-    const [flightDetailsViewIsOpen, setFlightDetailsViewIsOpen] = useState<boolean>(false)
+    const [flightDetailSheetIsOpen, setFlightDetailsViewIsOpen] = useState<boolean>(false)
     const [checkboxStates, setCheckboxStates] = useState({
 
         oneWay: false,
@@ -55,8 +57,7 @@ const NewReservation = () => {
         staleTime: 20 * 60 * 1000,
         gcTime: 30 * 60 * 1000,
         refetchOnWindowFocus: false,
-    });
-
+    })
     const clearDate = useCallback(() => {
 
     }, [])
@@ -109,7 +110,7 @@ const NewReservation = () => {
     return (
         <div className={'w-full relative'}>
                 
-            <div className="w-full p-6 lg:p-12 rounded-lg bg-gray-100 dark:bg-[var(--background-color)]">
+            <div className="w-full p-6 lg:p-12 bg-gray-100 dark:bg-[var(--background-color)]">
                 
                 {/* Search Flight Section */}
                 <SearchForm clearDate={clearDate} />
@@ -150,15 +151,15 @@ const NewReservation = () => {
                             <label htmlFor="hs-radio-group-3" className="text-sm text-gray-500 ms-2 dark:text-neutral-400">Multi-City</label>
                         </div>
                     </div>
-                    <div className="flex h-10 rounded-lg gap-6">
+                    <div className="flex h-10 rounded-lg gap-4">
                 
-                        <button type="button" className="py-3 px-4 inline-flex items-center text-center gap-x-2 -mt-px -ms-px rounded-xl text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-400 focus:outline-none focus:bg-[#2563eb] focus:text-white disabled:opacity-50 disabled:pointer-events-none dark:bg-[#202A3A] dark:border-neutral-700 dark:text-white">
+                        <button type="button" className="w-[3/10] py-3 px-4 inline-flex items-center text-center gap-x-2 -mt-px -ms-px rounded-lg text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-400 focus:outline-none focus:bg-[#2563eb] focus:text-white disabled:opacity-50 disabled:pointer-events-none dark:bg-[#202A3A] dark:border-neutral-700 dark:text-white">
                             Economy
                         </button>
-                        <button type="button" className="py-3 px-4 inline-flex items-center text-center gap-x-2 -mt-px -ms-px rounded-xl text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-400 focus:outline-none focus:bg-[#2563eb] focus:text-white disabled:opacity-50 disabled:pointer-events-none dark:bg-[#202A3A] dark:border-neutral-700 dark:text-white">
+                        <button type="button" className="w-[4/10] py-3 px-4 inline-flex items-center text-center gap-x-2 -mt-px -ms-px rounded-lg text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-400 focus:outline-none focus:bg-[#2563eb] focus:text-white disabled:opacity-50 disabled:pointer-events-none dark:bg-[#202A3A] dark:border-neutral-700 dark:text-white">
                             Business Class
                         </button>
-                        <button type="button" className="py-3 px-4 inline-flex items-center text-center gap-x-2 -mt-px -ms-px rounded-xl text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-400 focus:outline-none focus:bg-[#2563eb] focus:text-white disabled:opacity-50 disabled:pointer-events-none dark:bg-[#202A3A] dark:border-neutral-700 dark:text-white">
+                        <button type="button" className="w-[3/10] py-3 px-4 inline-flex items-center text-center gap-x-2 -mt-px -ms-px rounded-lg text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-400 focus:outline-none focus:bg-[#2563eb] focus:text-white disabled:opacity-50 disabled:pointer-events-none dark:bg-[#202A3A] dark:border-neutral-700 dark:text-white">
                             First Class
                         </button>
                     </div>
@@ -166,50 +167,51 @@ const NewReservation = () => {
                 {/* Filter, Sort  and Result */}
                 <section 
                     className={`
-                        relative w-full mt-6 flex flex-col lg:flex-row gap-10 lg:gap-6 
-                        min-h-[calc(100vh-300px)] items-center justify-between
+                        relative w-full h-[60rem] mt-6 flex gap-6
+                        items-center justify-between
                     `}
                 >
                     {/* Filter */}
-                    <Sheet open={isFilterOpen} onOpenChange={setIsFilterOpen}>
-                        <SheetContent side="left" className="w-[300px]">
-                            
-                            <SheetHeader>
-                                <SheetTitle>Filter Flights</SheetTitle>
-                                <Button 
-                                    variant="ghost" 
-                                    size="icon" 
-                                    className="absolute top-4 right-4"
-                                    onClick={() => setIsFilterOpen(!isFilterOpen)}
-                                >
-                                    <X className="h-4 w-4" />
-                                </Button>
-                            </SheetHeader>
-                            
-                            <FilterSidebar />
-                        </SheetContent>
-                    </Sheet>
+                    <div className={"h-full w-[1/5]"}>
+                        <Sheet open={isFilterOpen} onOpenChange={setIsFilterOpen}>
+                            <SheetContent side="left" className="w-[300px]">
+                                
+                                <SheetHeader>
+                                    <SheetTitle>Filter Flights</SheetTitle>
+                                    <Button 
+                                        variant="ghost" 
+                                        size="icon" 
+                                        className="absolute top-4 right-4"
+                                        onClick={() => setIsFilterOpen(!isFilterOpen)}
+                                    >
+                                        <X className="h-4 w-4" />
+                                    </Button>
+                                </SheetHeader>
+                                
+                                <MobileFilterSidebar />
+                            </SheetContent>
+                        </Sheet>
 
+                        <FilterSidebar />
+                    </div>
 
                     {/* Result and Sort */}
-                    <div className='flex flex-col flex-grow w-full lg:w-auto max-w-full gap-8'>
-                        <div className="sm:hs-overlay-layout-open:ms-64 max-h-15 transition-all duration-300">
-                            {/* Navigation Toggle */}
-                            <div className="lg:hidden p-2">
-                                <Button 
-                                    variant="ghost" 
-                                    size="icon" 
-                                    className="absolute top-0 left-4"
-                                    onClick={() => setIsFilterOpen(!isFilterOpen)}
-                                >                                   
-                                    <svg className="sm:hidden shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M15 3v18"/><path d="m8 9 3 3-3 3"/></svg>
-                                    <svg className="hidden sm:block shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M15 3v18"/><path d="m10 15-3-3 3-3"/></svg>
-                                </Button>
-                            </div>
-                            {/* End Navigation Toggle */}
+                    <div className='h-[60rem] w-[4/5] flex flex-col flex-grow gap-4'>
+                        <div className="lg:hidden p-2">
+                            <Button 
+                                variant="ghost" 
+                                size="icon" 
+                                className="absolute top-0 left-4"
+                                onClick={() => setIsFilterOpen(!isFilterOpen)}
+                            >                                   
+                                <svg className="sm:hidden shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M15 3v18"/><path d="m8 9 3 3-3 3"/></svg>
+                                <svg className="hidden sm:block shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M15 3v18"/><path d="m10 15-3-3 3-3"/></svg>
+                            </Button>
                         </div>
-                        <div className='w-full flex justify-start items-center gap-6'>
-                            <p className={"dark:text-white font-medium text-gray-500"}>10 of 150 Results</p>
+                        {/* End Navigation Toggle */}
+
+                        <div className='w-full flex justify-start items-center'>
+                            <p className={"dark:text-white font-medium"}>10 of 150 Results</p>
                         </div>
                         {/* Sort */}
                         <TabNavigation
@@ -219,24 +221,29 @@ const NewReservation = () => {
                                 onTabSelect={() => filteredFlights}
                         />
                         {/* Result */}
-                        <main className="h-[calc(100vh-200px)] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600">
+                        <main className="h-full overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600">
                             <AvailableFlights 
                                 flights={data ? data : []} 
-                                openFlightDetailsViewPage={()=>{
-                                    setFlightDetailsViewIsOpen(!flightDetailsViewIsOpen)
+                                openFlightDetailsSheet={()=>{
+                                    Logger.info("Sheet is opened: "+flightDetailSheetIsOpen);
+                                    setFlightDetailsViewIsOpen(!flightDetailSheetIsOpen);
                                 }}                            />
                         </main>
                     </div>
                 </section>
+
             </div>
 
             {/* Flight Details View Sidebar */}
             <FlightDetailsSheet 
-                flight={selectedFlight} 
+                flight={selectedFlight}
                 onClose={() => setSelectedFlight(null)} 
-            />
+                openSheet={flightDetailSheetIsOpen}            />
         </div>
     )
 }
 
 export default NewReservation
+/*
+
+*/

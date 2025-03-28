@@ -6,7 +6,7 @@ import {
     ChevronDown,
 } from 'lucide-react';
 
-export const FilterSidebar: React.FC = () => {
+export const MobileFilterSidebar: React.FC = () => {
     const [priceRange, setPriceRange] = useState([100, 1000]);
     const [expandedSection, setExpandedSection] = useState<string | null>(null);
 

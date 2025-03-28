@@ -18,7 +18,7 @@ export const TabNavigation = React.memo(({ tabs, activeTab, setActiveTab }: TabN
         <nav className="sticky top-0 z-10 bg-white dark:bg-[#202A3A] rounded-xl mb-4">
         
             <div className="flex items-center h-20 w-full font-medium">
-                <ul className="relative list-none h-full w-full lg:w-1/2 flex items-center justify-start overflow-x-auto">
+                <ul className="relative list-none h-full w-full lg:w-1/2 flex items-center justify-start">
                     {tabs.map((tab) => (
                         <motion.li 
                             key={tab.id} 

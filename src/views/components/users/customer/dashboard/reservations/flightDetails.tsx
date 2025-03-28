@@ -16,17 +16,19 @@ import { format } from 'date-fns';
 
 interface FlightDetailsSheetProps {
     flight: AvailableFlight | null;
+    openSheet: boolean;
     onClose: () => void;
 }
 
 export const FlightDetailsSheet: React.FC<FlightDetailsSheetProps> = ({ 
     flight, 
+    openSheet,
     onClose 
 }) => {
     if (!flight) return null;
 
     return (
-        <Sheet open={true} onOpenChange={onClose}>
+        <Sheet open={openSheet} onOpenChange={onClose}>
             <SheetContent side="right" className="w-[400px] overflow-y-auto">
                 <SheetHeader>
                     <SheetTitle className="flex items-center gap-2">
