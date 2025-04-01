@@ -34,6 +34,30 @@ export interface AvailableFlight{
     seatsRemaining: number;
     duration: string;
 }
+
+export interface StopFilter {
+    direct: boolean,
+    oneStop: boolean,
+    multiStop: boolean
+}
+
+export interface TimeFilter {
+    morning: boolean,
+    afternoon: boolean,
+    evening: boolean,
+    night: boolean
+}
+
+export interface PriceFilter {
+    min: number,
+    max: number
+}
+export interface FlightSearchFilter {
+    stops: StopFilter,
+    time: TimeFilter,
+    priceRange: PriceFilter,
+    duration: number
+}
 export interface CheapFlight extends AvailableFlight{
     flightName: string,
     toLocImageTermName: string

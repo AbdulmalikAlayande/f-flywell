@@ -1,13 +1,13 @@
 
 import React, { useCallback, useMemo, useState } from "react";
 import { availableFlights } from '@src/utils/placeholder';
-import { AvailableFlight } from '@src/views/interfaces/interface';
+import { AvailableFlight, FlightSearchFilter } from '@src/views/interfaces/interface';
 import { useQuery } from '@tanstack/react-query';
 import AvailableFlights from './availableFlights';
 import { SearchForm } from './searchForm';
 import { MobileFilterSidebar } from './mobileFilterSidebar'
 import { TabNavigation } from './tabNavigation';
-import { FlightDetailsSheet } from "./flightDetails";
+import { FlightDetails } from "./flightDetails";
 import { 
     Sheet, 
     SheetContent, 
@@ -15,9 +15,10 @@ import {
     SheetTitle 
 } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-import { X } from 'lucide-react';
+import { Plane } from 'lucide-react';
 import { FilterSidebar } from "./filterSidebar";
 import Logger from "@/utils/logger";
+import Navbar from "@/views/components/reusables/navbar";
 
 const tabs = [
 
@@ -30,7 +31,8 @@ const tabs = [
 const NewReservation = () => {
 
     const [activeTab, setActiveTab] = useState(tabs[0]);
-    const [flightDetailSheetIsOpen, setFlightDetailsViewIsOpen] = useState<boolean>(false)
+    const [flightDetailsSheetIsOpen, setFlightDetailsSheetIsOpen] = useState<boolean>(false)
+    const [selectedFlight, setSelectedFlight] = useState<AvailableFlight>()
     const [checkboxStates, setCheckboxStates] = useState({
 
         oneWay: false,
@@ -39,7 +41,6 @@ const NewReservation = () => {
     });
     
     const [isFilterOpen, setIsFilterOpen] = useState(false);
-    const [selectedFlight, setSelectedFlight] = useState<AvailableFlight | null>(null);
 
     const fetchAvailableFlights = useCallback(async (): Promise<AvailableFlight[]> => {
         
@@ -79,7 +80,6 @@ const NewReservation = () => {
         }
     }, [activeTab.label, data]);
 
-
     const handleCheckboxChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
         
         const { name, checked } = event.target;
@@ -89,19 +89,35 @@ const NewReservation = () => {
         }));
     }, []);
 
+    const openFlightDetailsSheet = () => {
+        Logger.info("Sheet is opened: "+flightDetailsSheetIsOpen);
+        Logger.debug("flightDetailSheetIsOpen is "+flightDetailsSheetIsOpen)
+        setFlightDetailsSheetIsOpen(true);
+        
+    }
+
+    const applyFilters = useCallback((filters: FlightSearchFilter) => {
+        Logger.debug("New Reservation:: Filters applied: "+JSON.stringify(filters));
+    }, []);
 
     if (isLoading) {
         return (
-            <div className="flex justify-center items-center h-screen">
-                <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-blue-500"></div>
+            <div className="w-screen h-screen relative">
+                <Navbar />
+                <div className="flex justify-center items-center h-4/5 w-screen">
+                    <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-blue-500"></div>
+                </div>
             </div>
         );
     }
 
     if (error) {
         return (
-            <div className="flex justify-center items-center h-screen text-red-500">
-                Error loading flights
+            <div className="w-screen h-screen relative">
+                <Navbar />
+                <div className="flex justify-center items-center h-screen text-red-500">
+                    Error loading flights
+                </div>
             </div>
         );
     }
@@ -109,7 +125,7 @@ const NewReservation = () => {
 
     return (
         <div className={'w-full relative'}>
-                
+            <Navbar />
             <div className="w-full p-6 lg:p-12 bg-gray-100 dark:bg-[var(--background-color)]">
                 
                 {/* Search Flight Section */}
@@ -178,21 +194,13 @@ const NewReservation = () => {
                                 
                                 <SheetHeader>
                                     <SheetTitle>Filter Flights</SheetTitle>
-                                    <Button 
-                                        variant="ghost" 
-                                        size="icon" 
-                                        className="absolute top-4 right-4"
-                                        onClick={() => setIsFilterOpen(!isFilterOpen)}
-                                    >
-                                        <X className="h-4 w-4" />
-                                    </Button>
                                 </SheetHeader>
                                 
                                 <MobileFilterSidebar />
                             </SheetContent>
                         </Sheet>
 
-                        <FilterSidebar />
+                        <FilterSidebar applyFilters={applyFilters} />
                     </div>
 
                     {/* Result and Sort */}
@@ -223,11 +231,13 @@ const NewReservation = () => {
                         {/* Result */}
                         <main className="h-full overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600">
                             <AvailableFlights 
-                                flights={data ? data : []} 
-                                openFlightDetailsSheet={()=>{
-                                    Logger.info("Sheet is opened: "+flightDetailSheetIsOpen);
-                                    setFlightDetailsViewIsOpen(!flightDetailSheetIsOpen);
-                                }}                            />
+                                flights={data ? data : []}
+                                onFlightViewClick={openFlightDetailsSheet}
+                                setSelectedFlight={(flight: AvailableFlight) => {
+
+                                    setSelectedFlight(flight)
+                                }}
+                            />
                         </main>
                     </div>
                 </section>
@@ -235,15 +245,26 @@ const NewReservation = () => {
             </div>
 
             {/* Flight Details View Sidebar */}
-            <FlightDetailsSheet 
-                flight={selectedFlight}
-                onClose={() => setSelectedFlight(null)} 
-                openSheet={flightDetailSheetIsOpen}            />
+            
+            <Sheet open={flightDetailsSheetIsOpen} onOpenChange={setFlightDetailsSheetIsOpen}>
+                <SheetContent side="right" className="w-[800px] sm:w-[540px] overflow-y-auto">
+                    <SheetHeader>
+                        <SheetTitle className="flex items-center gap-2">
+                            <Plane className="h-5 w-5 text-blue-600" />
+                            Flight Details
+                        </SheetTitle>
+                    </SheetHeader>
+                    <FlightDetails
+                        flight={selectedFlight ? selectedFlight : null} 
+                        onClose={()=>{}}                    />
+                </SheetContent>
+            </Sheet>
         </div>
     )
 }
 
 export default NewReservation
+
 /*
 
 */

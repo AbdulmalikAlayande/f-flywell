@@ -18,7 +18,7 @@ import ActivateUserAccount from './views/components/auth/activateUserAccount';
 import PageTitle from './utils/pageTitle';
 import Reservations from './views/components/users/customer/dashboard/reservations';
 import NewReservation from './views/components/users/customer/dashboard/reservations/newReservation';
-// import { FlightDetailsSheet } from './views/components/users/customer/dashboard/reservations/flightDetails';
+import BookFlight from './views/components/users/customer/dashboard/reservations/bookFlight';
 
 
 declare global {
@@ -58,7 +58,19 @@ function AppContent() {
     const location = useLocation();
 
     useEffect(() => {
-        window.HSStaticMethods.autoInit();
+        const initPreline = async () => {
+            const { HSStaticMethods } = await import('preline/preline');
+            if (typeof HSStaticMethods !== 'undefined') {
+                HSStaticMethods.autoInit();
+            }
+        };
+    
+        if (document.readyState === 'complete') {
+            initPreline();
+        } else {
+            window.addEventListener('load', initPreline);
+            return () => window.removeEventListener('load', initPreline);
+        }
     }, [location.pathname]);
 
     return(
@@ -137,15 +149,15 @@ function AppContent() {
                 } 
             />
             
-            {/* <Route 
-                path={"/flights"} 
+            <Route 
+                path={"/book-flight/:pid"} 
                 element={
                     <>
-                        <PageTitle title={'Flight Details'} />
-                        <FlightDetailsSheet />
+                        <PageTitle title={'Book Flight'} />
+                        <BookFlight />
                     </>
                 } 
-            />  */}
+            /> 
 
             <Route path={"/:pid/profile"} element={<Profile />} />
             <Route path={"/admin-signup"} element={<AdminSignUp />}/>

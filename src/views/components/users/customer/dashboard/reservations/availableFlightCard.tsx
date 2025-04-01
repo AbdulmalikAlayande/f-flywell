@@ -1,9 +1,9 @@
 import { format } from 'date-fns';
 import { AvailableFlight } from "@src/views/interfaces/interface";
-import { NavLink } from 'react-router';
 
 interface AvailableFlightCardProps extends AvailableFlight {
-    openFlightDetailsSheet: () => void;
+    onFlightViewClick: () => void;
+    setSelectedFlight: (flight: AvailableFlight) => void;
     badge: {
         refundable: "partially" | "non" | "fully",
         sortOption: "recommended" | "cheapest" | "fastest",
@@ -18,6 +18,12 @@ const AvailableFlightCard = (props: AvailableFlightCardProps) => {
         return word.split(' ')
                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
                    .join(' ');
+    }
+
+    function handleFlightViewClick(event: React.MouseEvent<HTMLButtonElement>){
+        event.preventDefault();
+        props.onFlightViewClick();
+        props.setSelectedFlight(props)
     }
 
     return (
@@ -108,8 +114,8 @@ const AvailableFlightCard = (props: AvailableFlightCardProps) => {
                         {props.flightNumber}
                     </span>
                     <button 
-                        onClick={props.openFlightDetailsSheet}
-                        className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors">
+                        onClick={handleFlightViewClick}
+                        className="px-4 py-2 cursor-pointer bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors">
                         <span>View</span>
                     </button>
                 </div>
@@ -119,3 +125,6 @@ const AvailableFlightCard = (props: AvailableFlightCardProps) => {
 };
 
 export default AvailableFlightCard;
+
+		
+	      

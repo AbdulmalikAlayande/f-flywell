@@ -3,8 +3,9 @@ import AvailableFlightCard from './availableFlightCard'
 import { motion, AnimatePresence } from 'framer-motion';
 
 type AvailableFlightProps = {
-    openFlightDetailsSheet: () => void;
     flights: AvailableFlight[];
+    onFlightViewClick: () => void;
+    setSelectedFlight: (flight: AvailableFlight) => void;
 }
 
 const refundableBadges = ["partially", "non", "fully"] as const;
@@ -36,7 +37,8 @@ function AvailableFlights(props: AvailableFlightProps) {
                         `}
                     >
                         <AvailableFlightCard 
-                            openFlightDetailsSheet={props.openFlightDetailsSheet}
+                            onFlightViewClick={props.onFlightViewClick}
+                            setSelectedFlight={props.setSelectedFlight}
                             key={index}
                             {...flight}
                             badge={{
