@@ -3,6 +3,7 @@
       "types": ["node", "estree", "json-schema"],
       "baseUrl": ".",
       "paths": {
+        "@/*": ["./src/*"],
         "@src/*": ["./src/*"],
         "@assets/*": ["./src/assets/*"],
         "@utils/*": ["./src/utils/*"],

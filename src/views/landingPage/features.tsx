@@ -1,5 +1,5 @@
 import FeatureCard from "../components/reusables/featureCard"
-import TextBlock from "../components/reusables/ui/typography/textBlock"
+import TextBlock from "../../components/ui/textBlock.tsx"
 import { RiSecurePaymentFill } from "react-icons/ri";
 import { FaChartBar } from "react-icons/fa";
 import { TbCurrencyNaira } from "react-icons/tb";

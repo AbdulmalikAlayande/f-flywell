@@ -1,4 +1,4 @@
-import { cn } from '@src/utils/functions'
+import { cn } from '@utils/functions.ts'
 import * as React from 'react'
 
 const Card = React.forwardRef<

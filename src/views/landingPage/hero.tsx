@@ -1,4 +1,4 @@
-import TextBlock from "../components/reusables/ui/typography/textBlock";
+import TextBlock from "../../components/ui/textBlock.tsx";
 import earthLogo from "@assets/images/png/plane-round-the-globe.png"
 import HeroSearchFlight from "./heroSearchFlight";
 import { useNavigate } from "react-router";

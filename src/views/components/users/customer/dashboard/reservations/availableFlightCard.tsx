@@ -1,8 +1,9 @@
 import { format } from 'date-fns';
 import { AvailableFlight } from "@src/views/interfaces/interface";
-import { NavLink } from 'react-router';
 
 interface AvailableFlightCardProps extends AvailableFlight {
+    onFlightViewClick: () => void;
+    setSelectedFlight: (flight: AvailableFlight) => void;
     badge: {
         refundable: "partially" | "non" | "fully",
         sortOption: "recommended" | "cheapest" | "fastest",
@@ -17,6 +18,12 @@ const AvailableFlightCard = (props: AvailableFlightCardProps) => {
         return word.split(' ')
                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
                    .join(' ');
+    }
+
+    function handleFlightViewClick(event: React.MouseEvent<HTMLButtonElement>){
+        event.preventDefault();
+        props.onFlightViewClick();
+        props.setSelectedFlight(props)
     }
 
     return (
@@ -106,13 +113,10 @@ const AvailableFlightCard = (props: AvailableFlightCardProps) => {
                     <span className="text-lg font-semibold dark:text-white">
                         {props.flightNumber}
                     </span>
-                    <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors">
-                        <NavLink 
-                            to={`/flights?pid=${props.publicId}`}
-                            className={`w-full rounded-[inherit]`}
-                        >
-                            View
-                        </NavLink>
+                    <button 
+                        onClick={handleFlightViewClick}
+                        className="px-4 py-2 cursor-pointer bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors">
+                        <span>View</span>
                     </button>
                 </div>
             </div>
@@ -121,3 +125,6 @@ const AvailableFlightCard = (props: AvailableFlightCardProps) => {
 };
 
 export default AvailableFlightCard;
+
+		
+	      

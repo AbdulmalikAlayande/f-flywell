@@ -1,0 +1,8 @@
+{
+	"flights": "http://api.aviationstack.com/v1/flights?access_key=c6d4dca44ac3e44f9f69b95e1a9b22cd",
+	"cities": "http://api.aviationstack.com/v1/cities?access_key=c6d4dca44ac3e44f9f69b95e1a9b22cd",
+	"countries": "http://api.aviationstack.com/v1/countries?access_key=c6d4dca44ac3e44f9f69b95e1a9b22cd",
+	"airports": "http://api.aviationstack.com/v1/airports?access_key=c6d4dca44ac3e44f9f69b95e1a9b22cd",
+	"airlines": "http://api.aviationstack.com/v1/airlines?access_key=c6d4dca44ac3e44f9f69b95e1a9b22cd",
+	"aircrafts": "http://api.aviationstack.com/v1/aircrafts?access_key=c6d4dca44ac3e44f9f69b95e1a9b22cd"
+}

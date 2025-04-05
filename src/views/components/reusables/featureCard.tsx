@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Icon } from "@iconify-icon/react";
-import TextBlock from './ui/typography/textBlock';
+import TextBlock from '../../../components/ui/textBlock.tsx';
 import Logger from '@src/utils/logger';
 
 

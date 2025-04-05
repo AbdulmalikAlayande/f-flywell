@@ -1,10 +1,14 @@
 import { List } from "lodash";
 
-type Seat = {
+export type Seat = {
+    id: number;
+    row: number;
+    column: number;
     seatNumber: string;
-    status: "RESERVED" | "EMPTY";
+    status: "RESERVED" | "EMPTY" | "SELECTED";
+    type: "FIRST" | "BUSINESS" | "PREMIUM_ECONOMY" | "ECONOMY"
     price: number;
-    reservationNumber: string;
+    reservationNumber?: string;
 }
 type Airport = {
     name: string;
@@ -33,6 +37,30 @@ export interface AvailableFlight{
     publicId: string;
     seatsRemaining: number;
     duration: string;
+}
+
+export interface StopFilter {
+    direct: boolean,
+    oneStop: boolean,
+    multiStop: boolean
+}
+
+export interface TimeFilter {
+    morning: boolean,
+    afternoon: boolean,
+    evening: boolean,
+    night: boolean
+}
+
+export interface PriceFilter {
+    min: number,
+    max: number
+}
+export interface FlightSearchFilter {
+    stops: StopFilter,
+    time: TimeFilter,
+    priceRange: PriceFilter,
+    duration: number
 }
 export interface CheapFlight extends AvailableFlight{
     flightName: string,
