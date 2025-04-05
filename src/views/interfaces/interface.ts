@@ -1,10 +1,14 @@
 import { List } from "lodash";
 
-type Seat = {
+export type Seat = {
+    id: number;
+    row: number;
+    column: number;
     seatNumber: string;
-    status: "RESERVED" | "EMPTY";
+    status: "RESERVED" | "EMPTY" | "SELECTED";
+    type: "FIRST" | "BUSINESS" | "PREMIUM_ECONOMY" | "ECONOMY"
     price: number;
-    reservationNumber: string;
+    reservationNumber?: string;
 }
 type Airport = {
     name: string;

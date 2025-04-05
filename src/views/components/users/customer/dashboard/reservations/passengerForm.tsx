@@ -114,7 +114,7 @@ const PassengerForm: React.FC<PassengerFormProps> = ({ onSubmit }) => {
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
-        Logger.debug("Passenger form submitted: "+ passengers.toString());
+        Logger.debug("Passenger form submitted: "+ JSON.stringify(passengers));
         if (validatePassengers()) {
             onSubmit(passengers);
         } 
@@ -225,17 +225,21 @@ const PassengerForm: React.FC<PassengerFormProps> = ({ onSubmit }) => {
                                     <h3 className="text-lg font-medium">
                                         {`Passenger ${pIndex + 1}`}
                                     </h3>
-                                    {pIndex > 0 && (
-                                        <Button 
-                                            type="button" 
-                                            variant="ghost" 
-                                            size="sm" 
-                                            onClick={() => removePassenger(pIndex)}
-                                            className="text-red-500 hover:text-red-700 hover:bg-red-50"
-                                        >
-                                            Remove
-                                        </Button>
-                                    )}
+                                    <div className={""}>
+                                        {pIndex > 0 && (
+                                            <Button 
+                                                type="button" 
+                                                variant="ghost" 
+                                                size="sm" 
+                                                onClick={() => removePassenger(pIndex)}
+                                                className="text-red-500 hover:text-red-700 hover:bg-red-50"
+                                            >
+                                                Remove
+                                            </Button>
+                                            
+                                        )}
+                                        {/* {tab === "basic"} */}
+                                    </div>
                                 </div>
 
                                 <div className="flex border-b mb-4">
