@@ -1,39 +1,42 @@
 {
     "typescript.tsdk": "node_modules\\typescript\\lib",
-    "cSpell.words": ["Nouislider"],
-    "CodeGPT.apiKey": "CodeGPT Plus Beta" //,
-    //,"editor.defaultFormatter": "esbenp.prettier-vscode",
-    // "editor.formatOnSave": true,
-    // "editor.tabSize": 4,
-    // "editor.insertSpaces": true,
-    // "prettier.tabWidth": 4,
-    // "prettier.useTabs": false,
-    // "prettier.semi": true,
-    // "prettier.singleQuote": true,
-    // "prettier.trailingComma": "es5",
-    // "prettier.printWidth": 100,
-    // "prettier.bracketSpacing": true,
-    // "prettier.bracketSameLine": false,
-    // "prettier.arrowParens": "avoid",
-    // "prettier.endOfLine": "lf",
-    // "[javascript]": {
-    //     "editor.tabSize": 4,
-    //     "editor.defaultFormatter": "esbenp.prettier-vscode"
-    // },
-    // "[typescript]": {
-    //     "editor.tabSize": 4,
-    //     "editor.defaultFormatter": "esbenp.prettier-vscode"
-    // },
-    // "[javascriptreact]": {
-    //     "editor.tabSize": 4,
-    //     "editor.defaultFormatter": "esbenp.prettier-vscode"
-    // },
-    // "[typescriptreact]": {
-    //     "editor.tabSize": 4,
-    //     "editor.defaultFormatter": "esbenp.prettier-vscode"
-    // },
-    // "[html]": {
-    //     "editor.tabSize": 4,
-    //     "editor.defaultFormatter": "esbenp.prettier-vscode"
-    // }
+    "cSpell.words": [
+        "Nouislider",
+        "paystack"
+    ],
+    "CodeGPT.apiKey": "CodeGPT Plus Beta",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "prettier.tabWidth": 4,
+    "prettier.useTabs": false,
+    "prettier.semi": true,
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "es5",
+    "prettier.printWidth": 100,
+    "prettier.bracketSpacing": true,
+    "prettier.bracketSameLine": false,
+    "prettier.arrowParens": "avoid",
+    "prettier.endOfLine": "lf",
+    "[javascript]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascriptreact]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }

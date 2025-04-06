@@ -12,8 +12,8 @@ const seatStyles = {
     EMPTY: { fill: '#bfdbfe', stroke: '#60a5fa' },
     SELECTED: { fill: '#4ade80', stroke: '#16a34a' },   
     RESERVED: { fill: '#d1d5db', stroke: '#9ca3af', cursor: 'not-allowed' },
-    firstClass: { fill: '#c4b5fd', stroke: '#8b5cf6' }, 
-    business: { fill: '#fcd34d', stroke: '#f59e0b' },
+    FIRST_CLASS: { fill: '#c4b5fd', stroke: '#8b5cf6' }, 
+    BUSINESS_CLASS: { fill: '#fcd34d', stroke: '#f59e0b' },
     PREMIUM_ECONOMY: { fill: '#fb923c', stroke: '#ea580c' },
     ECONOMY: { fill: '#bfdbfe', stroke: '#60a5fa' }, 
 };
@@ -21,7 +21,7 @@ const seatStyles = {
 
 const seatSections = [
     { id: 'first-class', name: 'First Class', range: [1, 100], columns: 4, color: 'bg-violet-200' },
-    { id: 'business', name: 'Business Class', range: [101, 200], columns: 4, color: 'bg-teal-200' },
+    { id: 'business-class', name: 'Business Class', range: [101, 200], columns: 4, color: 'bg-teal-200' },
     { id: 'premium', name: 'Premium Economy', range: [301, 400], columns: 4, color: 'bg-orange-200' },
     { id: 'economy', name: 'Economy Class', range: [201, 300], columns: 4, color: 'bg-blue-200' },
 ];
@@ -76,8 +76,8 @@ const SeatMap: React.FC<SeatMapProps> = ({ onSeatSelect, selectedSeats = [] }) =
                     mockMap.set(seatId, {
                         id: seatId,
                         status: Math.random() > 0.7 ? 'RESERVED' : 'EMPTY',
-                        type: section.id.includes('first') ? 'FIRST' :
-                            section.id.includes('business') ? 'BUSINESS' :
+                        type: section.id.includes('first') ? 'FIRST_CLASS' :
+                            section.id.includes('business') ? 'BUSINESS_CLASS' :
                                 section.id.includes('premium') ? 'PREMIUM_ECONOMY' : 'ECONOMY',
                         row: row,
                         column: col,
@@ -99,8 +99,11 @@ const SeatMap: React.FC<SeatMapProps> = ({ onSeatSelect, selectedSeats = [] }) =
         
         if (seat.status === 'RESERVED') 
             return;
-    
-        onSeatSelect(seat);
+        else if(seat.status === "SELECTED"){
+            seat.status = 'EMPTY';
+        }
+        else 
+            onSeatSelect(seat);
     };
 
     // Group seats by section and row

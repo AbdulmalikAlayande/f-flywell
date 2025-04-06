@@ -3,7 +3,7 @@ import PassengerForm from './passengerForm';
 import SeatSelection from './seatSelection';
 import PaymentConfirmation from './paymentConfirmation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Passenger } from '@src/views/types';
+import { Passenger, FlightReservationRequest } from '@src/views/types';
 import Navbar from '@/views/components/reusables/navbar';
 import { Label } from '@/components/ui/label';
 import SeatMap from './seatMap';
@@ -14,8 +14,16 @@ import { Button } from '@/components/ui/button';
 
 const BookFlight = () => {
     const [currentStep, setCurrentStep] = useState(1);
-    const [passengers, setPassengers] = useState<Passenger[]>([]);
     const [selectedSeats, setSelectedSeats] = useState<Seat[]>([]);
+    const [reservationRequest, setReservationRequest] = useState<FlightReservationRequest>({
+        flightId: '',
+        seatIds: [],
+        passengers: [],
+        seatMap: new Map<string, Passenger>(),
+        contactEmail: '',
+        contactPhone: '',
+        specialAssistance: false,
+    });
     const [flightDetails, setFlightDetails] = useState({
         departure: 'SBY',
         arrival: 'DPS',
@@ -39,39 +47,32 @@ const BookFlight = () => {
     };
 
     const handlePassengersSubmit = (passengerData: Passenger[]) => {
-        setPassengers(passengerData);
+        Logger.debug('bookFlight.BookFlight: Passenger Data: ' + JSON.stringify(passengerData));
+        setReservationRequest(prev => ({
+            ...prev,
+            passengers: passengerData,
+        }));
+        Logger.debug('Reservation Request: ' + JSON.stringify(reservationRequest));
         goToNextStep();
     };
 
     const handleSeatSelection = (seats: Seat[]) => {
-
         setSelectedSeats(seats);
         goToNextStep();
     };
 
     function handleSeatMapSeatSelection(seat: Seat): void {
-        Logger.debug("Seat: " + JSON.stringify(seat));
-        
-        const seatIndex = selectedSeats.findIndex(s => s.id === seat.id);
-        
-        if (seatIndex >= 0) {
-            setSelectedSeats(prev => prev.filter(s => s.id !== seat.id));
-        } 
-        else {
-            if (selectedSeats.length < passengers.length || passengers.length === 0) {
-                setSelectedSeats(prev => [...prev, seat]);
-            } else {
+        Logger.debug('Seat: ' + JSON.stringify(seat));
 
-                toast("Maximum number of seats already selected", {
-                    description: "You can only select up to " + passengers.length + " seats.",
-                    duration: 3000,
-                    style: {
-                        backgroundColor: 'red',
-                        color: 'white',
-                    },
-                })
-                Logger.debug("Maximum number of seats already selected");
-            }
+        if (selectedSeats.length >= reservationRequest.passengers.length) {
+            toast.info('Maximum number of seats already selected', {
+                description:
+                    'You can only select up to ' + reservationRequest.passengers.length + ' seats.',
+                duration: 3000,
+                style: { backgroundColor: 'red', color: 'white' },
+            });
+        } else {
+            setSelectedSeats(prev => [...prev, seat]);
         }
     }
 
@@ -85,26 +86,28 @@ const BookFlight = () => {
         <SeatSelection
             key="seat-selection"
             onSubmit={() => handleSeatSelection(selectedSeats)}
-            passengerCount={passengers.length}
+            passengerCount={reservationRequest.passengers.length}
             flightClass={flightDetails.class}
             selectedSeats={selectedSeats}
             onSeatRemove={handleRemoveSeat}
         />,
         <PaymentConfirmation
             key="payment-confirmation"
-            passengers={passengers}
-            seats={selectedSeats.map(seat => seat.seatNumber)} // Convert to seat numbers for payment
+            passengers={Array.from(reservationRequest.passengers)}
+            seats={selectedSeats.map(seat => seat.seatNumber)}
             flightDetails={flightDetails}
         />,
     ];
 
     return (
-        <div className={'w-full h-full flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900'}>
+        <div
+            className={
+                'w-full h-full flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900'
+            }
+        >
             <Navbar />
             <div className={'w-full h-[150vh] flex items-center justify-between px-4 py-8 gap-4'}>
-                
                 <main className="w-full h-full lg:w-7/10 flex flex-col items-center justify-between">
-                    
                     {/* Header with flight details */}
                     <div className="w-full h-2/10">
                         <div className="flex justify-between items-center">
@@ -191,26 +194,30 @@ const BookFlight = () => {
 
                     {/* Component Content */}
                     <div className="h-65/100 w-full">
-                        <AnimatePresence mode="wait">
+                        <AnimatePresence mode="sync">
                             <motion.div
                                 key={currentStep}
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -10 }}
                                 transition={{ duration: 0.3 }}
-                                className={"w-full h-full"}
+                                className={'w-full h-full'}
                             >
                                 {stepComponents[currentStep - 1]}
                             </motion.div>
                         </AnimatePresence>
-                        <div className={`${currentStep === 1? 'hidden' : 'flex'} w-full justify-between px-3 mt-4`}>
-                            <Button 
-                                onClick={goToPreviousStep} 
+                        <div
+                            className={`${
+                                currentStep === 1 ? 'hidden' : 'flex'
+                            } w-full justify-between px-3 mt-4`}
+                        >
+                            <Button
+                                onClick={goToPreviousStep}
                                 className="bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-black dark:text-white"
                             >
                                 Back
                             </Button>
-                            <Button 
+                            <Button
                                 onClick={goToNextStep}
                                 className="bg-blue-600 hover:bg-blue-700 text-white"
                             >
@@ -221,8 +228,15 @@ const BookFlight = () => {
                 </main>
 
                 {/* Seat Map Display */}
-                <main className={'h-full hidden md:block w-3/10 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6'}>
-                    <SeatMap onSeatSelect={handleSeatMapSeatSelection} selectedSeats={selectedSeats} />
+                <main
+                    className={
+                        'h-full hidden md:block w-3/10 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6'
+                    }
+                >
+                    <SeatMap
+                        onSeatSelect={handleSeatMapSeatSelection}
+                        selectedSeats={selectedSeats}
+                    />
                 </main>
             </div>
         </div>

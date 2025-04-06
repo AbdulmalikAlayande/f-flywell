@@ -3,7 +3,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Crown, Briefcase, Diamond, User, X } from 'lucide-react';
+import { Crown, Briefcase, Diamond, User, X, LayoutGrid } from 'lucide-react';
 import { Seat } from '@/views/interfaces/interface';
 import { Badge } from '@/components/ui/badge';
 
@@ -18,15 +18,16 @@ type SeatSelectionProps = {
 }
 
 const aircraftSections = [
-    {id: "first", name: "First Class"}, 
-    {id: "business", name: "Business Class"}, 
+    {id: "all", name: "All"},
+    {id: "first-class", name: "First Class"}, 
+    {id: "business-class", name: "Business Class"}, 
     {id: "premium-economy", name: "Premium Economy"}, 
     {id: "economy", name: "Economy"}
 ];
 
 const SeatSelection: React.FC<SeatSelectionProps> = ({onSubmit, passengerCount, selectedSeats, onSeatRemove}) => {
     
-    const [currentSection, setCurrentSection] = useState<string>("first");
+    const [currentSection, setCurrentSection] = useState<string>("all");
     
     const handleSectionChange = (sectionId: string) => {
         setCurrentSection(sectionId);
@@ -34,14 +35,15 @@ const SeatSelection: React.FC<SeatSelectionProps> = ({onSubmit, passengerCount, 
 
     // Filter seats based on current section tab
     const getSectionType = (sectionId: string) => {
-        if (sectionId === 'first') return 'FIRST';
-        if (sectionId === 'business') return 'BUSINESS';
+        if (sectionId === 'all') return 'ALL';
+        if (sectionId === 'first-class') return 'FIRST_CLASS';
+        if (sectionId === 'business-class') return 'BUSINESS_CLASS';
         if (sectionId === 'premium-economy') return 'PREMIUM_ECONOMY';
         return 'ECONOMY';
     };
 
     const filteredSeats = selectedSeats.filter(
-        seat => currentSection === 'all' || seat.type === getSectionType(currentSection)
+        seat => currentSection === "all" || seat.type === getSectionType(currentSection)
     );
 
     return (
@@ -74,7 +76,7 @@ const SeatSelection: React.FC<SeatSelectionProps> = ({onSubmit, passengerCount, 
                     onValueChange={handleSectionChange}
                     className="w-full"
                 >
-                    <TabsList className="w-full h-full grid grid-cols-4">
+                    <TabsList className="w-full h-full grid grid-cols-5">
                         {aircraftSections.map((section) => (
                             <TabsTrigger
                                 key={section.id}
@@ -82,12 +84,14 @@ const SeatSelection: React.FC<SeatSelectionProps> = ({onSubmit, passengerCount, 
                                 className="flex items-center gap-1"
                             >
                                 <div className={"h-full w-full flex flex-col md:flex-row items-center justify-center gap-2"}>
-                                    {section.id === 'first' ? (
+                                    {section.id === 'first-class' ? (
                                         <Crown size={24} className={"text-[#FFD700]"} />
-                                    ) : section.id === 'business' ? (
+                                    ) : section.id === 'business-class' ? (
                                         <Briefcase size={12} className={"text-[#0055B3]"} />
                                     ) : section.id === 'premium-economy' ? (
                                         <Diamond size={24} className={"text-[#008080]"} />
+                                    ) : section.id === 'all' ? (
+                                        <LayoutGrid size={24} className={"text-[#6B7280]"} />
                                     ) : (
                                         <User size={24} className={"text-[#28A745]"} />
                                     )}
@@ -99,25 +103,23 @@ const SeatSelection: React.FC<SeatSelectionProps> = ({onSubmit, passengerCount, 
                 </Tabs>
 
                 {/* Content to render selected seats */}
-                <CardContent className="w-full h-7/10 pt-6 overflow-y-auto">
-                    {selectedSeats.length > 0 ? (
-                        <div>
-                            {filteredSeats.map((seat) => (
-                                <SeatCard 
-                                    key={seat.id} 
-                                    seat={seat} 
-                                    onRemove={onSeatRemove}
-                                />
-                            ))}
-                        </div>
-                    ) : (
-                        <div className="h-full w-full flex flex-col items-center justify-center p-8 text-center border rounded-lg">
-                            <User size={32} className="mb-2 opacity-50" />
-                            <p>No seats selected yet</p>
+                <CardContent className="w-full h-7/10 p-4 overflow-y-auto">
+                    {/* Show message if no seats match the current filter */}
+                    {filteredSeats.length === 0 ? (
+                        <div className="text-center p-4">
+                            <p>{currentSection === "all" ? "No Seats Selected" : `No ${getSectionType(currentSection).replace('_', ' ').toLowerCase()} seats selected.`}</p>
                             <p className="text-sm opacity-70">
-                                Choose seats from the seat map
+                                {selectedSeats.length} {selectedSeats.length === 1 ? 'seat' : 'seats'} selected in other sections
                             </p>
                         </div>
+                    ) : (
+                        filteredSeats.map((seat) => (
+                            <SeatCard 
+                                key={seat.id} 
+                                seat={seat} 
+                                onRemove={onSeatRemove}
+                            />
+                        ))
                     )}
                 </CardContent>
             </Card>
@@ -137,9 +139,9 @@ const SeatCard: React.FC<SeatCardProps> = ({ seat, onRemove }) => {
 
     const getBadgeVariant = () => {
       switch (seat.type) {
-        case 'FIRST':
+        case 'FIRST_CLASS':
           return 'bg-violet-100 text-violet-800 hover:bg-violet-200';
-        case 'BUSINESS':
+        case 'BUSINESS_CLASS':
           return 'bg-amber-100 text-amber-800 hover:bg-amber-200';
         case 'PREMIUM_ECONOMY':
           return 'bg-orange-100 text-orange-800 hover:bg-orange-200';
@@ -155,7 +157,7 @@ const SeatCard: React.FC<SeatCardProps> = ({ seat, onRemove }) => {
     };
   
     return (
-        <div className="flex items-center justify-between bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4 mb-3 group hover:shadow-md transition-all duration-200">
+        <div className="flex items-center justify-between p-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg group hover:shadow-md transition-all duration-200">
             <div className="flex items-center space-x-4">
                 {/* Seat icon with number */}
                 <div className="flex items-center justify-center w-12 h-12 rounded-md shadow-sm bg-gray-50 dark:bg-gray-700">
@@ -164,11 +166,11 @@ const SeatCard: React.FC<SeatCardProps> = ({ seat, onRemove }) => {
                             x="4" y="4" 
                             width="32" height="32" 
                             rx="3"
-                            fill={seat.type === 'FIRST' ? '#c4b5fd' : 
-                                seat.type === 'BUSINESS' ? '#fcd34d' : 
+                            fill={seat.type === 'FIRST_CLASS' ? '#c4b5fd' : 
+                                seat.type === 'BUSINESS_CLASS' ? '#fcd34d' : 
                                 seat.type === 'PREMIUM_ECONOMY' ? '#fb923c' : '#bfdbfe'}
-                            stroke={seat.type === 'FIRST' ? '#8b5cf6' : 
-                                    seat.type === 'BUSINESS' ? '#f59e0b' : 
+                            stroke={seat.type === 'FIRST_CLASS' ? '#8b5cf6' : 
+                                    seat.type === 'BUSINESS_CLASS' ? '#f59e0b' : 
                                     seat.type === 'PREMIUM_ECONOMY' ? '#ea580c' : '#60a5fa'}
                             strokeWidth="1.5"
                         />
@@ -185,10 +187,10 @@ const SeatCard: React.FC<SeatCardProps> = ({ seat, onRemove }) => {
                 </div>
         
                 {/* Seat details */}
-                <div className="flex flex-col">
-                    <div className="flex items-center">
+                <div className="md:w-65 flex flex-col justify-between gap-2">
+                    <div className="w-full flex items-center justify-between">
                         <span className="font-medium text-gray-800 dark:text-gray-200">Seat {seat.seatNumber}</span>
-                        <Badge className={`ml-2 ${getBadgeVariant()}`}>
+                        <Badge className={`md:w-40 text-[12px] md:text-sm px-2 py-0 ${getBadgeVariant()}`}>
                             {formatSeatType(seat.type)}
                         </Badge>
                     </div>
@@ -201,7 +203,7 @@ const SeatCard: React.FC<SeatCardProps> = ({ seat, onRemove }) => {
             {/* Remove button */}
             <button 
                 onClick={() => onRemove(seat.id)}
-                className="p-1.5 rounded-full text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 opacity-0 group-hover:opacity-100 transition-opacity"
+                className="p-0.5 rounded-full text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 opacity-0 group-hover:opacity-100 transition-opacity"
                 aria-label="Remove seat"
             >
                 <X size={18} />
