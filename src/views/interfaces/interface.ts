@@ -6,7 +6,7 @@ export type Seat = {
     column: number;
     seatNumber: string;
     status: "RESERVED" | "EMPTY" | "SELECTED";
-    type: "FIRST" | "BUSINESS" | "PREMIUM_ECONOMY" | "ECONOMY"
+    type: "FIRST_CLASS" | "BUSINESS_CLASS" | "PREMIUM_ECONOMY" | "ECONOMY"
     price: number;
     reservationNumber?: string;
 }

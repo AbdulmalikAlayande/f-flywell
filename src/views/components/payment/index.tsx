@@ -1,6 +1,7 @@
-import axios from 'axios';
 import React, { useState } from 'react'
 import { FaSpinner } from 'react-icons/fa6';
+import usePaystackPopup from './usePaystackPopup';
+import PaymentService from './paymentService';
 
 interface PaymentProps {
     email: string;
@@ -15,31 +16,25 @@ const Payment: React.FC<PaymentProps> = (props) => {
   
     const [isProcessing, setIsProcessing] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+    const popup = usePaystackPopup();
 
-    const initiateTransaction = async (): Promise<string> => {
+    const initiateTransaction = async (): Promise<void> => {
 
         setIsProcessing(true);
         setErrorMessage('');
 
         try{
-            const response = await axios.post('/api/', {
+            const paymentService = PaymentService.getInstance();
+            const initiationResponse = await paymentService.initiateTransaction({
                 userId: props.userId,
                 email: props.email,
                 reservationId: props.reservationId,
             })
+            const { accessCode } = initiationResponse.data;
 
-            const data = await response.data;
-
-            if (response.status !== 200) {
-                throw new Error(data.message || 'Failed to initialize transaction');
-            }
-
-            return data.access_code;
         }catch (error: unknown){
-            
             setErrorMessage((error as Error).message || 'Payment initialization failed');
             setIsProcessing(false);
-            return "";
         }
     }
 

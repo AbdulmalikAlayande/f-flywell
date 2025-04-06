@@ -45,7 +45,7 @@ const PassengerForm: React.FC<PassengerFormProps> = ({ onSubmit }) => {
             lastName: '',
             dateOfBirth: '',
             nationality: '',
-            passportId: '',
+            passportNumber: '',
             passportExpiryDate: '',
             mealPreference: "Standard",
             specialAssistance: false,
@@ -102,12 +102,12 @@ const PassengerForm: React.FC<PassengerFormProps> = ({ onSubmit }) => {
     }, [data]);
 
     const validatePassengers = () => {
-        // Basic validation
+
         for (const passenger of passengers) {
-        if (!passenger.firstName || !passenger.lastName || !passenger.title || 
-            !passenger.dateOfBirth || !passenger.nationality) {
-            return false;
-        }
+            if (!passenger.firstName || !passenger.lastName || !passenger.title || 
+                !passenger.dateOfBirth || !passenger.nationality) {
+                return false;
+            }
         }
         return true;
     };
@@ -119,6 +119,7 @@ const PassengerForm: React.FC<PassengerFormProps> = ({ onSubmit }) => {
             onSubmit(passengers);
         } 
         else {
+            Logger.error("Passenger form validation failed: "+ JSON.stringify(passengers));
             toast("Please fill in all required fields for all passengers");
         }
     };
@@ -143,21 +144,21 @@ const PassengerForm: React.FC<PassengerFormProps> = ({ onSubmit }) => {
                 lastName: '',
                 dateOfBirth: '',
                 nationality: '',
-                passportId: '',
+                passportNumber: '',
                 passportExpiryDate: '',
                 mealPreference: "Standard",
                 specialAssistance: false,
                 activeTab: 'basic'
             }
         ]);
-        // Switch to the new passenger's tab
+
         setActiveTab(String(passengers.length + 1));
     };
 
     const removePassenger = (index: number) => {
         if (passengers.length > 1) {
             setPassengers((prev) => prev.filter((_, i) => i !== index));
-            // Adjust active tab if needed
+
             if (Number(activeTab) > passengers.length - 1) {
                 setActiveTab(String(passengers.length - 1));
             }
@@ -180,7 +181,7 @@ const PassengerForm: React.FC<PassengerFormProps> = ({ onSubmit }) => {
             case 'basic':
                 return Boolean(passenger.firstName && passenger.lastName && passenger.title);
             case 'travel':
-                return Boolean(passenger.nationality && passenger.passportId && passenger.passportExpiryDate);
+                return Boolean(passenger.nationality && passenger.passportNumber && passenger.passportExpiryDate);
             case 'preferences':
                 return true; // Optional fields, always complete
             default:
@@ -380,8 +381,9 @@ const PassengerForm: React.FC<PassengerFormProps> = ({ onSubmit }) => {
                                                 <Label htmlFor={`passportId-${pIndex}`}>Passport ID<span className="text-red-500">*</span></Label>
                                                 <Input
                                                     id={`passportId-${pIndex}`}
-                                                    value={passenger.passportId}
-                                                    onChange={(e) => handleInputChange(pIndex, 'passportId', e.target.value)}
+                                                    value={passenger.passportNumber}
+                                                    type={"text"}
+                                                    onChange={(e) => handleInputChange(pIndex, 'passportNumber', e.target.value)}
                                                     placeholder="As shown on passport"
                                                     className="w-full"
                                                 />
