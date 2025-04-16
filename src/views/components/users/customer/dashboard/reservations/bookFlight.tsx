@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PassengerForm from './passengerForm';
 import SeatSelection from './seatSelection';
 import PaymentConfirmation from './paymentConfirmation';
@@ -7,12 +7,19 @@ import { Passenger, FlightReservationRequest } from '@src/views/types';
 import Navbar from '@/views/components/reusables/navbar';
 import { Label } from '@/components/ui/label';
 import SeatMap from './seatMap';
-import { Seat } from '@src/views/interfaces/interface';
+import { AvailableFlight, Seat } from '@src/views/interfaces/interface';
 import Logger from '@/utils/logger';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
+import { useParams } from 'react-router';
+import { useQuery } from '@tanstack/react-query';
+import { availableFlights } from '@src/utils/placeholder';
+import { isToday, isTomorrow, format } from 'date-fns';
 
 const BookFlight = () => {
+    const params = useParams();
+    const flightId = params.pid;
+
     const [currentStep, setCurrentStep] = useState(1);
     const [selectedSeats, setSelectedSeats] = useState<Seat[]>([]);
     const [reservationRequest, setReservationRequest] = useState<FlightReservationRequest>({
@@ -24,19 +31,67 @@ const BookFlight = () => {
         contactPhone: '',
         specialAssistance: false,
     });
-    const [flightDetails, setFlightDetails] = useState({
-        departure: 'SBY',
-        arrival: 'DPS',
-        departureCity: 'Surabaya, East Java',
-        arrivalCity: 'Denpasar, Bali',
-        date: '2025-04-15',
-        flightNumber: 'JT-25',
-        airline: 'Lion Air',
-        departureTime: '10:00 AM',
-        arrivalTime: '10:30 AM',
-        price: 479,
-        class: 'Business',
+
+    const [flightDetails, setFlightDetails] = useState<AvailableFlight>({
+        publicId: '',
+        flightNumber: '',
+        departureTime: new Date(),
+        arrivalTime: new Date(),
+        seats: [],
+        seats_: new Map(),
+        prices: [],
+        flight: {
+            arrivalCity: '',
+            departureCity: '',
+            displayImage: '',
+            arrivalAirport: {
+                name: '',
+                icaoCode: '',
+                iataCode: '',
+                isoCountryCode: '',
+                address: '',
+                longitude: 0,
+                latitude: 0,
+            },
+            departureAirport: {
+                name: '',
+                icaoCode: '',
+                iataCode: '',
+                isoCountryCode: '',
+                address: '',
+                longitude: 0,
+                latitude: 0,
+            },
+        },
+        seatsRemaining: 0,
+        duration: '',
     });
+
+    const { data } = useQuery<AvailableFlight>({
+        queryKey: ['flightDetails', flightId],
+        queryFn: async () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const flight = availableFlights.find(flight => flight.publicId === flightId);
+                    if (!flight) {
+                        reject(new Error('Flight not found'));
+                    }
+                    resolve(flight!);
+                }, 1000);
+            });
+        },
+    });
+
+    useEffect(() => {
+        if (data) {
+            setFlightDetails(data);
+            Logger.debug("Seats:: " + JSON.stringify(data.seats_));
+            setReservationRequest(prev => ({
+                ...prev,
+                flightId: data.publicId,
+            }));
+        }
+    }, [data]);
 
     const goToNextStep = () => {
         setCurrentStep(prev => Math.min(prev + 1, 3));
@@ -71,15 +126,25 @@ const BookFlight = () => {
                 duration: 3000,
                 style: { backgroundColor: 'red', color: 'white' },
             });
-        } else {
+        }
+        else if (selectedSeats.some(s => s.publicId === seat.publicId)) {
+            setSelectedSeats(prev => prev.filter(s => s.publicId !== seat.publicId));
+        }
+        else {
             setSelectedSeats(prev => [...prev, seat]);
         }
     }
 
     // Add function to remove a seat
-    const handleRemoveSeat = (seatId: number) => {
-        setSelectedSeats(prev => prev.filter(seat => seat.id !== seatId));
+    const handleRemoveSeat = (seatId: string) => {
+        setSelectedSeats(prev => prev.filter(seat => seat.publicId !== seatId));
     };
+
+    function formatFlightDate(date: Date) {
+        if (isToday(date)) return `Today, ${format(date, 'HH:mm')}`;
+        if (isTomorrow(date)) return `Tomorrow, ${format(date, 'HH:mm')}`;
+        return format(date, 'EEE, MMM d • HH:mm');
+    }
 
     const stepComponents = [
         <PassengerForm key="passenger-form" onSubmit={handlePassengersSubmit} />,
@@ -87,14 +152,14 @@ const BookFlight = () => {
             key="seat-selection"
             onSubmit={() => handleSeatSelection(selectedSeats)}
             passengerCount={reservationRequest.passengers.length}
-            flightClass={flightDetails.class}
             selectedSeats={selectedSeats}
             onSeatRemove={handleRemoveSeat}
         />,
         <PaymentConfirmation
             key="payment-confirmation"
+            seats={selectedSeats}
             passengers={Array.from(reservationRequest.passengers)}
-            seats={selectedSeats.map(seat => seat.seatNumber)}
+            reservedSeats={selectedSeats.map(seat => seat.seatNumber)}
             flightDetails={flightDetails}
         />,
     ];
@@ -120,19 +185,25 @@ const BookFlight = () => {
                         <div className="flex justify-between items-center mt-4">
                             <div className="flex items-center gap-1">
                                 <span className="text-3xl font-bold">
-                                    {flightDetails.departure}
+                                    {flightDetails.flight.departureAirport.iataCode}
                                 </span>
                                 <div className="flex items-center px-2">
                                     <div className="w-2 h-2 rounded-full bg-black dark:bg-gray-50"></div>
                                     <div className="w-16 h-0.5 bg-black dark:bg-gray-50"></div>
                                     <div className="w-2 h-2 rounded-full bg-black dark:bg-gray-50"></div>
                                 </div>
-                                <span className="text-3xl font-bold">{flightDetails.arrival}</span>
+                                <span className="text-3xl font-bold">
+                                    {flightDetails.flight.arrivalAirport.iataCode}
+                                </span>
                             </div>
                             <div className="text-right">
-                                <div className="text-sm opacity-80">{flightDetails.date}</div>
+                                <div className="text-sm opacity-80">
+                                    {formatFlightDate(flightDetails.departureTime)}
+                                </div>
                                 <div className="font-medium">
-                                    {flightDetails.departureTime} - {flightDetails.arrivalTime}
+                                    {format(flightDetails.departureTime, 'h:mma') +
+                                        ' - ' +
+                                        format(flightDetails.arrivalTime, 'h:mma')}
                                 </div>
                             </div>
                         </div>
@@ -228,14 +299,11 @@ const BookFlight = () => {
                 </main>
 
                 {/* Seat Map Display */}
-                <main
-                    className={
-                        'h-full hidden md:block w-3/10 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6'
-                    }
-                >
+                <main className={'h-full hidden md:block w-3/10 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6'}>
                     <SeatMap
                         onSeatSelect={handleSeatMapSeatSelection}
                         selectedSeats={selectedSeats}
+                        seats={flightDetails.seats_ ? flightDetails.seats_ : new Map<string, Seat[]>()}
                     />
                 </main>
             </div>

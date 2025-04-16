@@ -1,26 +1,61 @@
-import React from 'react';
-import { Clock, MapPin, DollarSign, Award, ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { Clock, MapPin, Award, ArrowRight } from 'lucide-react';
 import { AvailableFlight } from '@src/views/interfaces/interface';
 import { format } from 'date-fns';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Label } from '@/components/ui/label';
 import { NavLink } from 'react-router';
+import {
+    Select,
+    SelectContent,
+    SelectTrigger,
+    SelectItem,
+    SelectValue,
+} from '@/components/ui/select';
+import { TbCurrencyNaira } from 'react-icons/tb';
+import { flightDetailsStore } from '@src/store/flightDetailsStore';
+import Logger from '@/utils/logger';
 
 interface FlightDetailsProps {
     flight: AvailableFlight | null;
     onClose: () => void;
 }
 
-export const FlightDetails: React.FC<FlightDetailsProps> = ({ 
-    flight,
-    onClose
-}) => {
+const fairTypes = [
+    { value: 'first-class', name: 'First Class' },
+    { value: 'business-class', name: 'Business Class' },
+    { value: 'premium-economy', name: 'Premium Economy' },
+    { value: 'economy', name: 'Economy' },
+];
+
+const DEFAULT_SEAT_PRICE = 80_000;
+const tax = 400;
+export const FlightDetails: React.FC<FlightDetailsProps> = ({ flight, onClose }) => {
+    const [fareType, setFareType] = useState(fairTypes[0].name);
+
     if (!flight) return null;
 
-    // Function to calculate flight duration in a more readable format
     const calculateDuration = (duration: string): string => {
         return duration;
+    };
+
+    const getFarePrice = (fareType: string) => {
+        if (!flight.prices) return DEFAULT_SEAT_PRICE;
+
+        const priceMap = {
+            'first-class': flight.prices[0],
+            'business-class': flight.prices[1],
+            'premium-economy': flight.prices[2],
+            economy: flight.prices[3],
+        } as const;
+
+        return priceMap[fareType as keyof typeof priceMap] || DEFAULT_SEAT_PRICE;
+    };
+
+    const addFlightToStore = () => {
+        flightDetailsStore.setState(flight);
+        Logger.info('Flight added to store: ' + JSON.stringify(flight));
     };
 
     return (
@@ -32,7 +67,7 @@ export const FlightDetails: React.FC<FlightDetailsProps> = ({
                         <path d="M21,16V14L13,9V3.5A1.5,1.5,0,0,0,11.5,2A1.5,1.5,0,0,0,10,3.5V9L2,14V16L10,13.5V19L8,20.5V22L11.5,21L15,22V20.5L13,19V13.5L21,16Z" />
                     </svg>
                 </div>
-                
+
                 <div className="w-full flex flex-col justify-between items-center">
                     <div className="w-full flex items-center justify-start gap-2 mb-2">
                         <Badge className="bg-white/20 text-white hover:bg-white/30">
@@ -42,29 +77,25 @@ export const FlightDetails: React.FC<FlightDetailsProps> = ({
                             {flight.seatsRemaining} seats left
                         </Badge>
                     </div>
-                    <div className={"flex items-center gap-2"}>
-                        <div className={""}>
-                            <img 
-                                src={flight.flight.displayImage} 
-                                alt={"Departure Location Image"}
-                                className="h-8 w-8 rounded-full border-2 border-white/30 shadow-lg" 
+                    <div className={'flex items-center gap-2'}>
+                        <div className={''}>
+                            <img
+                                src={flight.flight.displayImage}
+                                alt={'Departure Location Image'}
+                                className="h-8 w-8 rounded-full border-2 border-white/30 shadow-lg"
                             />
-                            <Label className={"md:text-lg"}>
-                                {flight.flight.departureCity} 
-                            </Label>
+                            <Label className={'md:text-lg'}>{flight.flight.departureCity}</Label>
                         </div>
-                        <div className={""}>
+                        <div className={''}>
                             <ArrowRight className="h-4 w-4" />
                         </div>
-                        <div className={""}>
-                            <img 
-                                src={flight.flight.displayImage} 
-                                alt={"Arrival Location Image"}
-                                className="h-8 w-8 rounded-full border-2 border-white/30 shadow-lg" 
+                        <div className={''}>
+                            <img
+                                src={flight.flight.displayImage}
+                                alt={'Arrival Location Image'}
+                                className="h-8 w-8 rounded-full border-2 border-white/30 shadow-lg"
                             />
-                            <Label className={"md:text-lg"}>
-                                {flight.flight.arrivalCity}
-                            </Label>
+                            <Label className={'md:text-lg'}>{flight.flight.arrivalCity}</Label>
                         </div>
                     </div>
                     <p className="w-full text-start text-sm opacity-90 mt-1">
@@ -102,9 +133,19 @@ export const FlightDetails: React.FC<FlightDetailsProps> = ({
                                 {calculateDuration(flight.duration)}
                             </div>
                         </div>
-                        
-                        <svg className="w-16 h-8 mt-1 text-blue-600" viewBox="0 0 24 24" fill="none">
-                            <path d="M15 4H17M17 4H19M17 4V6M3 12H21L17 8M21 12L17 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+
+                        <svg
+                            className="w-16 h-8 mt-1 text-blue-600"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                        >
+                            <path
+                                d="M15 4H17M17 4H19M17 4V6M3 12H21L17 8M21 12L17 16"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
                         </svg>
                     </div>
 
@@ -127,10 +168,12 @@ export const FlightDetails: React.FC<FlightDetailsProps> = ({
                         <MapPin className="h-4 w-4 text-blue-600" />
                         Airport Information
                     </h4>
-                    
+
                     <div className="grid grid-cols-2 gap-6">
                         <div>
-                            <div className="text-sm text-gray-500 dark:text-gray-400">Departure</div>
+                            <div className="text-sm text-gray-500 dark:text-gray-400">
+                                Departure
+                            </div>
                             <div className="font-medium dark:text-white">
                                 {flight.flight.departureAirport.name}
                             </div>
@@ -138,7 +181,7 @@ export const FlightDetails: React.FC<FlightDetailsProps> = ({
                                 Terminal information will be available 24 hours before departure
                             </div>
                         </div>
-                        
+
                         <div>
                             <div className="text-sm text-gray-500 dark:text-gray-400">Arrival</div>
                             <div className="font-medium dark:text-white">
@@ -157,22 +200,47 @@ export const FlightDetails: React.FC<FlightDetailsProps> = ({
                         <Award className="h-4 w-4 text-blue-600" />
                         Fare Details
                     </h4>
-                    
+
                     <div className="space-y-3">
-                        <div className="flex justify-between">
-                            <span className="text-sm text-gray-500 dark:text-gray-400">Fare Type</span>
-                            <span className="font-medium dark:text-white">Economy</span>
+                        <div className="flex items-center justify-between">
+                            <span className="text-sm text-gray-500 dark:text-gray-400">
+                                Fare Type
+                            </span>
+                            <span className="font-medium dark:text-white">
+                                <Select
+                                    value={fareType}
+                                    onValueChange={value => {
+                                        console.log(value);
+                                        setFareType(value);
+                                    }}
+                                >
+                                    <SelectTrigger id={``} className="w-full">
+                                        <SelectValue placeholder="Select" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {fairTypes.map(type => (
+                                            <SelectItem value={type.value}>{type.name}</SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            </span>
                         </div>
                         <div className="flex justify-between">
-                            <span className="text-sm text-gray-500 dark:text-gray-400">Baggage Allowance</span>
+                            <span className="text-sm text-gray-500 dark:text-gray-400">
+                                Baggage Allowance
+                            </span>
                             <span className="font-medium dark:text-white">23kg</span>
                         </div>
                         <div className="flex justify-between">
-                            <span className="text-sm text-gray-500 dark:text-gray-400">Cabin Baggage</span>
+                            <span className="text-sm text-gray-500 dark:text-gray-400">
+                                Cabin Baggage
+                            </span>
                             <span className="font-medium dark:text-white">7kg</span>
                         </div>
                         <div className="flex justify-between">
-                            <span className="text-sm text-gray-500 dark:text-gray-400">Seat Selection</span>
+                            <span className="text-sm text-gray-500 dark:text-gray-400">
+                                Seat Selection
+                            </span>
                             <span className="font-medium dark:text-white">Included</span>
                         </div>
                         <div className="flex justify-between">
@@ -185,14 +253,17 @@ export const FlightDetails: React.FC<FlightDetailsProps> = ({
                 {/* Pricing Summary Panel */}
                 <div className="bg-gradient-to-r from-emerald-600 to-emerald-500 rounded-xl p-5 text-white">
                     <h4 className="text-base font-semibold mb-4 flex items-center gap-2">
-                        <DollarSign className="h-4 w-4" />
+                        <TbCurrencyNaira className="h-4 w-4" />
                         Pricing Summary
                     </h4>
-                    
+
                     <div className="space-y-3">
                         <div className="flex justify-between">
                             <span className="text-sm opacity-90">Base Fare</span>
-                            <span className="font-medium">$2,100</span>
+                            <span className="flex items-center justify-center font-medium">
+                                <TbCurrencyNaira size={24} />
+                                {getFarePrice(fareType)}
+                            </span>
                         </div>
                         <div className="flex justify-between">
                             <span className="text-sm opacity-90">Taxes & Fees</span>
@@ -201,7 +272,9 @@ export const FlightDetails: React.FC<FlightDetailsProps> = ({
                         <div className="h-px bg-white/20 my-2"></div>
                         <div className="flex justify-between">
                             <span className="font-medium">Total</span>
-                            <span className="text-xl font-bold">$2,500</span>
+                            <span className="text-xl font-bold">
+                                {getFarePrice(fareType) + Number(tax)}
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -209,21 +282,19 @@ export const FlightDetails: React.FC<FlightDetailsProps> = ({
 
             {/* Action Buttons */}
             <div className="cursor-pointer flex items-center justify-evenly gap-3 mt-8">
-                <Button 
-                    variant="outline" 
-                    onClick={onClose}
-                    className="flex-1"
-                >
+                <Button variant="outline" onClick={onClose} className="flex-1">
                     Close
                 </Button>
-                <Button 
-                    className={"cursor-pointer p-0 m-0 flex-1 items-center bg-blue-600 hover:bg-blue-700"}
+                <Button
+                    onClick={addFlightToStore}
+                    className={
+                        'cursor-pointer p-0 m-0 flex-1 items-center bg-blue-600 hover:bg-blue-700'
+                    }
                 >
-                    <NavLink 
+                    <NavLink
                         to={`/book-flight/${flight.publicId}`}
-                        className={"bw-full h-full flex items-center justify-center text-white"}
-
-                    >    
+                        className={'bw-full h-full flex items-center justify-center text-white'}
+                    >
                         Book Now
                     </NavLink>
                 </Button>

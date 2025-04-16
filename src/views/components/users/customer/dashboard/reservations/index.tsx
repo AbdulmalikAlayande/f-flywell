@@ -5,7 +5,7 @@ import Logger from '@src/utils/logger'
 import { NavLink, useParams } from 'react-router'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import { SERVER_BASE_URL } from '@src/utils/constants'
+import { CONFIG } from '@src/utils/constants'
 
 interface Reservation {
     
@@ -42,7 +42,7 @@ const Reservations = () => {
     async function fetchReservations() {
         let result: Reservation[] | undefined = [];
         
-        await axios.get<Reservation[]>(`${SERVER_BASE_URL}customer/${param.userId}/reservations`, {
+        await axios.get<Reservation[]>(`${CONFIG.production.HEROKU_SERVER_BASE_URL}customer/${param.userId}/reservations`, {
             headers: {
 
             },
