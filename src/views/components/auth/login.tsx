@@ -71,7 +71,7 @@ const Login = () => {
 
         try {
 
-            const apiClient = new ApiClient<LoginData, LoginResponse>(CONFIG.development.SERVER_BASE_URL, {});
+            const apiClient = new ApiClient<LoginData, LoginResponse>(CONFIG.production.HEROKU_SERVER_BASE_URL, {});
             const response = await apiClient.post('auth/login', data);
 	
 	    Logger.info("login:: Response data: "+JSON.stringify(response.data))

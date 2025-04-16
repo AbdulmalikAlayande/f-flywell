@@ -6,50 +6,37 @@ import { Badge } from '@/components/ui/badge';
 import { Check, Clock, Plane, User } from 'lucide-react';
 import { parse, differenceInMinutes, addDays, format } from 'date-fns';
 import { Separator } from '@/components/ui/separator';
+import { AvailableFlight, Seat } from '@/views/interfaces/interface';
 
 type PaymentConfirmationProps = {
     passengers: Passenger[];
-    seats: string[];
-    flightDetails: {
-        departure: string;
-        arrival: string;
-        departureCity: string;
-        arrivalCity: string;
-        date: string;
-        flightNumber: string;
-        airline: string;
-        departureTime: string;
-        arrivalTime: string;
-        price: number;
-        class: string;
-    };
+    reservedSeats: string[];
+    seats: Seat[];
+    flightDetails: AvailableFlight;
 };
 
 const PaymentConfirmation: React.FC<PaymentConfirmationProps> = ({
     passengers,
+    reservedSeats,
     seats,
     flightDetails,
 }) => {
-    // Calculate totals
-    const subtotal = useMemo(
-        () => flightDetails.price * passengers.length,
-        [flightDetails.price, passengers.length]
-    );
+    const subtotal = useMemo(() => seats.reduce((acc, seat) => acc + seat.price, 0), [seats]);
+
     const taxRate = 0.12; // 12% tax
     const taxes = useMemo(() => subtotal * taxRate, [subtotal]);
     const serviceCharge = 15.99;
     const total = useMemo(() => subtotal + taxes + serviceCharge, [subtotal, taxes]);
 
     // Generate reservation ID (in a real app this would come from backend)
-    const reservationId = useMemo(
-        () =>
-            `${flightDetails.airline.substring(0, 2).toUpperCase()}${Math.floor(
-                100000 + Math.random() * 900000
-            )}`,
-        [flightDetails.airline]
-    );
+    // const reservationId = useMemo(
+    //     () =>
+    //         `${flightDetails.airline.substring(0, 2).toUpperCase()}${Math.floor(
+    //             100000 + Math.random() * 900000
+    //         )}`,
+    //     [flightDetails.airline]
+    // );
 
-    // Format date for display
     const formattedDate = useMemo(() => {
         const date = new Date(flightDetails.date);
         return date.toLocaleDateString('en-US', {
@@ -106,7 +93,7 @@ const PaymentConfirmation: React.FC<PaymentConfirmationProps> = ({
                         <CardTitle className="text-2xl font-bold">Review & Confirm</CardTitle>
                         <p className="text-gray-500 dark:text-gray-400 mt-1">
                             Reservation ID:{' '}
-                            <span className="font-mono font-medium">{reservationId}</span>
+                            <span className="font-mono font-medium">{'reservationId'}</span>
                         </p>
                     </div>
                     <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100 px-3 py-1">
@@ -194,7 +181,7 @@ const PaymentConfirmation: React.FC<PaymentConfirmationProps> = ({
                                             )}
                                         </div>
                                         <div className="text-sm text-gray-500">
-                                            Seat {seats[index] || 'Not assigned'}
+                                            Seat {reservedSeats[index] || 'Not assigned'}
                                         </div>
                                         <div className="text-sm text-gray-500">
                                             {passenger.dateOfBirth

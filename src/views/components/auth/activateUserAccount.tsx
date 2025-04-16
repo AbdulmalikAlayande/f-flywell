@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
-import { SERVER_BASE_URL } from '../../../utils/constants';
 import { useNavigate } from 'react-router';
 import { CONFIG } from '@src/utils/constants';
 import { ApiClient } from '@src/utils/apiClient';
@@ -47,7 +46,7 @@ const ActivateUserAccount = () => {
     const sendOTPToBackend = (otp: string) => {
     	const publicId = userDetailsStore.getState().publicId;
         axios
-            .post(`${SERVER_BASE_URL}customer/activate-account/${publicId}/${otp}`)
+            .post(`${CONFIG.production.HEROKU_SERVER_BASE_URL}customer/activate-account/${publicId}/${otp}`)
             .then(response => {
                 if (response.status === 200) {
                     Logger.debug(`${response.data}`);
@@ -71,16 +70,16 @@ const ActivateUserAccount = () => {
             });
     };
 
-    const resendOTP = async (event: React.MouseEvent<HTMLParagraphElement>) => {
+    const resendOTP = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         try {
             const email = userDetailsStore.getState().email;
             
-            const apiClient = new ApiClient<object, {data: string}>(CONFIG.development.SERVER_BASE_URL, {params: {email: email}});
+            const apiClient = new ApiClient<object, {data: string}>(CONFIG.production.HEROKU_SERVER_BASE_URL, {params: {email: email}});
             
             const response = await apiClient.post(`/auth/resend-otp`, {});
             
-            if(response.data || response.data.data){
+            if(response.data){
                 toast.info("A new OTP has been sent to your mail", {
                     position: toast.POSITION.TOP_CENTER,
                 });
@@ -132,7 +131,7 @@ const ActivateUserAccount = () => {
                             Didn't Receive an OPT?{' '}
                             <button 
                             	onClick={resendOTP}
-                            	className="text-blue-600 hover:bg-blue-100 focus:bg-blue-100 text-blue-600 hover:text-blue-800 focus:text-blue-800 dark:text-blue-500 dark:hover:bg-blue-800/30 dark:hover:text-blue-400 dark:focus:bg-blue-800/30 dark:focus:text-blue-400 focus:outline-hidden py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent disabled:opacity-50 disabled:pointer-events-none"
+                            	className="text-blue-600 hover:bg-blue-100 focus:bg-blue-100 hover:text-blue-800 focus:text-blue-800 dark:text-blue-500 dark:hover:bg-blue-800/30 dark:hover:text-blue-400 dark:focus:bg-blue-800/30 dark:focus:text-blue-400 focus:outline-hidden py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent disabled:opacity-50 disabled:pointer-events-none"
                             >
                             	Click here to resend.
                             </button>
