@@ -77,7 +77,7 @@ const SignUp = () => {
 
         try {
             const apiClient = new ApiClient<SignupData, SignupResponse>(
-                CONFIG.production.HEROKU_SERVER_BASE_URL,
+                CONFIG.development.SERVER_BASE_URL,
                 {}
             );
             const response = await apiClient.post('customer/new', userData);
